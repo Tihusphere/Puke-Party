@@ -1,16 +1,34 @@
 shader_type spatial;
-render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx;
 
-uniform sampler2D texture_a : source_color;  // Base texture (Black areas)
-uniform sampler2D texture_b : source_color;  // Overlay texture (White areas)
-uniform sampler2D mask_texture : hint_default_white;
+uniform sampler2D mask_texture : source_color;
 
-void fragment() {
-    vec4 color_a = texture(texture_a, UV);
-    vec4 color_b = texture(texture_b, UV);
-    float mask = texture(mask_texture, UV).r;
-    
-    // Smoothly mix between Texture A and Texture B based on the mask
-    ALBEDO = mix(color_a.rgb, color_b.rgb, mask);
+void fragment()
+{
+	vec2 test_uv = vec2(0.5, 0.5);
+
+	float mask = texture(mask_texture, test_uv).r;
+
+	ALBEDO = vec3(mask);
 }
 
+/*
+shader_type spatial;
+
+uniform sampler2D texture_a;
+uniform sampler2D texture_b;
+uniform sampler2D mask_texture;
+
+void fragment()
+{
+	vec3 normal_texture = texture(texture_a, UV).rgb;
+	vec3 secondary_texture = texture(texture_b, UV).rgb;
+
+	float mask = texture(mask_texture, UV).r;
+
+	ALBEDO = mix(
+		normal_texture,
+		secondary_texture,
+		mask
+	);
+}
+*/
