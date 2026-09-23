@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://csl5fjneofxwb"]
+
+[ext_resource type="Script" uid="uid://dlwilco3yayqq" path="res://egg_testing/main_menu/main_menu.gd" id="1_5ha5y"]
+
+[sub_resource type="Gradient" id="Gradient_5an11"]
+colors = PackedColorArray(0, 0, 0, 1, 0.2819191, 0.28191912, 0.28191912, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_g4v7s"]
+gradient = SubResource("Gradient_5an11")
+fill_to = Vector2(0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_g4v7s"]
+font_size = 150
+
+[node name="MainMenu" type="Node2D" unique_id=35488168]
+script = ExtResource("1_5ha5y")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1556361644]
+
+[node name="Background" type="TextureRect" parent="CanvasLayer" unique_id=638929513]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_g4v7s")
+expand_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer" unique_id=2058089903]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 24
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/MarginContainer" unique_id=641491630]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer2" unique_id=787736382]
+layout_mode = 2
+text = "PUKE PARTY"
+label_settings = SubResource("LabelSettings_g4v7s")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer/VBoxContainer2" unique_id=2145554593]
+layout_mode = 2
+
+[node name="ButtonContinue" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=1307171885]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+text = "Continue
+"
+
+[node name="ButtonNewGame" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=1699374826]
+unique_name_in_owner = true
+layout_mode = 2
+text = "New Game"
+
+[node name="ButtonLoadGame" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=184216471]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Load Game"
+
+[node name="ButtonExit" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=1706199562]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Exit to Desktop"

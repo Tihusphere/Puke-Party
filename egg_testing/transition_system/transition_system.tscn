@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://chf6cnuywi73x"]
+
+[ext_resource type="Script" uid="uid://dhnoso8sarrq8" path="res://egg_testing/transition_system/transition_system.gd" id="1_u1tiw"]
+[ext_resource type="Texture2D" uid="uid://c6mfd3xubens3" path="res://egg_testing/sprites_notreallythough/loading_placeholder.png" id="2_c58jk"]
+
+[node name="TransitionSystem" type="Node2D" unique_id=1127605574]
+script = ExtResource("1_u1tiw")
+default_duration = 0.5
+default_image = ExtResource("2_c58jk")
+default_color = null
