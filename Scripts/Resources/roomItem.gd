@@ -2,30 +2,47 @@ extends StaticBody3D
 
 @export var mesh_instance: MeshInstance3D
 
-var canvas_size: Vector2i = Vector2i(512, 512)
+var canvas_size: Vector2i = Vector2i(1024, 1024)
 var image: Image
 var texture: ImageTexture
 var material: StandardMaterial3D
 
 var is_painting: bool = false
 var current_camera: Camera3D
+var mesh_data_tool: MeshDataTool
 
 func _ready() -> void:
-	# 1. Fallback if the export variable isn't assigned in the inspector
+	# 1. Fallback to locate the MeshInstance3D child node automatically
 	if not mesh_instance:
-		mesh_instance = get_node_or_null("MeshInstance3D")
-		if not mesh_instance:
-			# Look through children dynamically
-			for child in get_children():
-				if child is MeshInstance3D:
-					mesh_instance = child
-					break
-	
-	if not mesh_instance:
-		push_error("Error: Could not find a MeshInstance3D child node!")
+		for child in get_children():
+			if child is MeshInstance3D:
+				mesh_instance = child
+				break
+				
+	if not mesh_instance or not mesh_instance.mesh:
+		push_error("CANNOT PAINT: Missing valid MeshInstance3D with a mesh resource!")
 		return
 
-	# 2. Setup a clear drawing texture
+	# 2. CONVERT TO ARRAYMESH: Essential for imported Blender nodes
+	var base_mesh = mesh_instance.mesh
+	var array_mesh: ArrayMesh
+	
+	if base_mesh is ArrayMesh:
+		array_mesh = base_mesh
+	else:
+		# If it's an ImporterMesh/Primitive, convert it dynamically to an ArrayMesh
+		array_mesh = ArrayMesh.new()
+		for i in range(base_mesh.get_surface_count()):
+			array_mesh.add_surface_from_arrays(
+				Mesh.PRIMITIVE_TRIANGLES, 
+				base_mesh.surface_get_arrays(i)
+			)
+			
+	# 3. Cache the native Blender geometry topology maps
+	mesh_data_tool = MeshDataTool.new()
+	mesh_data_tool.create_from_surface(array_mesh, 0)
+
+	# 4. Create and bind the visual texture canvas
 	image = Image.create(canvas_size.x, canvas_size.y, false, Image.FORMAT_RGBA8)
 	image.fill(Color.WHITE)
 	
@@ -34,27 +51,21 @@ func _ready() -> void:
 	material.albedo_texture = texture
 	mesh_instance.material_override = material
 	
-	# Enable ray picking explicitly
 	input_ray_pickable = true
 
-# This signal acts as a trigger to tell us IF the mouse is interacting with this box
 func _on_input_event(camera: Node, event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
 	if camera is Camera3D:
-		current_camera = camera # Save which camera we are interacting through
-
+		current_camera = camera
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		is_painting = event.pressed
 		if not is_painting:
 			current_camera = null
 
 func _physics_process(_delta: float) -> void:
-	# Only execute raycasts if the mouse button is actively held down over the box
 	if not is_painting or not current_camera:
 		return
 		
-	# Get the accurate viewport viewport-screen mouse coordinate
 	var mouse_pos = get_viewport().get_mouse_position()
-	
 	var space_state = get_world_3d().direct_space_state
 	var ray_origin = current_camera.project_ray_origin(mouse_pos)
 	var ray_end = ray_origin + current_camera.project_ray_normal(mouse_pos) * 1000.0
@@ -64,48 +75,45 @@ func _physics_process(_delta: float) -> void:
 	
 	var result = space_state.intersect_ray(query)
 	
-	# Verify the raycast successfully intersected this specific node
 	if result and result.collider == self:
-		var uv_value = result.get("uv")
-		var uv: Vector2 = Vector2.ZERO
+		# Get the exact physics primitive face ID hit by our pointer ray
+		var face_idx: int = result.get("face_index", -1)
 		
-		if uv_value != null:
-			# Trimesh Collision uses the exact UV layout
-			uv = uv_value
-		else:
-			# Fallback calculation engine for BoxShape3Ds
-			var local_pos: Vector3 = mesh_instance.to_local(result.position)
-			var local_normal: Vector3 = mesh_instance.global_transform.basis.inverse() * result.normal
-			local_normal = local_normal.normalized()
+		# Fallback if using standard editor nodes that skip face indices
+		if face_idx == -1:
+			return
 			
-			var box_size: Vector3 = Vector3.ONE
-			if mesh_instance.mesh is BoxMesh:
-				box_size = mesh_instance.mesh.size
-			
-			box_size = box_size * mesh_instance.scale
-			var half_size: Vector3 = box_size * 0.5
-			
-			if local_normal.x > 0.9: # Right Face (+X)
-				uv = Vector2(1.0 - ((local_pos.z + half_size.z) / box_size.z), 1.0 - ((local_pos.y + half_size.y) / box_size.y))
-			elif local_normal.x < -0.9: # Left Face (-X)
-				uv = Vector2((local_pos.z + half_size.z) / box_size.z, 1.0 - ((local_pos.y + half_size.y) / box_size.y))
-			elif local_normal.y > 0.9: # Top Face (+Y)
-				uv = Vector2((local_pos.x + half_size.x) / box_size.x, (local_pos.z + half_size.z) / box_size.z)
-			elif local_normal.y < -0.9: # Bottom Face (-Y)
-				uv = Vector2((local_pos.x + half_size.x) / box_size.x, 1.0 - ((local_pos.z + half_size.z) / box_size.z))
-			elif local_normal.z > 0.9: # Front Face (+Z)
-				uv = Vector2((local_pos.x + half_size.x) / box_size.x, 1.0 - ((local_pos.y + half_size.y) / box_size.y))
-			elif local_normal.z < -0.9: # Back Face (-Z)
-				uv = Vector2(1.0 - ((local_pos.x + half_size.x) / box_size.x), 1.0 - ((local_pos.y + half_size.y) / box_size.y))
+		# 5. BARYCENTRIC INTERPOLATION ENGINE
+		# Retrieve the three specific vertex references forming the hit triangle face
+		var v0_idx = mesh_data_tool.get_face_vertex(face_idx, 0)
+		var v1_idx = mesh_data_tool.get_face_vertex(face_idx, 1)
+		var v2_idx = mesh_data_tool.get_face_vertex(face_idx, 2)
 		
-		# Map the finalized 0-1 values directly to the canvas pixels
-		uv.x = clamp(uv.x, 0.0, 1.0)
-		uv.y = clamp(uv.y, 0.0, 1.0)
+		var p0 = mesh_data_tool.get_vertex(v0_idx)
+		var p1 = mesh_data_tool.get_vertex(v1_idx)
+		var p2 = mesh_data_tool.get_vertex(v2_idx)
 		
-		var pixel_x: int = int(uv.x * (canvas_size.x - 1))
-		var pixel_y: int = int(uv.y * (canvas_size.y - 1))
+		var local_hit: Vector3 = mesh_instance.to_local(result.position)
 		
-		# Paint a circular brush tip
+		# Find the positional ratio relative to each vertex edge bounding space
+		var barycentric = Geometry3D.get_triangle_barycentric_coords(local_hit, p0, p1, p2)
+		
+		# Retrieve the true unwrapped UV maps assigned inside Blender
+		var uv0 = mesh_data_tool.get_vertex_uv(v0_idx)
+		var uv1 = mesh_data_tool.get_vertex_uv(v1_idx)
+		var uv2 = mesh_data_tool.get_vertex_uv(v2_idx)
+		
+		# Perform a smooth cross-fade blend to extract the exact coordinate point
+		var exact_uv: Vector2 = (uv0 * barycentric.x) + (uv1 * barycentric.y) + (uv2 * barycentric.z)
+		
+		# Clamp values safely inside bounds
+		exact_uv.x = clamp(exact_uv.x, 0.0, 1.0)
+		exact_uv.y = clamp(exact_uv.y, 0.0, 1.0)
+		
+		var pixel_x: int = int(exact_uv.x * (canvas_size.x - 1))
+		var pixel_y: int = int(exact_uv.y * (canvas_size.y - 1))
+		
+		# Draw a round brush stroke tip
 		var brush_radius: int = 8
 		var brush_color: Color = Color.BLUE
 		
