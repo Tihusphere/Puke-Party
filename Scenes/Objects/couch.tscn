@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://royiy43a7i6f"]
+
+[ext_resource type="Material" uid="uid://dqfssfej6b3v8" path="res://Materials/object.tres" id="1_nbwog"]
+
+[node name="Couch" type="CSGCombiner3D" unique_id=285825779]
+use_collision = true
+
+[node name="Bottom" type="CSGBox3D" parent="." unique_id=1100717547]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+size = Vector3(8, 1.5, 2)
+
+[node name="ArmLeft" type="CSGBox3D" parent="." unique_id=592110402]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.25, 0.5, -0.125)
+material_override = ExtResource("1_nbwog")
+size = Vector3(0.5, 2, 1.75)
+material = ExtResource("1_nbwog")
+
+[node name="ArmRight" type="CSGBox3D" parent="." unique_id=101240372]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.25, 0.5, -0.125)
+material_override = ExtResource("1_nbwog")
+size = Vector3(0.5, 2, 1.75)
+material = ExtResource("1_nbwog")
+
+[node name="Back" type="CSGBox3D" parent="." unique_id=1271670145]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, -1.25)
+size = Vector3(8, 2.5, 0.5)

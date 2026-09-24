@@ -18,7 +18,7 @@ var player_state: PlayerState = PlayerState.WALKING
 
 const WALK_SPEED := 5.0
 const CRAWL_SPEED := 3.0
-const JUMP_VELOCITY := 3.0
+const JUMP_VELOCITY := 5.5
 
 var speed: float = WALK_SPEED
 

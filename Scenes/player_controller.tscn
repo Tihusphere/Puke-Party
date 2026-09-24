@@ -65,6 +65,8 @@ _data = {
 }
 
 [node name="PlayerController" type="CharacterBody3D" unique_id=1433824193]
+collision_layer = 2
+collision_mask = 5
 script = ExtResource("1_5ur5x")
 
 [node name="RayCast3D" type="RayCast3D" parent="." unique_id=1841964468]
@@ -78,7 +80,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.375, 0)
 shape = SubResource("CapsuleShape3D_dl1v4")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=584798683]
-visible = false
 mesh = SubResource("CapsuleMesh_g4v7s")
 
 [node name="CameraController" type="Node3D" parent="." unique_id=1029934761]

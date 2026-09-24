@@ -1,0 +1,98 @@
+[gd_scene format=3 uid="uid://bqpgg3y8ck3h1"]
+
+[ext_resource type="Script" uid="uid://c2iakexnj7bm5" path="res://Scripts/room.gd" id="1_fr46g"]
+[ext_resource type="Material" uid="uid://dqfssfej6b3v8" path="res://Materials/object.tres" id="2_6mpvv"]
+[ext_resource type="PackedScene" uid="uid://bomgv2ww5a3nx" path="res://Scenes/player_controller.tscn" id="2_fr46g"]
+[ext_resource type="PackedScene" uid="uid://dj6i4dqrisyv1" path="res://Scenes/Objects/counter.tscn" id="3_4gp0m"]
+[ext_resource type="PackedScene" uid="uid://d2e4po1gc1tpr" path="res://Scenes/Objects/table.tscn" id="3_6mpvv"]
+[ext_resource type="PackedScene" uid="uid://royiy43a7i6f" path="res://Scenes/Objects/couch.tscn" id="3_gkney"]
+[ext_resource type="PackedScene" uid="uid://dfburp7u5mu0i" path="res://Scenes/Objects/chair.tscn" id="5_phao3"]
+[ext_resource type="PackedScene" uid="uid://6f0fly675n0o" path="res://Scenes/Objects/fridge.tscn" id="7_phao3"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tumq0"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_k5f4k"]
+sky_material = SubResource("ProceduralSkyMaterial_tumq0")
+
+[sub_resource type="Environment" id="Environment_6phgx"]
+background_mode = 2
+sky = SubResource("Sky_k5f4k")
+
+[node name="Room" type="Node3D" unique_id=1846900185]
+script = ExtResource("1_fr46g")
+
+[node name="Environment" type="Node3D" parent="." unique_id=2109632941]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment" unique_id=1312727663]
+transform = Transform3D(0.60454214, 0.79627657, -0.021736307, 0.3809874, -0.2650707, 0.8857688, 0.69955516, -0.54376584, -0.4636178, 0, 9.30185, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment" unique_id=787985398]
+environment = SubResource("Environment_6phgx")
+
+[node name="Objects" type="Node3D" parent="Environment" unique_id=1273704446]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+
+[node name="Boundaries" type="Node3D" parent="Environment/Objects" unique_id=757635421]
+
+[node name="Floor" type="CSGBox3D" parent="Environment/Objects/Boundaries" unique_id=192633857]
+use_collision = true
+collision_mask = 15
+size = Vector3(16, 1, 16)
+
+[node name="Wall1" type="CSGBox3D" parent="Environment/Objects/Boundaries" unique_id=1002399902]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 4.5, 0)
+size = Vector3(1, 8, 14)
+
+[node name="Wall2" type="CSGBox3D" parent="Environment/Objects/Boundaries" unique_id=1226035991]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 4.5, 0)
+size = Vector3(1, 8, 14)
+
+[node name="Wall3" type="CSGBox3D" parent="Environment/Objects/Boundaries" unique_id=1848359950]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 4.5, 7.5)
+size = Vector3(1, 8, 14)
+
+[node name="Wall4" type="CSGBox3D" parent="Environment/Objects/Boundaries" unique_id=1167612796]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 4.5, -7.5)
+size = Vector3(1, 8, 14)
+
+[node name="CounterCorner" type="CSGCombiner3D" parent="Environment/Objects" unique_id=1765649216]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Environment/Objects/CounterCorner" unique_id=77044824]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 6.375, 1.5, 6.375)
+size = Vector3(1.25, 3, 1.25)
+material = ExtResource("2_6mpvv")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Environment/Objects/CounterCorner" unique_id=330346066]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 6.375, 3.125, 6.375)
+size = Vector3(1.25, 0.25, 1.25)
+
+[node name="Counter" parent="Environment/Objects" unique_id=1002607232 instance=ExtResource("3_4gp0m")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -0.5, 1, 6.5)
+
+[node name="Counter2" parent="Environment/Objects" unique_id=703615751 instance=ExtResource("3_4gp0m")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 2, 1, 6.5)
+
+[node name="Counter3" parent="Environment/Objects" unique_id=894932985 instance=ExtResource("3_4gp0m")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 4.5, 1, 6.5)
+
+[node name="Counter4" parent="Environment/Objects" unique_id=1051725831 instance=ExtResource("3_4gp0m")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 6.5, 1, 4.5)
+
+[node name="Couch" parent="Environment/Objects" unique_id=285825779 instance=ExtResource("3_gkney")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, 1, -5.5)
+
+[node name="Chair" parent="Environment/Objects" unique_id=569887027 instance=ExtResource("5_phao3")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -3.25, 0.9999999, 1.25)
+
+[node name="Table" parent="Environment/Objects" unique_id=1429839268 instance=ExtResource("3_6mpvv")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -5.5, 1.3749998, 1.25)
+
+[node name="Fridge" parent="Environment/Objects" unique_id=136394833 instance=ExtResource("7_phao3")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 6.5, 1, -1)
+
+[node name="PlayerController" parent="." unique_id=1433824193 instance=ExtResource("2_fr46g")]
+transform = Transform3D(-1, 0, 1.509958e-07, 0, 1, 0, -1.509958e-07, 0, -1, 0, 1, 0)

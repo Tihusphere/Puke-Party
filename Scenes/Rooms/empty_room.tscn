@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://ecgucgv6v1si"]
+
+[ext_resource type="Script" uid="uid://c2iakexnj7bm5" path="res://Scripts/room.gd" id="1_5eepm"]
+[ext_resource type="PackedScene" uid="uid://bomgv2ww5a3nx" path="res://Scenes/player_controller.tscn" id="8_8y1vj"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tumq0"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_k5f4k"]
+sky_material = SubResource("ProceduralSkyMaterial_tumq0")
+
+[sub_resource type="Environment" id="Environment_6phgx"]
+background_mode = 2
+sky = SubResource("Sky_k5f4k")
+
+[node name="Room" type="Node3D" unique_id=1846900185]
+script = ExtResource("1_5eepm")
+
+[node name="Environment" type="Node3D" parent="." unique_id=2109632941]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment" unique_id=1312727663]
+transform = Transform3D(0.5619606, 0.8265574, -0.03166962, 0.015167008, 0.027983911, 0.99949324, 0.827025, -0.56215626, 0.0031894632, 0, 9.30185, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment" unique_id=787985398]
+environment = SubResource("Environment_6phgx")
+
+[node name="Boundaries" type="Node3D" parent="Environment" unique_id=757635421]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+
+[node name="Floor" type="CSGBox3D" parent="Environment/Boundaries" unique_id=192633857]
+use_collision = true
+collision_mask = 15
+size = Vector3(16, 1, 16)
+
+[node name="Wall1" type="CSGBox3D" parent="Environment/Boundaries" unique_id=1002399902]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 4.5, 0)
+size = Vector3(1, 8, 14)
+
+[node name="Wall2" type="CSGBox3D" parent="Environment/Boundaries" unique_id=1226035991]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 4.5, 0)
+size = Vector3(1, 8, 14)
+
+[node name="Wall3" type="CSGBox3D" parent="Environment/Boundaries" unique_id=1848359950]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 4.5, 7.5)
+size = Vector3(1, 8, 14)
+
+[node name="Wall4" type="CSGBox3D" parent="Environment/Boundaries" unique_id=1167612796]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 4.5, -7.5)
+size = Vector3(1, 8, 14)
+
+[node name="PlayerController" parent="." unique_id=1433824193 instance=ExtResource("8_8y1vj")]
+transform = Transform3D(-1, 0, 1.509958e-07, 0, 1, 0, -1.509958e-07, 0, -1, 3.25, 1, -0.5)
