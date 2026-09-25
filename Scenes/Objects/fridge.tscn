@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://6f0fly675n0o"]
+
+[ext_resource type="Material" uid="uid://dqfssfej6b3v8" path="res://Materials/object.tres" id="1_4jc6q"]
+
+[node name="Fridge" type="CSGCombiner3D" unique_id=136394833]
+use_collision = true
+
+[node name="Base" type="CSGBox3D" parent="." unique_id=394127955]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 2.5, 0)
+size = Vector3(3.5, 6, 1)
+
+[node name="CabinetLeft" type="CSGBox3D" parent="." unique_id=8713438]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6000001, 3.3500001, 0.55)
+size = Vector3(1.6, 4.1, 0.1)
+material = ExtResource("1_4jc6q")
+
+[node name="CabinetHandle" type="CSGBox3D" parent="CabinetLeft" unique_id=1333995595]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49999997, 0.05000019, 0.100000024)
+size = Vector3(0.2, 3.3, 0.2)
+
+[node name="CabinetRight" type="CSGBox3D" parent="." unique_id=1900203702]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0999999, 3.3500001, 0.55)
+size = Vector3(1.6, 4.1, 0.1)
+material = ExtResource("1_4jc6q")
+
+[node name="CabinetHandle" type="CSGBox3D" parent="CabinetRight" unique_id=281526123]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.50000006, 0.05000019, 0.100000024)
+size = Vector3(0.2, 3.3, 0.2)
+
+[node name="Drawer" type="CSGBox3D" parent="." unique_id=1206918106]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25000012, 0.55, 1.25)
+size = Vector3(3.3, 1.1, 1.5)
+
+[node name="DrawerFace" type="CSGBox3D" parent="." unique_id=1770743149]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25000012, 0.6, 2.05)
+size = Vector3(3.3, 1.2, 0.1)
+material = ExtResource("1_4jc6q")
