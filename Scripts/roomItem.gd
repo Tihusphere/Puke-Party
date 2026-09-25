@@ -1,24 +1,24 @@
+class_name PaintableObject
 extends StaticBody3D
 
 @export var mesh_instance: MeshInstance3D
-@export var brush_texture: Texture2D 
+@export var paint_manager: PaintManager
 
-# 1. NEW SIZE VARIABLE: Set the pixel dimensions of your brush/stamp here
-@export var brush_size: Vector2i = Vector2i(64, 64)
+## The primary texture assigned to this object
+@export var base_texture: Texture2D
 
-var canvas_size: Vector2i = Vector2i(1024, 1024)
-var image: Image
-var texture: ImageTexture
-var material: StandardMaterial3D
+## Optional shader file reference (if not set, loads res://shaders/texture_blend_mask.gdshader)
+@export var mask_shader: Shader
+
+@export var canvas_size: Vector2i = Vector2i(1024, 1024)
+
+var mask_image: Image
+var mask_texture: ImageTexture
+var shader_material: ShaderMaterial
 
 var is_painting: bool = false
 var current_camera: Camera3D
 var mesh_data_tool: MeshDataTool
-
-# Internal variables to store the processed brush data
-var active_brush_image: Image
-var brush_w: int = 0
-var brush_h: int = 0
 
 func _ready() -> void:
 	if not mesh_instance:
@@ -31,10 +31,7 @@ func _ready() -> void:
 		push_error("CANNOT PAINT: Missing valid MeshInstance3D with a mesh resource!")
 		return
 
-	# 2. Initialize and cache the scaled brush texture
-	update_brush_size()
-
-	# Convert to ArrayMesh for Blender nodes
+	# Convert mesh surface into ArrayMesh to build MeshDataTool
 	var base_mesh = mesh_instance.mesh
 	var array_mesh: ArrayMesh
 	
@@ -48,32 +45,26 @@ func _ready() -> void:
 	mesh_data_tool = MeshDataTool.new()
 	mesh_data_tool.create_from_surface(array_mesh, 0)
 
-	# Create drawing texture canvas
-	image = Image.create(canvas_size.x, canvas_size.y, false, Image.FORMAT_RGBA8)
-	image.fill(Color.WHITE)
-	
-	texture = ImageTexture.create_from_image(image)
-	material = StandardMaterial3D.new()
-	material.albedo_texture = texture
-	mesh_instance.material_override = material
-	
-	input_ray_pickable = true
+	# Initialize black mask image (0.0 red channel = base_texture only)
+	mask_image = Image.create(canvas_size.x, canvas_size.y, false, Image.FORMAT_RGBA8)
+	mask_image.fill(Color.BLACK)
+	mask_texture = ImageTexture.create_from_image(mask_image)
 
-# 3. HELPER FUNCTION TO RESIZE THE BRUSH ON DEMAND
-func update_brush_size() -> void:
-	if brush_texture:
-		# Always pull a clean copy of the original source image
-		active_brush_image = brush_texture.get_image()
-		active_brush_image.convert(Image.FORMAT_RGBA8)
-		
-		# Resize the image dynamically using high-quality bilinear interpolation
-		active_brush_image.resize(brush_size.x, brush_size.y, Image.INTERPOLATE_BILINEAR)
-		
-		# Update dimension caches
-		brush_w = active_brush_image.get_width()
-		brush_h = active_brush_image.get_height()
+	# Setup Shader Material
+	shader_material = ShaderMaterial.new()
+	if mask_shader:
+		shader_material.shader = mask_shader
 	else:
-		push_warning("No brush texture assigned!")
+		shader_material.shader = load("res://shaders/texture_blend_mask.gdshader")
+
+	# Pass base texture, manager's overlay texture, and mask texture to shader
+	shader_material.set_shader_parameter("base_texture", base_texture)
+	if paint_manager and paint_manager.overlay_texture:
+		shader_material.set_shader_parameter("overlay_texture", paint_manager.overlay_texture)
+	shader_material.set_shader_parameter("mask_texture", mask_texture)
+
+	mesh_instance.material_override = shader_material
+	input_ray_pickable = true
 
 func _on_input_event(camera: Node, event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
 	if camera is Camera3D:
@@ -99,7 +90,8 @@ func _physics_process(_delta: float) -> void:
 	
 	if result and result.collider == self:
 		var face_idx: int = result.get("face_index", -1)
-		if face_idx == -1: return
+		if face_idx == -1: 
+			return
 			
 		var v0_idx = mesh_data_tool.get_face_vertex(face_idx, 0)
 		var v1_idx = mesh_data_tool.get_face_vertex(face_idx, 1)
@@ -117,30 +109,37 @@ func _physics_process(_delta: float) -> void:
 		var uv2 = mesh_data_tool.get_vertex_uv(v2_idx)
 		
 		var exact_uv: Vector2 = (uv0 * barycentric.x) + (uv1 * barycentric.y) + (uv2 * barycentric.z)
-		
 		exact_uv.x = clamp(exact_uv.x, 0.0, 1.0)
 		exact_uv.y = clamp(exact_uv.y, 0.0, 1.0)
 		
 		var pixel_x: int = int(exact_uv.x * (canvas_size.x - 1))
 		var pixel_y: int = int(exact_uv.y * (canvas_size.y - 1))
 		
-		if active_brush_image:
-			var start_x: int = pixel_x - (brush_w / 2)
-			var start_y: int = pixel_y - (brush_h / 2)
+		# Apply mask stamp based on active brush
+		if paint_manager and paint_manager.active_brush_image:
+			var brush_img = paint_manager.active_brush_image
+			var bw = paint_manager.brush_w
+			var bh = paint_manager.brush_h
 			
-			for bx in range(brush_w):
-				for by in range(brush_h):
+			var start_x: int = pixel_x - (bw / 2)
+			var start_y: int = pixel_y - (bh / 2)
+			
+			for bx in range(bw):
+				for by in range(bh):
 					var target_x = start_x + bx
 					var target_y = start_y + by
 					
 					if target_x >= 0 and target_x < canvas_size.x and target_y >= 0 and target_y < canvas_size.y:
-						var stamp_pixel: Color = active_brush_image.get_pixel(bx, by)
+						var stamp_pixel: Color = brush_img.get_pixel(bx, by)
 						
 						if stamp_pixel.a > 0.0:
-							var bg_pixel: Color = image.get_pixel(target_x, target_y)
-							var blended_color = bg_pixel.blend(stamp_pixel)
-							image.set_pixel(target_x, target_y, blended_color)
+							# Convert brush opacity into white mask intensity
+							var mask_stamp = Color(1.0, 1.0, 1.0, stamp_pixel.a)
+							var current_mask_pixel: Color = mask_image.get_pixel(target_x, target_y)
+							var blended_mask = current_mask_pixel.blend(mask_stamp)
+							
+							mask_image.set_pixel(target_x, target_y, blended_mask)
 		else:
-			image.set_pixel(pixel_x, pixel_y, Color.BLUE)
+			mask_image.set_pixel(pixel_x, pixel_y, Color.WHITE)
 						
-		texture.update(image)
+		mask_texture.update(mask_image)

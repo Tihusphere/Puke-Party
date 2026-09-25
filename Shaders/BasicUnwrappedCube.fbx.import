@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://dbreqv0eva6ip"
-path="res://.godot/imported/BasicUnwrappedCube.fbx-3433758459ac53e487e1b7629a730363.scn"
+path="res://.godot/imported/BasicUnwrappedCube.fbx-1d9f570e33128a1afecd7f0e3ebcd44a.scn"
 
 [deps]
 
-source_file="res://Shaders/BasicUnwrappedCube.fbx"
-dest_files=["res://.godot/imported/BasicUnwrappedCube.fbx-3433758459ac53e487e1b7629a730363.scn"]
+source_file="res://shaders/BasicUnwrappedCube.fbx"
+dest_files=["res://.godot/imported/BasicUnwrappedCube.fbx-1d9f570e33128a1afecd7f0e3ebcd44a.scn"]
 
 [params]
 
