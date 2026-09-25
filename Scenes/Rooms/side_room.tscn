@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://7u2koin6i58b"]
+[gd_scene format=3 uid="uid://cwwfrbi1n3ndq"]
 
-[ext_resource type="Script" uid="uid://c2iakexnj7bm5" path="res://Scripts/room.gd" id="1_is23o"]
+[ext_resource type="Script" uid="uid://c2iakexnj7bm5" path="res://Scripts/room.gd" id="1_dhp53"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tumq0"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -14,7 +14,7 @@ background_mode = 2
 sky = SubResource("Sky_k5f4k")
 
 [node name="Room" type="Node3D" unique_id=1846900185]
-script = ExtResource("1_is23o")
+script = ExtResource("1_dhp53")
 
 [node name="Environment" type="Node3D" parent="." unique_id=2109632941]
 
@@ -35,6 +35,10 @@ size = Vector3(16, 1, 16)
 
 [node name="Wall1" type="CSGBox3D" parent="Environment/Boundaries" unique_id=1226035991]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 4.5, 0)
+size = Vector3(1, 8, 14)
+
+[node name="Wall2" type="CSGBox3D" parent="Environment/Boundaries" unique_id=1167612796]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 7.5, 4.5, 0)
 size = Vector3(1, 8, 14)
 
 [node name="Doorway1" type="CSGCombiner3D" parent="Environment/Boundaries" unique_id=801700590]
@@ -64,20 +68,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
 size = Vector3(1, 8, 6)
 
 [node name="Overhead" type="CSGBox3D" parent="Environment/Boundaries/Doorway2" unique_id=319356645]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
-size = Vector3(1, 3, 2)
-
-[node name="Doorway3" type="CSGCombiner3D" parent="Environment/Boundaries" unique_id=1233980445]
-transform = Transform3D(-1, 0, -8.742277e-08, 0, 1, 0, 8.742277e-08, 0, -1, 7.5, 4.5, 0)
-
-[node name="LeftWall" type="CSGBox3D" parent="Environment/Boundaries/Doorway3" unique_id=531425112]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
-size = Vector3(1, 8, 6)
-
-[node name="RightWall" type="CSGBox3D" parent="Environment/Boundaries/Doorway3" unique_id=1159241099]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
-size = Vector3(1, 8, 6)
-
-[node name="Overhead" type="CSGBox3D" parent="Environment/Boundaries/Doorway3" unique_id=1816212031]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
 size = Vector3(1, 3, 2)
