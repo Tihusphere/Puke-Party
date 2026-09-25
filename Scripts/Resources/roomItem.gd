@@ -1,6 +1,10 @@
 extends StaticBody3D
 
 @export var mesh_instance: MeshInstance3D
+@export var brush_texture: Texture2D 
+
+# 1. NEW SIZE VARIABLE: Set the pixel dimensions of your brush/stamp here
+@export var brush_size: Vector2i = Vector2i(64, 64)
 
 var canvas_size: Vector2i = Vector2i(1024, 1024)
 var image: Image
@@ -11,8 +15,12 @@ var is_painting: bool = false
 var current_camera: Camera3D
 var mesh_data_tool: MeshDataTool
 
+# Internal variables to store the processed brush data
+var active_brush_image: Image
+var brush_w: int = 0
+var brush_h: int = 0
+
 func _ready() -> void:
-	# 1. Fallback to locate the MeshInstance3D child node automatically
 	if not mesh_instance:
 		for child in get_children():
 			if child is MeshInstance3D:
@@ -23,26 +31,24 @@ func _ready() -> void:
 		push_error("CANNOT PAINT: Missing valid MeshInstance3D with a mesh resource!")
 		return
 
-	# 2. CONVERT TO ARRAYMESH: Essential for imported Blender nodes
+	# 2. Initialize and cache the scaled brush texture
+	update_brush_size()
+
+	# Convert to ArrayMesh for Blender nodes
 	var base_mesh = mesh_instance.mesh
 	var array_mesh: ArrayMesh
 	
 	if base_mesh is ArrayMesh:
 		array_mesh = base_mesh
 	else:
-		# If it's an ImporterMesh/Primitive, convert it dynamically to an ArrayMesh
 		array_mesh = ArrayMesh.new()
 		for i in range(base_mesh.get_surface_count()):
-			array_mesh.add_surface_from_arrays(
-				Mesh.PRIMITIVE_TRIANGLES, 
-				base_mesh.surface_get_arrays(i)
-			)
+			array_mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES, base_mesh.surface_get_arrays(i))
 			
-	# 3. Cache the native Blender geometry topology maps
 	mesh_data_tool = MeshDataTool.new()
 	mesh_data_tool.create_from_surface(array_mesh, 0)
 
-	# 4. Create and bind the visual texture canvas
+	# Create drawing texture canvas
 	image = Image.create(canvas_size.x, canvas_size.y, false, Image.FORMAT_RGBA8)
 	image.fill(Color.WHITE)
 	
@@ -52,6 +58,22 @@ func _ready() -> void:
 	mesh_instance.material_override = material
 	
 	input_ray_pickable = true
+
+# 3. HELPER FUNCTION TO RESIZE THE BRUSH ON DEMAND
+func update_brush_size() -> void:
+	if brush_texture:
+		# Always pull a clean copy of the original source image
+		active_brush_image = brush_texture.get_image()
+		active_brush_image.convert(Image.FORMAT_RGBA8)
+		
+		# Resize the image dynamically using high-quality bilinear interpolation
+		active_brush_image.resize(brush_size.x, brush_size.y, Image.INTERPOLATE_BILINEAR)
+		
+		# Update dimension caches
+		brush_w = active_brush_image.get_width()
+		brush_h = active_brush_image.get_height()
+	else:
+		push_warning("No brush texture assigned!")
 
 func _on_input_event(camera: Node, event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
 	if camera is Camera3D:
@@ -76,15 +98,9 @@ func _physics_process(_delta: float) -> void:
 	var result = space_state.intersect_ray(query)
 	
 	if result and result.collider == self:
-		# Get the exact physics primitive face ID hit by our pointer ray
 		var face_idx: int = result.get("face_index", -1)
-		
-		# Fallback if using standard editor nodes that skip face indices
-		if face_idx == -1:
-			return
+		if face_idx == -1: return
 			
-		# 5. BARYCENTRIC INTERPOLATION ENGINE
-		# Retrieve the three specific vertex references forming the hit triangle face
 		var v0_idx = mesh_data_tool.get_face_vertex(face_idx, 0)
 		var v1_idx = mesh_data_tool.get_face_vertex(face_idx, 1)
 		var v2_idx = mesh_data_tool.get_face_vertex(face_idx, 2)
@@ -94,35 +110,37 @@ func _physics_process(_delta: float) -> void:
 		var p2 = mesh_data_tool.get_vertex(v2_idx)
 		
 		var local_hit: Vector3 = mesh_instance.to_local(result.position)
-		
-		# Find the positional ratio relative to each vertex edge bounding space
 		var barycentric = Geometry3D.get_triangle_barycentric_coords(local_hit, p0, p1, p2)
 		
-		# Retrieve the true unwrapped UV maps assigned inside Blender
 		var uv0 = mesh_data_tool.get_vertex_uv(v0_idx)
 		var uv1 = mesh_data_tool.get_vertex_uv(v1_idx)
 		var uv2 = mesh_data_tool.get_vertex_uv(v2_idx)
 		
-		# Perform a smooth cross-fade blend to extract the exact coordinate point
 		var exact_uv: Vector2 = (uv0 * barycentric.x) + (uv1 * barycentric.y) + (uv2 * barycentric.z)
 		
-		# Clamp values safely inside bounds
 		exact_uv.x = clamp(exact_uv.x, 0.0, 1.0)
 		exact_uv.y = clamp(exact_uv.y, 0.0, 1.0)
 		
 		var pixel_x: int = int(exact_uv.x * (canvas_size.x - 1))
 		var pixel_y: int = int(exact_uv.y * (canvas_size.y - 1))
 		
-		# Draw a round brush stroke tip
-		var brush_radius: int = 8
-		var brush_color: Color = Color.BLUE
-		
-		for dx in range(-brush_radius, brush_radius):
-			for dy in range(-brush_radius, brush_radius):
-				if dx*dx + dy*dy <= brush_radius*brush_radius:
-					var px = pixel_x + dx
-					var py = pixel_y + dy
-					if px >= 0 and px < canvas_size.x and py >= 0 and py < canvas_size.y:
-						image.set_pixel(px, py, brush_color)
+		if active_brush_image:
+			var start_x: int = pixel_x - (brush_w / 2)
+			var start_y: int = pixel_y - (brush_h / 2)
+			
+			for bx in range(brush_w):
+				for by in range(brush_h):
+					var target_x = start_x + bx
+					var target_y = start_y + by
+					
+					if target_x >= 0 and target_x < canvas_size.x and target_y >= 0 and target_y < canvas_size.y:
+						var stamp_pixel: Color = active_brush_image.get_pixel(bx, by)
+						
+						if stamp_pixel.a > 0.0:
+							var bg_pixel: Color = image.get_pixel(target_x, target_y)
+							var blended_color = bg_pixel.blend(stamp_pixel)
+							image.set_pixel(target_x, target_y, blended_color)
+		else:
+			image.set_pixel(pixel_x, pixel_y, Color.BLUE)
 						
 		texture.update(image)
