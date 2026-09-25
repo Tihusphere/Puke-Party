@@ -20,6 +20,7 @@ var brush_h: int = 0
 
 func _ready() -> void:
 	update_brush_size()
+	toggleRainbows(true)
 
 func update_brush_size() -> void:
 	if brush_texture:
@@ -33,3 +34,18 @@ func update_brush_size() -> void:
 		active_brush_image = null
 		brush_w = 0
 		brush_h = 0
+
+func toggleRainbows(type):
+	for child in get_children():
+		if child is PaintableObject:
+			child.toggle_rainbow(type)
+
+func setStaticHues(hue):
+	for child in get_children():
+		if child is PaintableObject:
+			child.set_static_hue(hue)
+
+func resetOverlayColors():
+	for child in get_children():
+		if child is PaintableObject:
+			child.reset_overlay_color()

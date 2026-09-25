@@ -143,3 +143,24 @@ func _physics_process(_delta: float) -> void:
 			mask_image.set_pixel(pixel_x, pixel_y, Color.WHITE)
 						
 		mask_texture.update(mask_image)
+
+# Helper function 1: Toggle rainbow cycling on/off
+func toggle_rainbow(enabled: bool, speed: float = 1.0) -> void:
+	shader_material.set_shader_parameter("enable_rainbow_cycle", enabled)
+	shader_material.set_shader_parameter("cycle_speed", speed)
+	if enabled:
+		# Turn off static hue if we are cycling
+		shader_material.set_shader_parameter("enable_static_hue_shift", false)
+
+# Helper function 2: Change hue to a fixed value and keep it there
+func set_static_hue(hue_value: float) -> void:
+	# hue_value should be between 0.0 and 1.0
+	shader_material.set_shader_parameter("enable_static_hue_shift", true)
+	shader_material.set_shader_parameter("static_hue_value", hue_value)
+	# Turn off rainbow cycling so the static hue stays locked
+	shader_material.set_shader_parameter("enable_rainbow_cycle", false)
+
+# Optional helper: Reset back to completely normal overlay color
+func reset_overlay_color() -> void:
+	shader_material.set_shader_parameter("enable_rainbow_cycle", false)
+	shader_material.set_shader_parameter("enable_static_hue_shift", false)

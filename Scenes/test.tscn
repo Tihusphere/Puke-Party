@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://Scripts/roomItem.gd" id="1_55jgw"]
 [ext_resource type="Script" path="res://Scripts/gameManager.gd" id="1_tkslg"]
-[ext_resource type="Texture2D" uid="uid://b83dlyxi75kj6" path="res://shaders/splat.png" id="3_ne2u2"]
-[ext_resource type="ArrayMesh" uid="uid://bkro8r0i3eita" path="res://shaders/boxMesh.res" id="3_ubdgg"]
+[ext_resource type="Texture2D" uid="uid://b83dlyxi75kj6" path="res://textures/splat.png" id="3_ne2u2"]
+[ext_resource type="ArrayMesh" uid="uid://coe6n3mprcrbm" path="res://models/boxMesh.res" id="3_ubdgg"]
 [ext_resource type="Shader" path="res://shaders/texture_blend_mask.gdshader" id="4_yapir"]
 
 [sub_resource type="Gradient" id="Gradient_0835k"]
@@ -27,7 +27,7 @@ brush_texture = ExtResource("3_ne2u2")
 overlay_texture = SubResource("GradientTexture1D_nldl3")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.472182, 0.881501, 0, -0.881501, 0.472182, 0, 2.37759, 1.5003)
+transform = Transform3D(1, 0, 0, 0, 0.472182, 0.881501, 0, -0.881501, 0.472182, 0, 3.77087, 0.512737)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.561347, 0.827581, 0, -0.827581, 0.561347, 0, 0, 0)
@@ -46,4 +46,20 @@ skeleton = NodePath("../..")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_2gbiy")
 
+[node name="StaticBody3D2" type="StaticBody3D" parent="." node_paths=PackedStringArray("mesh_instance", "paint_manager")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.18702)
+script = ExtResource("1_55jgw")
+mesh_instance = NodePath("MeshInstance3D")
+paint_manager = NodePath("..")
+base_texture = SubResource("GradientTexture1D_vb421")
+mask_shader = ExtResource("4_yapir")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D2"]
+mesh = ExtResource("3_ubdgg")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2"]
+shape = SubResource("ConcavePolygonShape3D_2gbiy")
+
 [connection signal="input_event" from="StaticBody3D" to="StaticBody3D" method="_on_input_event"]
+[connection signal="input_event" from="StaticBody3D2" to="StaticBody3D2" method="_on_input_event"]
