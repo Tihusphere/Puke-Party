@@ -1,39 +1,65 @@
-[gd_scene load_steps=7 format=3 uid="uid://bwwp8xmoanp8"]
+[gd_scene load_steps=11 format=3 uid="uid://bwwp8xmoanp8"]
 
-[ext_resource type="Shader" path="res://Shaders/test.gdshader" id="1_4roxj"]
-[ext_resource type="Script" path="res://Scripts/Resources/roomItem.gd" id="1_55jgw"]
-[ext_resource type="Script" path="res://Scripts/controller.gd" id="3_eogs5"]
+[ext_resource type="Script" path="res://Scripts/roomItem.gd" id="1_55jgw"]
+[ext_resource type="Script" path="res://Scripts/gameManager.gd" id="1_tkslg"]
+[ext_resource type="Texture2D" uid="uid://b83dlyxi75kj6" path="res://textures/splat.png" id="3_ne2u2"]
+[ext_resource type="ArrayMesh" uid="uid://coe6n3mprcrbm" path="res://models/boxMesh.res" id="3_ubdgg"]
+[ext_resource type="Shader" path="res://shaders/texture_blend_mask.gdshader" id="4_yapir"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_0gu4x"]
-render_priority = 0
-shader = ExtResource("1_4roxj")
+[sub_resource type="Gradient" id="Gradient_0835k"]
+colors = PackedColorArray(0, 1, 0, 1, 0, 1, 0, 1)
 
-[sub_resource type="BoxMesh" id="BoxMesh_yp18i"]
-lightmap_size_hint = Vector2i(54, 41)
-material = SubResource("ShaderMaterial_0gu4x")
-size = Vector3(5, 1, 5)
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_nldl3"]
+gradient = SubResource("Gradient_0835k")
 
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_4lngy"]
-data = PackedVector3Array(-2.5, 0.5, 2.5, 2.5, 0.5, 2.5, -2.5, -0.5, 2.5, 2.5, 0.5, 2.5, 2.5, -0.5, 2.5, -2.5, -0.5, 2.5, 2.5, 0.5, -2.5, -2.5, 0.5, -2.5, 2.5, -0.5, -2.5, -2.5, 0.5, -2.5, -2.5, -0.5, -2.5, 2.5, -0.5, -2.5, 2.5, 0.5, 2.5, 2.5, 0.5, -2.5, 2.5, -0.5, 2.5, 2.5, 0.5, -2.5, 2.5, -0.5, -2.5, 2.5, -0.5, 2.5, -2.5, 0.5, -2.5, -2.5, 0.5, 2.5, -2.5, -0.5, -2.5, -2.5, 0.5, 2.5, -2.5, -0.5, 2.5, -2.5, -0.5, -2.5, 2.5, 0.5, 2.5, -2.5, 0.5, 2.5, 2.5, 0.5, -2.5, -2.5, 0.5, 2.5, -2.5, 0.5, -2.5, 2.5, 0.5, -2.5, -2.5, -0.5, 2.5, 2.5, -0.5, 2.5, -2.5, -0.5, -2.5, 2.5, -0.5, 2.5, 2.5, -0.5, -2.5, -2.5, -0.5, -2.5)
+[sub_resource type="Gradient" id="Gradient_5ip1h"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_vb421"]
+gradient = SubResource("Gradient_5ip1h")
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_2gbiy"]
+data = PackedVector3Array(-1, 1, 1, -1, -1, 1, -1, -1, -1, -1, -1, -1, -1, 1, -1, -1, 1, 1, 1, 1, 1, -1, 1, 1, -1, 1, -1, -1, 1, -1, 1, 1, -1, 1, 1, 1, 1, -1, 1, 1, 1, 1, 1, 1, -1, 1, 1, -1, 1, -1, -1, 1, -1, 1, -1, -1, 1, 1, -1, 1, 1, -1, -1, 1, -1, -1, -1, -1, -1, -1, -1, 1, 1, -1, -1, 1, 1, -1, -1, 1, -1, -1, 1, -1, -1, -1, -1, 1, -1, -1, -1, -1, 1, -1, 1, 1, 1, 1, 1, 1, 1, 1, 1, -1, 1, -1, -1, 1)
 
 [node name="Node3D" type="Node3D"]
+script = ExtResource("1_tkslg")
+brush_texture = ExtResource("3_ne2u2")
+overlay_texture = SubResource("GradientTexture1D_nldl3")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="." node_paths=PackedStringArray("mesh_instance")]
-input_capture_on_drag = true
-script = ExtResource("1_55jgw")
-mesh_instance = NodePath("MeshInstance3D")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
-mesh = SubResource("BoxMesh_yp18i")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-shape = SubResource("ConcavePolygonShape3D_4lngy")
-
-[node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("camera")]
-transform = Transform3D(1, 0, 0, 0, 0.472182, 0.881501, 0, -0.881501, 0.472182, 0, 2.76266, 0)
-script = ExtResource("3_eogs5")
-camera = NodePath(".")
-brush_size = 100.0
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.472182, 0.881501, 0, -0.881501, 0.472182, 0, 3.77087, 0.512737)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.561347, 0.827581, 0, -0.827581, 0.561347, 0, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." node_paths=PackedStringArray("mesh_instance", "paint_manager")]
+script = ExtResource("1_55jgw")
+mesh_instance = NodePath("MeshInstance3D")
+paint_manager = NodePath("..")
+base_texture = SubResource("GradientTexture1D_vb421")
+mask_shader = ExtResource("4_yapir")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = ExtResource("3_ubdgg")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_2gbiy")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="." node_paths=PackedStringArray("mesh_instance", "paint_manager")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.18702)
+script = ExtResource("1_55jgw")
+mesh_instance = NodePath("MeshInstance3D")
+paint_manager = NodePath("..")
+base_texture = SubResource("GradientTexture1D_vb421")
+mask_shader = ExtResource("4_yapir")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D2"]
+mesh = ExtResource("3_ubdgg")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2"]
+shape = SubResource("ConcavePolygonShape3D_2gbiy")
+
+[connection signal="input_event" from="StaticBody3D" to="StaticBody3D" method="_on_input_event"]
+[connection signal="input_event" from="StaticBody3D2" to="StaticBody3D2" method="_on_input_event"]
