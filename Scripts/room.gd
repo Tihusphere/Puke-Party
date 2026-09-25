@@ -2,7 +2,7 @@ extends Node3D
 
 @onready var player: CharacterBody3D = $PlayerController
 
-func spawn(player_position: Vector3, player_rotation: Vector3):
+func spawn(player_position: Vector3, player_rotation: Vector3) -> void:
 	player.position = player_position
 	player.rotation = player_rotation
 
