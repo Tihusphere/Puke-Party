@@ -1,8 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://bwwp8xmoanp8"]
+[gd_scene format=3 uid="uid://bwwp8xmoanp8"]
 
-[ext_resource type="Shader" path="res://Shaders/test.gdshader" id="1_4roxj"]
-[ext_resource type="Script" path="res://Scripts/Resources/roomItem.gd" id="1_55jgw"]
-[ext_resource type="Script" path="res://Scripts/controller.gd" id="3_eogs5"]
+[ext_resource type="Shader" uid="uid://ds1nq8dwu50k2" path="res://shaders/test.gdshader" id="1_4roxj"]
+[ext_resource type="Script" uid="uid://c7mrdl6udhi8g" path="res://Scripts/Resources/roomItem.gd" id="1_55jgw"]
+[ext_resource type="Script" uid="uid://dawyqy83g4b0j" path="res://Scripts/controller.gd" id="3_eogs5"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0gu4x"]
 render_priority = 0
