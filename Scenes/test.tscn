@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://bwwp8xmoanp8"]
 
 [ext_resource type="Script" path="res://Scripts/Environment/roomItem.gd" id="1_55jgw"]
-[ext_resource type="Script" path="res://Scripts/Player/gameManager.gd" id="1_tkslg"]
+[ext_resource type="Script" path="res://Scripts/Singletons/GAMEMANAGER.gd" id="1_tkslg"]
 [ext_resource type="Texture2D" uid="uid://b83dlyxi75kj6" path="res://textures/splat.png" id="3_ne2u2"]
 [ext_resource type="ArrayMesh" uid="uid://coe6n3mprcrbm" path="res://models/boxMesh.res" id="3_ubdgg"]
 [ext_resource type="Shader" path="res://shaders/texture_blend_mask.gdshader" id="4_yapir"]

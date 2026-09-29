@@ -13,8 +13,8 @@ func _ready():
 func pickup() -> void:
 	match buffType:
 		Buff.RADIUS: 
-				Gameplaymanager.increaseRadius(quantity)
+				Gamemanager.increaseRadius(quantity)
 		Buff.FOOD:
-				Gameplaymanager.addFood(quantity)
+				Gamemanager.addFood(quantity)
 		Buff.RAINBOW:
-				Gameplaymanager.rainbowTime()
+				Gamemanager.rainbowTime()
