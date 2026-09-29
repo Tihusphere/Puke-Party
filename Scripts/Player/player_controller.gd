@@ -29,11 +29,11 @@ var speed: float = WALK_SPEED
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var ray_cast: RayCast3D = $RayCast3D
 
-func detect_overhead_collision():
+func detect_overhead_collision() -> void:
 	if not ray_cast.is_colliding():
 		can_stand.emit()
 
-func change_player_state(state: PlayerState):
+func change_player_state(state: PlayerState) -> void:
 	match state:
 		PlayerState.WALKING:
 			if (player_state == PlayerState.CRAWLING):
@@ -60,7 +60,7 @@ func _input(_event: InputEvent) -> void:
 		if not Input.is_action_pressed("crawl"):
 			change_player_state(PlayerState.WALKING)
 
-func move_in_direction():
+func move_in_direction() -> void:
 	var input_direction := Input.get_vector("left", "right", "forward", "backward")
 	var direction := (transform.basis * Vector3(input_direction.x, 0.0, input_direction.y)).normalized()
 	if direction:
