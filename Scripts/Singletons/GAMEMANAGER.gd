@@ -1,15 +1,15 @@
-class_name PaintManager
+class_name GameManagerClass
 extends Node
 
-@export var brush_texture: Texture2D:
+var brush_texture: Texture2D:
 	set(value):
 		brush_texture = value
 		update_brush_size()
 
 ## Texture to blend onto paintable objects via shader mask
-@export var overlay_texture: Texture2D
+var overlay_texture: Texture2D
 
-@export var brush_size: Vector2i = Vector2i(64, 64):
+var brush_size: Vector2i = Vector2i(64, 64):
 	set(value):
 		brush_size = value
 		update_brush_size()
@@ -18,7 +18,12 @@ var active_brush_image: Image
 var brush_w: int = 0
 var brush_h: int = 0
 
+var brush_img =  "res://textures/splat.png"
+var vomit_img = "res://textures/splat.png"
+
 func _ready() -> void:
+	brush_texture = load(brush_img)
+	overlay_texture = load(vomit_img)
 	update_brush_size()
 	toggleRainbows(true)
 

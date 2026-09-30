@@ -2,7 +2,7 @@ class_name PaintableObject
 extends StaticBody3D
 
 @export var mesh_instance: MeshInstance3D
-@export var paint_manager: PaintManager
+var paint_manager: GAMEMANAGER
 
 ## The primary texture assigned to this object
 @export var base_texture: Texture2D
@@ -21,6 +21,8 @@ var current_camera: Camera3D
 var mesh_data_tool: MeshDataTool
 
 func _ready() -> void:
+	paint_manager = GAMEMANAGER
+	
 	if not mesh_instance:
 		for child in get_children():
 			if child is MeshInstance3D:

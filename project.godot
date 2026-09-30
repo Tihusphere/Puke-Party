@@ -21,7 +21,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Gamemanager="*res://Scripts/Singletons/GAMEMANAGER.gd"
+GAMEMANAGER="*res://Scripts/Singletons/GAMEMANAGER.gd"
 
 [input]
 

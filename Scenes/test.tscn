@@ -1,16 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://bwwp8xmoanp8"]
+[gd_scene load_steps=7 format=3 uid="uid://bwwp8xmoanp8"]
 
 [ext_resource type="Script" path="res://Scripts/Environment/roomItem.gd" id="1_55jgw"]
-[ext_resource type="Script" path="res://Scripts/Singletons/GAMEMANAGER.gd" id="1_tkslg"]
-[ext_resource type="Texture2D" uid="uid://b83dlyxi75kj6" path="res://textures/splat.png" id="3_ne2u2"]
 [ext_resource type="ArrayMesh" uid="uid://coe6n3mprcrbm" path="res://models/boxMesh.res" id="3_ubdgg"]
 [ext_resource type="Shader" path="res://shaders/texture_blend_mask.gdshader" id="4_yapir"]
-
-[sub_resource type="Gradient" id="Gradient_0835k"]
-colors = PackedColorArray(0, 1, 0, 1, 0, 1, 0, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_nldl3"]
-gradient = SubResource("Gradient_0835k")
 
 [sub_resource type="Gradient" id="Gradient_5ip1h"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
@@ -22,9 +14,6 @@ gradient = SubResource("Gradient_5ip1h")
 data = PackedVector3Array(-1, 1, 1, -1, -1, 1, -1, -1, -1, -1, -1, -1, -1, 1, -1, -1, 1, 1, 1, 1, 1, -1, 1, 1, -1, 1, -1, -1, 1, -1, 1, 1, -1, 1, 1, 1, 1, -1, 1, 1, 1, 1, 1, 1, -1, 1, 1, -1, 1, -1, -1, 1, -1, 1, -1, -1, 1, 1, -1, 1, 1, -1, -1, 1, -1, -1, -1, -1, -1, -1, -1, 1, 1, -1, -1, 1, 1, -1, -1, 1, -1, -1, 1, -1, -1, -1, -1, 1, -1, -1, -1, -1, 1, -1, 1, 1, 1, 1, 1, 1, 1, 1, 1, -1, 1, -1, -1, 1)
 
 [node name="Node3D" type="Node3D"]
-script = ExtResource("1_tkslg")
-brush_texture = ExtResource("3_ne2u2")
-overlay_texture = SubResource("GradientTexture1D_nldl3")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.472182, 0.881501, 0, -0.881501, 0.472182, 0, 3.77087, 0.512737)
@@ -32,10 +21,9 @@ transform = Transform3D(1, 0, 0, 0, 0.472182, 0.881501, 0, -0.881501, 0.472182, 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.561347, 0.827581, 0, -0.827581, 0.561347, 0, 0, 0)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="." node_paths=PackedStringArray("mesh_instance", "paint_manager")]
+[node name="StaticBody3D" type="StaticBody3D" parent="." node_paths=PackedStringArray("mesh_instance")]
 script = ExtResource("1_55jgw")
 mesh_instance = NodePath("MeshInstance3D")
-paint_manager = NodePath("..")
 base_texture = SubResource("GradientTexture1D_vb421")
 mask_shader = ExtResource("4_yapir")
 
@@ -46,11 +34,10 @@ skeleton = NodePath("../..")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_2gbiy")
 
-[node name="StaticBody3D2" type="StaticBody3D" parent="." node_paths=PackedStringArray("mesh_instance", "paint_manager")]
+[node name="StaticBody3D2" type="StaticBody3D" parent="." node_paths=PackedStringArray("mesh_instance")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.18702)
 script = ExtResource("1_55jgw")
 mesh_instance = NodePath("MeshInstance3D")
-paint_manager = NodePath("..")
 base_texture = SubResource("GradientTexture1D_vb421")
 mask_shader = ExtResource("4_yapir")
 
