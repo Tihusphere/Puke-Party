@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://ecgucgv6v1si"]
+[gd_scene load_steps=0 format=3 uid="uid://ecgucgv6v1si"]
 
-[ext_resource type="Script" uid="uid://c2iakexnj7bm5" path="res://Scripts/room.gd" id="1_5eepm"]
+[ext_resource type="Script" path="res://Scripts/Environment/room.gd" id="1_5eepm"]
 
 [node name="EmptyRoom" type="Node3D" unique_id=1846900185]
 script = ExtResource("1_5eepm")

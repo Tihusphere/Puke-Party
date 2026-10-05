@@ -1,7 +1,7 @@
-[gd_scene format=3 uid="uid://bomgv2ww5a3nx"]
+[gd_scene load_steps=0 format=3 uid="uid://bomgv2ww5a3nx"]
 
-[ext_resource type="Script" uid="uid://demghgot8vtsn" path="res://Scripts/player_controller.gd" id="1_5ur5x"]
-[ext_resource type="Script" uid="uid://ci4icec6lgstj" path="res://Scripts/camera_controller.gd" id="2_dl1v4"]
+[ext_resource type="Script" path="res://Scripts/Player/player_controller.gd" id="1_5ur5x"]
+[ext_resource type="Script" path="res://Scripts/Player/camera_controller.gd" id="2_dl1v4"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5ur5x"]
 

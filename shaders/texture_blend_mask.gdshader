@@ -34,14 +34,14 @@ void fragment() {
     vec4 base_color = texture(base_texture, UV);
     vec4 overlay_color = texture(overlay_texture, UV);
     float mask = texture(mask_texture, UV).r;
-    
+
     // Modify only the overlay texture color
     vec3 final_overlay_rgb = overlay_color.rgb;
-    
+
     if (enable_rainbow_cycle || enable_static_hue_shift) {
         // Convert to HSV to manipulate the color hue safely
         vec3 hsv = rgb2hsv(final_overlay_rgb);
-        
+
         if (enable_rainbow_cycle) {
             // Cycle continuously over time
             hsv.x = fract(hsv.x + (TIME * cycle_speed));
@@ -49,11 +49,11 @@ void fragment() {
             // Apply fixed hue target offset
             hsv.x = fract(hsv.x + static_hue_value);
         }
-        
+
         // Convert back to RGB
         final_overlay_rgb = hsv2rgb(hsv);
     }
-    
+
     // Interpolate between the base texture and the potentially modified overlay texture
     ALBEDO = mix(base_color.rgb, final_overlay_rgb, mask);
 }
