@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://b6b1l44o0obru"]
 
-[ext_resource type="Script" uid="uid://dtfxyoni27860" path="res://Scripts/map_generator.gd" id="1_803pc"]
+[ext_resource type="Script" uid="uid://cxoyec6whxxow" path="res://Scripts/Environment/map_generator.gd" id="1_803pc"]
 [ext_resource type="MeshLibrary" uid="uid://byc21xt2cui2x" path="res://MeshLibraryNew.tres" id="2_3or5r"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_3or5r"]
-sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
-ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
 
 [sub_resource type="Sky" id="Sky_rcqok"]
 sky_material = SubResource("ProceduralSkyMaterial_3or5r")
@@ -14,19 +14,18 @@ sky_material = SubResource("ProceduralSkyMaterial_3or5r")
 background_mode = 2
 sky = SubResource("Sky_rcqok")
 
-[node name="MapGenerator" type="Node3D" unique_id=196847568]
+[node name="MapGenerator" type="Node3D" unique_id=924431239]
 script = ExtResource("1_803pc")
 
-[node name="GridMap" type="GridMap" parent="." unique_id=343014454]
+[node name="GridMap" type="GridMap" parent="." unique_id=1042437130]
 mesh_library = ExtResource("2_3or5r")
 metadata/_editor_floor_ = Vector3(0, 0, 0)
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=845636120]
-transform = Transform3D(-0.50000006, -0.8660255, 0, 0.43301266, -0.25000003, 0.86602557, -0.75, 0.43301284, 0.5, 0, 0, 0)
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=541325680]
+transform = Transform3D(-0.5, -0.866026, 0, 0.433013, -0.25, 0.866026, -0.75, 0.433013, 0.5, 0, 0, 0)
 shadow_enabled = true
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=434687893]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1065474606]
 environment = SubResource("Environment_n4pg7")
 
-[node name="BirdsEyeCamera" type="Camera3D" parent="." unique_id=2111638069]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 16, 40, 16)
+[node name="Rooms" type="Node3D" parent="." unique_id=1552284336]
