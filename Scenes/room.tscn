@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bqpgg3y8ck3h1"]
 
-[ext_resource type="Script" uid="uid://c2iakexnj7bm5" path="res://Scripts/room.gd" id="1_fr46g"]
+[ext_resource type="Script" uid="uid://fcdh4g5kfext" path="res://Scripts/Environment/room.gd" id="1_phao3"]
 [ext_resource type="Material" uid="uid://dqfssfej6b3v8" path="res://Materials/object.tres" id="2_6mpvv"]
 [ext_resource type="PackedScene" uid="uid://bomgv2ww5a3nx" path="res://Scenes/player_controller.tscn" id="2_fr46g"]
 [ext_resource type="PackedScene" uid="uid://dj6i4dqrisyv1" path="res://Scenes/Objects/counter.tscn" id="3_4gp0m"]
@@ -21,7 +21,7 @@ background_mode = 2
 sky = SubResource("Sky_k5f4k")
 
 [node name="Room" type="Node3D" unique_id=1846900185]
-script = ExtResource("1_fr46g")
+script = ExtResource("1_phao3")
 
 [node name="Environment" type="Node3D" parent="." unique_id=2109632941]
 

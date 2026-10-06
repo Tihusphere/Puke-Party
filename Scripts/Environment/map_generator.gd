@@ -1,92 +1,42 @@
 extends Node3D
 
 @onready var grid_map: GridMap = $GridMap
+@onready var rooms: Node3D = $Rooms
 
 var map_size: Vector2i = Vector2i(3, 3)
 var map: Array
 
 var player_scene = preload("res://Scenes/player_controller.tscn")
 
-# Basis orientations for rotating cells
-# See 'https://stackoverflow.com/questions/67443086/'
-var rotation_0: int = 0
-var rotation_90: int = 16
-var rotation_180: int = 10
-var rotation_270: int = 22
-
 # Stores room scene data
 var Rooms: Dictionary = {
-	"center": {"scene": preload("uid://dxrhmjmi2oxr7"), "icon": "╬"},
-	"corner_hallway": {"scene": preload("uid://d3fg28omtx7iq"), "icon": "┌"},
-	"corner_room": {"scene": preload("uid://db5qpe6fny7fg"), "icon": "╔"},
-	"side_hallway": {"scene": preload("uid://kewdmsc5g714"), "icon": "│"},
-	"side_room": {"scene": preload("uid://cwwfrbi1n3ndq"), "icon": "║"},
-	"t_hallway": {"scene": preload("uid://cc5aopk1qipps"), "icon": "├"},
-	"t_room": {"scene": preload("uid://7u2koin6i58b"), "icon": "╠"},
+	"center": preload("uid://dxrhmjmi2oxr7"),
+	"corner_hallway": preload("uid://d3fg28omtx7iq"),
+	"corner_room": preload("uid://db5qpe6fny7fg"),
+	"side_hallway": preload("uid://kewdmsc5g714"),
+	"side_room": preload("uid://cwwfrbi1n3ndq"),
+	"t_hallway": preload("uid://cc5aopk1qipps"),
+	"t_room": preload("uid://7u2koin6i58b"),
 }
 
-# Stores similar rooms by icon
+# Stores similar rooms
 var RoomTypes: Dictionary = {
 	"center" = [
-		Rooms["center"]["icon"]
+		Rooms["center"]
 	],
 	"corner" = [
-		Rooms["corner_hallway"]["icon"],
-		Rooms["corner_room"]["icon"]
+		Rooms["corner_hallway"],
+		Rooms["corner_room"]
 	],
 	"side" = [
-		Rooms["side_hallway"]["icon"],
-		Rooms["side_room"]["icon"]
+		Rooms["side_hallway"],
+		Rooms["side_room"]
 	],
 	"t" = [
-		Rooms["t_hallway"]["icon"],
-		Rooms["t_room"]["icon"]
+		Rooms["t_hallway"],
+		Rooms["t_room"]
 	]
 }
-
-# Converts map characters to integers corresponding to their mesh order in the MeshLibrary resource
-# x: 	the x coordinate in the map array
-# y: 	the y coordinate in the map array
-# arr:	the array to sort through (for custom map layouts, not randomized map) 
-func map_to_mesh(x: int, y: int, arr: Array) -> int:
-	match arr[x][y]:
-		"╬":
-			return 0
-		"┌":
-			return 1
-		"╔":
-			return 2
-		"│":
-			return 3
-		"║":
-			return 4
-		"├":
-			return 5
-		"╠":
-			return 6
-		_:
-			return -1
-
-# Converts integers to map characters corresponding to the room type they represent
-# num: 	the index of the mesh in the MeshLibrary resource
-func mesh_to_map(num: int):
-	match num:
-		0:
-			return "╬"
-		1:
-			return "┌"
-		2:
-			return "╔"
-		3:
-			return "│"
-		4:
-			return "║"
-		5:
-			return "├"
-		6:
-			return "╠"
-		_:
-			return ""
 
 # Creates an nested array using map_size
 func initialize_map() -> void:
@@ -98,12 +48,11 @@ func initialize_map() -> void:
 # Picks a random room based on the index of the map array
 func randomize_map() -> void:
 	var sideCount: int = 0 # Notifies how many side rooms have been generated (up to 4)
-	var hasT: bool = false # Determines whether a side room is a T variation
-	
+	var hasT: bool = false # DeterminRangees whether a side room is a T variation
+
 	for x in map_size.x:
 		for y in map_size.y:
 			var room_type: Array
-			
 			# Choose room type
 			if x == 1 and y == 1:
 				room_type = RoomTypes["center"]
@@ -125,77 +74,66 @@ func randomize_map() -> void:
 			
 			# Choose random room to fill from RoomTypes
 			map[x][y] = room_type[randi_range(0, room_type.size() - 1)]
+			print(Rooms.find_key(map[x][y]) + " x: " + str(x) + " y: " + str(y))
+			
 
 # Place randomized rooms and rotate based on gridmap cell location
-func generate_map(arr = null) -> void:
-	var cell_position: Vector3i
-	var room: int
-	var cell_rotation: int = rotation_0
-
-	if arr == null: arr = map # Only used for custom maps (for debugging)
+func generate_map() -> void:
+	var cell_position: Vector3 = Vector3i.ZERO
+	var cell_rotation: Vector3 = Vector3i.ZERO
+	var cell_scale: int = 16
 
 	for x in map_size.x:
 		for y in map_size.y:
-			cell_position = Vector3i(x * 8, 0, y * 8)
-			room = map_to_mesh(x, y, arr)
+			var room = map[x][y]
+			cell_position = Vector3i(x * cell_scale, 0, y * cell_scale)
+			
+			if room in RoomTypes["center"]:
+				cell_position.y = -0.5 # the center room model is higher for some reason
 
-			# Rotate corners
-			if mesh_to_map(room) in RoomTypes["corner"]:
-				if x == 2 and y == 0: # Top right
-					cell_rotation = rotation_270
-				elif x == 0 and y == 2: # Bottom left
-					cell_rotation = rotation_90
-				elif x == 2 and y == 2: # Bottom right
-					cell_rotation = rotation_180
-				else: # Top left
-					cell_rotation = rotation_0
-			
-			# Rotate sides
-			elif mesh_to_map(room) in RoomTypes["side"]:
-				if x == 1 and y == 0: # Top
-					cell_rotation = rotation_90
-				elif x == 1 and y == 2: # Bottom
-					cell_rotation = rotation_90
+			if room in RoomTypes["corner"]:
+				if x == 2 and y == 0:
+					cell_rotation.y = 270
+				elif x == 2 and y == 2:
+					cell_rotation.y = 180
+				elif x == 0 and y == 2:
+					cell_rotation.y = 90
 				else:
-					cell_rotation = rotation_0
+					cell_rotation.y = 0
 			
-			# Rotate t's
-			elif mesh_to_map(room) in RoomTypes["t"]:
-				if x == 1 and y == 0: # Top
-					cell_rotation = rotation_270
-				elif x == 1 and y == 2: # Bottom
-					cell_rotation = rotation_90
-				elif x == 2 and y == 1: # Left
-					cell_rotation = rotation_180
-				else: # Right
-					cell_rotation = rotation_0
+			elif room in RoomTypes["side"]:
+				if y == 1:
+					cell_rotation.y = 90
+				else:
+					cell_rotation.y = 0
+			
+			elif room in RoomTypes["t"]:
+				if x == 2 and y == 1:
+					cell_rotation.y = 270
+				elif x == 1 and y == 2:
+					cell_rotation.y = 180
+				elif x == 0 and y == 1:
+					cell_rotation.y = 90
+				else: # 1, 0
+					cell_rotation.y = 0
 			
 			else:
 				print("All cells rotated")
-			
-			grid_map.set_cell_item(cell_position, room, cell_rotation)
+
+			var roomScene = room.instantiate()
+			rooms.add_child(roomScene)
+			roomScene.set_position(cell_position)
+			roomScene.set_rotation_degrees(cell_rotation)
 
 # Spawn player in a random room
 func spawn_player() -> void:
-	randomize()
-	var spawn_room: Vector3i = Vector3i(randi_range(0, map_size.x - 1), 2, randi_range(0, map_size.y - 1))
+	var spawn_room: Vector3i = Vector3i(15, 2, 15)
 	var player = player_scene.instantiate()
 	add_child(player)
 	player.position = spawn_room
 
-# Formats map array into a readable string (for debugging) (see icons in Rooms)
-func map_to_string() -> String:
-	var map_as_string: String = ""
-	for x in map_size.x:
-		for y in map_size.y:
-			map_as_string += "[" + str(map[y][x]) + "]"
-		map_as_string += "\n"
-	return map_as_string
-
 func _ready() -> void:
 	initialize_map()
 	randomize_map()
-	# map = [["┌", "╠", "┌", ], ["╠", "╬", "╠", ], ["┌", "╠", "╔", ]]
-	generate_map(map)
-	print(map_to_string())
+	generate_map()
 	spawn_player()

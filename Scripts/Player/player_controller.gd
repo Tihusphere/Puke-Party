@@ -10,6 +10,7 @@ signal can_stand
 enum PlayerState {
 	WALKING,
 	CRAWLING,
+	FLYING
 }
 
 var player_state: PlayerState = PlayerState.WALKING
@@ -18,6 +19,7 @@ var player_state: PlayerState = PlayerState.WALKING
 
 const WALK_SPEED := 5.0
 const CRAWL_SPEED := 3.0
+const FLY_SPEED := 10.0
 const JUMP_VELOCITY := 5.5
 
 var speed: float = WALK_SPEED
@@ -50,15 +52,21 @@ func change_player_state(state: PlayerState) -> void:
 	player_state = state
 
 func _input(_event: InputEvent) -> void:
+	# Normal movement
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
-	if Input.is_action_just_pressed("crawl"):
+	if Input.is_action_just_pressed("crawl") and is_on_floor():
 		change_player_state(PlayerState.CRAWLING)
 	if Input.is_action_just_released("crawl"):
 		if ray_cast.is_colliding():
 			await can_stand
-		if not Input.is_action_pressed("crawl"):
+		if not Input.is_action_pressed("crawl") and player_state != PlayerState.FLYING:
 			change_player_state(PlayerState.WALKING)
+	# Flying movement
+	if Input.is_action_pressed("jump") and player_state == PlayerState.FLYING:
+		position.y += .1
+	if Input.is_action_pressed("crawl") and player_state == PlayerState.FLYING:
+		position.y -= .1
 
 func move_in_direction() -> void:
 	var input_direction := Input.get_vector("left", "right", "forward", "backward")
@@ -71,7 +79,7 @@ func move_in_direction() -> void:
 		velocity.z = move_toward(velocity.z, 0, speed)
 
 func _physics_process(delta: float) -> void:
-	if not is_on_floor():
+	if player_state != PlayerState.FLYING and not is_on_floor():
 		velocity += get_gravity() * delta
 	
 	if player_state == PlayerState.CRAWLING:

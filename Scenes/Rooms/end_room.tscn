@@ -1,9 +1,6 @@
-[gd_scene load_steps=0 format=3 uid="uid://bee0lgfw3c4sa"]
-
-[ext_resource type="Script" path="res://Scripts/Environment/room.gd" id="1_r503f"]
+[gd_scene format=3 uid="uid://bee0lgfw3c4sa"]
 
 [node name="EndRoom" type="Node3D" unique_id=1846900185]
-script = ExtResource("1_r503f")
 
 [node name="CSGToMesh" type="CSGCombiner3D" parent="." unique_id=305925395]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
