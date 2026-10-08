@@ -1,7 +1,7 @@
-[gd_scene load_steps=0 format=3 uid="uid://bomgv2ww5a3nx"]
+[gd_scene format=3 uid="uid://bomgv2ww5a3nx"]
 
-[ext_resource type="Script" path="res://Scripts/Player/player_controller.gd" id="1_5ur5x"]
-[ext_resource type="Script" path="res://Scripts/Player/camera_controller.gd" id="2_dl1v4"]
+[ext_resource type="Script" uid="uid://bbsnmhvcs31ke" path="res://Scripts/Player/player_controller.gd" id="1_5ur5x"]
+[ext_resource type="Script" uid="uid://bd4gn51py8f2a" path="res://Scripts/Player/camera_controller.gd" id="2_dl1v4"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5ur5x"]
 
@@ -64,31 +64,29 @@ _data = {
 &"StandingToCrawling": SubResource("Animation_dl1v4")
 }
 
-[node name="PlayerController" type="Node3D" unique_id=2027982991]
-
-[node name="Player" type="CharacterBody3D" parent="." unique_id=1433824193]
+[node name="Player" type="CharacterBody3D" unique_id=1433824193]
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_5ur5x")
 
-[node name="RayCast3D" type="RayCast3D" parent="Player" unique_id=1841964468]
+[node name="RayCast3D" type="RayCast3D" parent="." unique_id=1841964468]
 target_position = Vector3(0, 1.5, 0)
 
-[node name="StandingCollision" type="CollisionShape3D" parent="Player" unique_id=1914522465]
+[node name="StandingCollision" type="CollisionShape3D" parent="." unique_id=1914522465]
 shape = SubResource("CapsuleShape3D_5ur5x")
 
-[node name="CrawlingCollision" type="CollisionShape3D" parent="Player" unique_id=191474048]
+[node name="CrawlingCollision" type="CollisionShape3D" parent="." unique_id=191474048]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.375, 0)
 shape = SubResource("CapsuleShape3D_dl1v4")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Player" unique_id=584798683]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=584798683]
 mesh = SubResource("CapsuleMesh_g4v7s")
 
-[node name="CameraController" type="Node3D" parent="Player" unique_id=1029934761]
+[node name="CameraController" type="Node3D" parent="." unique_id=1029934761]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 script = ExtResource("2_dl1v4")
 
-[node name="Camera3D" type="Camera3D" parent="Player/CameraController" unique_id=1399515741]
+[node name="Camera3D" type="Camera3D" parent="CameraController" unique_id=1399515741]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Player" unique_id=1202484912]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1202484912]
 libraries/ = SubResource("AnimationLibrary_bnokr")

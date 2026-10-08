@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://182qfpn2hjge"]
+
+[ext_resource type="Script" uid="uid://c6b41g4n77foi" path="res://Scripts/Resources/pickup_controller.gd" id="1_urqlx"]
+[ext_resource type="Material" uid="uid://dqfssfej6b3v8" path="res://Materials/object.tres" id="2_sky8j"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_mugqv"]
+radius = 1.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_g4v7s"]
+
+[node name="PickUp" type="Area3D" unique_id=1000235748]
+collision_mask = 3
+script = ExtResource("1_urqlx")
+quantity = 10
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1904851195]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
+shape = SubResource("SphereShape3D_mugqv")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=272911766]
+transform = Transform3D(0.9999997, 0, 0, 0, 0.9999995, 0, 0, 0, 1.0000002, 0, 0, 0)
+material_override = ExtResource("2_sky8j")
+mesh = SubResource("BoxMesh_g4v7s")
+skeleton = NodePath("")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

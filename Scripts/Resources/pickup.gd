@@ -1,20 +1,17 @@
-class_name pickup
+class_name PickupResource
 extends Resource
 
-enum Buff { RADIUS, FOOD, RAINBOW }
+enum Buff {RADIUS, FOOD, RAINBOW}
 
-@export var name : String
-@export var buffType : Buff
-@export var quantity : int
-
-func _ready():
-	pass
+@export var name: String
+@export var buffType: Buff
+@export var quantity: int
 
 func pickup() -> void:
 	match buffType:
-		Buff.RADIUS: 
-				Gamemanager.increaseRadius(quantity)
+		Buff.RADIUS:
+			GameManagerClass.increaseRadius(quantity)
 		Buff.FOOD:
-				Gamemanager.addFood(quantity)
+			GameManagerClass.addFood(quantity)
 		Buff.RAINBOW:
-				Gamemanager.rainbowTime()
+			GameManagerClass.rainbowTime(quantity)

@@ -54,3 +54,12 @@ func resetOverlayColors():
 	for child in get_children():
 		if child is PaintableObject:
 			child.reset_overlay_color()
+
+static func increaseRadius(size : int):
+	pass
+
+static func addFood(amount : int):
+	pass
+
+static func rainbowTime(time: float):
+	pass
