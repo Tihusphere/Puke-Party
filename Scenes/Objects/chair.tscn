@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://dfburp7u5mu0i"]
+
+[ext_resource type="Material" uid="uid://dqfssfej6b3v8" path="res://Materials/object.tres" id="1_nsp1p"]
+
+[node name="Chair" type="CSGCombiner3D" unique_id=569887027]
+use_collision = true
+
+[node name="Back" type="CSGBox3D" parent="." unique_id=39252778]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.375, -0.875)
+size = Vector3(2, 2.25, 0.25)
+
+[node name="Seat" type="CSGBox3D" parent="." unique_id=1157725878]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.375, 0.125)
+size = Vector3(2, 0.25, 1.75)
+material = ExtResource("1_nsp1p")
+
+[node name="Leg" type="CSGBox3D" parent="." unique_id=854583139]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.875, 0.375, 0.875)
+size = Vector3(0.25, 1.75, 0.25)
+
+[node name="Leg2" type="CSGBox3D" parent="." unique_id=1163464113]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.875, 0.375, 0.875)
+size = Vector3(0.25, 1.75, 0.25)
+
+[node name="Leg3" type="CSGBox3D" parent="." unique_id=987452284]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.87, 0.375, -0.875)
+size = Vector3(0.25, 1.75, 0.25)
+
+[node name="Leg4" type="CSGBox3D" parent="." unique_id=343313078]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.875, 0.375, -0.875)
+size = Vector3(0.25, 1.75, 0.25)

@@ -25,7 +25,7 @@ func _setup() -> void:
 		get_tree().add_child(texture_rect)
 	
 	canvas_layer.layer = 100
-	color_rect.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	texture_rect.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 
 
 # Why am I doing this. 

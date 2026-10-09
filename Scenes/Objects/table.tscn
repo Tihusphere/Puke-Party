@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://d2e4po1gc1tpr"]
+
+[ext_resource type="Material" uid="uid://dqfssfej6b3v8" path="res://Materials/object.tres" id="1_ix8et"]
+
+[node name="Table" type="CSGCombiner3D" unique_id=1429839268]
+use_collision = true
+
+[node name="Top" type="CSGBox3D" parent="." unique_id=1226433442]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+size = Vector3(5, 0.25, 3)
+material = ExtResource("1_ix8et")
+
+[node name="Leg" type="CSGBox3D" parent="." unique_id=937011136]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25, 0.5, 1.25)
+size = Vector3(0.25, 2.75, 0.25)
+
+[node name="Leg2" type="CSGBox3D" parent="." unique_id=372783947]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.25, 0.5, 1.25)
+size = Vector3(0.25, 2.75, 0.25)
+
+[node name="Leg3" type="CSGBox3D" parent="." unique_id=1735078939]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.25, 0.5, -1.25)
+size = Vector3(0.25, 2.75, 0.25)
+
+[node name="Leg4" type="CSGBox3D" parent="." unique_id=2038786713]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25, 0.5, -1.25)
+size = Vector3(0.25, 2.75, 0.25)
