@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://bwwp8xmoanp8"]
+[gd_scene load_steps=10 format=3 uid="uid://bwwp8xmoanp8"]
 
 [ext_resource type="Script" path="res://Scripts/Environment/roomItem.gd" id="1_55jgw"]
 [ext_resource type="ArrayMesh" uid="uid://coe6n3mprcrbm" path="res://models/boxMesh.res" id="3_ubdgg"]
 [ext_resource type="Shader" path="res://shaders/texture_blend_mask.gdshader" id="4_yapir"]
 [ext_resource type="PackedScene" uid="uid://dxrhmjmi2oxr7" path="res://Scenes/Rooms/center.tscn" id="4_yrtvp"]
 [ext_resource type="PackedScene" uid="uid://db5qpe6fny7fg" path="res://Scenes/Rooms/corner_room.tscn" id="5_fykv5"]
+[ext_resource type="PackedScene" uid="uid://bka36hl7en08l" path="res://Scenes/New_Objects/chair.tscn" id="6_3x0fx"]
 
 [sub_resource type="Gradient" id="Gradient_7rdnx"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
@@ -55,6 +56,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5677, 0, -1.7565)
 
 [node name="CornerRoom" parent="." instance=ExtResource("5_fykv5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.3498, 0, 17.4136)
+
+[node name="Chair" parent="." instance=ExtResource("6_3x0fx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.553095, 0, 13.8635)
 
 [connection signal="input_event" from="StaticBody3D" to="StaticBody3D" method="_on_input_event"]
 [connection signal="input_event" from="StaticBody3D2" to="StaticBody3D2" method="_on_input_event"]
