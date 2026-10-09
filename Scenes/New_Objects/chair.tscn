@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bka36hl7en08l"]
 
-[ext_resource type="ArrayMesh" uid="uid://c1otry5f0g8rn" path="res://models/FurnitureMeshes/Cube_002.res" id="1_4s3ot"]
+[ext_resource type="ArrayMesh" uid="uid://c1otry5f0g8rn" path="res://models/FurnitureMeshes/chair.res" id="1_4s3ot"]
 [ext_resource type="Script" path="res://Scripts/Environment/roomItem.gd" id="1_lcj12"]
 [ext_resource type="Texture2D" uid="uid://cmjdfysuk0iqn" path="res://textures/Furniture/Chair.png" id="2_va8wg"]
 

@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://dxrhmjmi2oxr7"]
+[gd_scene load_steps=8 format=3 uid="uid://dxrhmjmi2oxr7"]
 
 [ext_resource type="Script" path="res://Scripts/Environment/roomItem.gd" id="1_qkdnh"]
 [ext_resource type="ArrayMesh" uid="uid://c2l18s40lb3iy" path="res://models/RoomMeshes/center.res" id="2_kkgn7"]
 [ext_resource type="PackedScene" uid="uid://bka36hl7en08l" path="res://Scenes/New_Objects/chair.tscn" id="3_7bjuu"]
+[ext_resource type="PackedScene" uid="uid://cj7auuvptqro8" path="res://Scenes/New_Objects/table.tscn" id="3_o60ej"]
 
 [sub_resource type="Gradient" id="Gradient_g3eg1"]
 
@@ -82,6 +83,9 @@ mesh = ExtResource("2_kkgn7")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(100, 0, 0, 0, -4.37114e-06, 100, 0, -100, -4.37114e-06, 0, 8, 0)
 shape = SubResource("ConcavePolygonShape3D_s0hdj")
+
+[node name="Chair" parent="StaticBody3D" instance=ExtResource("3_o60ej")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 2.55, 5)
 
 [node name="Chair" parent="." instance=ExtResource("3_7bjuu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 2.55, 1)
