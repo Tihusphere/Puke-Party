@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://dxrhmjmi2oxr7"]
+[gd_scene load_steps=10 format=3 uid="uid://dxrhmjmi2oxr7"]
 
 [ext_resource type="Script" path="res://Scripts/Environment/roomItem.gd" id="1_qkdnh"]
 [ext_resource type="ArrayMesh" uid="uid://c2l18s40lb3iy" path="res://models/RoomMeshes/center.res" id="2_kkgn7"]
 [ext_resource type="PackedScene" uid="uid://bka36hl7en08l" path="res://Scenes/New_Objects/chair.tscn" id="3_7bjuu"]
 [ext_resource type="PackedScene" uid="uid://cj7auuvptqro8" path="res://Scenes/New_Objects/table.tscn" id="3_o60ej"]
 [ext_resource type="PackedScene" uid="uid://dy4leoxbykw2g" path="res://Scenes/New_Objects/plant.tscn" id="5_jqon1"]
+[ext_resource type="PackedScene" uid="uid://drqje2ia2gp38" path="res://Scenes/New_Objects/fridge.tscn" id="6_q3f8f"]
 
 [sub_resource type="Gradient" id="Gradient_g3eg1"]
 
@@ -93,5 +94,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 2.55, 5)
 
 [node name="Chair3" parent="." instance=ExtResource("5_jqon1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.85, -5)
+
+[node name="Chair4" parent="." instance=ExtResource("6_q3f8f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 3.79085, -1)
 
 [connection signal="input_event" from="StaticBody3D" to="StaticBody3D" method="_on_input_event"]
