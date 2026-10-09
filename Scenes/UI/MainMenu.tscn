@@ -1,0 +1,87 @@
+[gd_scene format=3 uid="uid://cwmi00q101cxo"]
+
+[ext_resource type="Texture2D" uid="uid://bfiwsqq8704mx" path="res://textures/placehold_bg.png" id="1_g18y6"]
+[ext_resource type="Texture2D" uid="uid://fkaxk17su2ox" path="res://textures/placehold_panel.png" id="2_mjmdf"]
+
+[sub_resource type="Gradient" id="Gradient_mjmdf"]
+colors = PackedColorArray(0.84705883, 0.34117648, 0.15294118, 0.49411765, 0.85882354, 0.7254902, 0.12941177, 0.4)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_g4v7s"]
+gradient = SubResource("Gradient_mjmdf")
+fill_to = Vector2(0, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_g4v7s"]
+texture = ExtResource("2_mjmdf")
+
+[sub_resource type="Theme" id="Theme_g4v7s"]
+Panel/styles/panel = SubResource("StyleBoxTexture_g4v7s")
+
+[node name="MainMenu" type="Control" unique_id=2066032264]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1886992721]
+layer = -1
+
+[node name="Illustration" type="TextureRect" parent="CanvasLayer" unique_id=2034365760]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_g18y6")
+metadata/_edit_use_anchors_ = true
+
+[node name="Gradient" type="TextureRect" parent="CanvasLayer" unique_id=675227488]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_g4v7s")
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel" type="Panel" parent="." unique_id=1425439167]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -361.0
+offset_top = -29.0
+offset_right = 350.0
+offset_bottom = 280.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_g4v7s")
+metadata/_edit_use_anchors_ = true
+
+[node name="StartButton" type="TextureButton" parent="Panel" unique_id=1661149780]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 28.0
+offset_top = -50.5
+offset_right = 187.0
+offset_bottom = 20.0
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="ExitButton" type="TextureButton" parent="Panel" unique_id=474693606]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -159.0
+offset_top = -70.5
+grow_horizontal = 0
+grow_vertical = 0
+metadata/_edit_use_anchors_ = true
