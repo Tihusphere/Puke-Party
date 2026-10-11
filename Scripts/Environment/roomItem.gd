@@ -68,7 +68,7 @@ func _ready() -> void:
 	mesh_instance.material_override = shader_material
 	input_ray_pickable = true
 
-func _on_input_event(camera: Node, event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
+func _input_event(camera: Node, event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
 	if camera is Camera3D:
 		current_camera = camera
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
