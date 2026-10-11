@@ -1,13 +1,13 @@
-[gd_scene format=3 uid="uid://bqpgg3y8ck3h1"]
+[gd_scene load_steps=0 format=3 uid="uid://bqpgg3y8ck3h1"]
 
-[ext_resource type="Script" uid="uid://fcdh4g5kfext" path="res://Scripts/Environment/room.gd" id="1_phao3"]
+[ext_resource type="Script" path="res://Scripts/Environment/room.gd" id="1_phao3"]
 [ext_resource type="Material" uid="uid://dqfssfej6b3v8" path="res://Materials/object.tres" id="2_6mpvv"]
 [ext_resource type="PackedScene" uid="uid://bomgv2ww5a3nx" path="res://Scenes/player_controller.tscn" id="2_fr46g"]
-[ext_resource type="PackedScene" uid="uid://dj6i4dqrisyv1" path="res://Scenes/Objects/counter.tscn" id="3_4gp0m"]
-[ext_resource type="PackedScene" uid="uid://d2e4po1gc1tpr" path="res://Scenes/Objects/table.tscn" id="3_6mpvv"]
-[ext_resource type="PackedScene" uid="uid://royiy43a7i6f" path="res://Scenes/Objects/couch.tscn" id="3_gkney"]
-[ext_resource type="PackedScene" uid="uid://dfburp7u5mu0i" path="res://Scenes/Objects/chair.tscn" id="5_phao3"]
-[ext_resource type="PackedScene" uid="uid://6f0fly675n0o" path="res://Scenes/Objects/fridge.tscn" id="7_phao3"]
+[ext_resource type="PackedScene" uid="uid://dj6i4dqrisyv1" path="res://Scenes/Old_Objects/counter.tscn" id="3_4gp0m"]
+[ext_resource type="PackedScene" uid="uid://d2e4po1gc1tpr" path="res://Scenes/Old_Objects/table.tscn" id="3_6mpvv"]
+[ext_resource type="PackedScene" uid="uid://royiy43a7i6f" path="res://Scenes/Old_Objects/couch.tscn" id="3_gkney"]
+[ext_resource type="PackedScene" uid="uid://dfburp7u5mu0i" path="res://Scenes/Old_Objects/chair.tscn" id="5_phao3"]
+[ext_resource type="PackedScene" uid="uid://6f0fly675n0o" path="res://Scenes/Old_Objects/fridge.tscn" id="7_phao3"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tumq0"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
