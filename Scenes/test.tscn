@@ -5,7 +5,7 @@
 [ext_resource type="Shader" path="res://shaders/texture_blend_mask.gdshader" id="4_yapir"]
 [ext_resource type="PackedScene" uid="uid://dxrhmjmi2oxr7" path="res://Scenes/Rooms/center.tscn" id="4_yrtvp"]
 [ext_resource type="PackedScene" uid="uid://db5qpe6fny7fg" path="res://Scenes/Rooms/corner_room.tscn" id="5_fykv5"]
-[ext_resource type="PackedScene" uid="uid://bka36hl7en08l" path="res://Scenes/New_Objects/chair.tscn" id="6_3x0fx"]
+[ext_resource type="PackedScene" path="res://Scenes/New_Objects/chair.tscn" id="6_3x0fx"]
 
 [sub_resource type="Gradient" id="Gradient_7rdnx"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
