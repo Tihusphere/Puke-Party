@@ -1,30 +1,77 @@
 class_name PickUpController
 extends Area3D
 
-enum Buff {RADIUS, FOOD, RAINBOW}
+# BUFFS #
 
-const ANIMATION_SPEED: int = 1
+enum Buff {RADIUS, AGILITY, RAINBOW}
+var buffType: Buff = Buff.AGILITY
 
-@export var buffType: Buff
-@export var quantity: int
+const FOOD_INCREASE: int = 10
+const RADIUS_INCREASE: int = 5
+const JUMP_INCREASE: float = 2.0
+const SPEED_INCREASE: float = 2.0
 
-func _process(_delta: float) -> void:
-	rotate_x(deg_to_rad(ANIMATION_SPEED))
-	rotate_y(deg_to_rad(ANIMATION_SPEED))
+const COOLDOWN: int = 10
 
-func pickup() -> void:
+# NODES # 
+
+@onready var sprite := $Sprite3D
+@onready var collision := $CollisionShape3D
+
+func _ready() -> void:
+	var randomBuff: int = randi_range(0, Buff.size() - 1)
+	buffType = Buff.values()[randomBuff]
+	print(Buff.keys()[randomBuff])
 	match buffType:
 		Buff.RADIUS:
-			GameManagerClass.increaseRadius(quantity)
-			print("Radius!")
-		Buff.FOOD:
-			GameManagerClass.addFood(quantity)
-			print("Food!")
+			sprite.texture = load("res://textures/Food/miniJam_applejuice.png")
+		Buff.AGILITY:
+			sprite.texture = load("res://textures/Food/miniJam_cookie.png")
 		Buff.RAINBOW:
-			GameManagerClass.rainbowTime(quantity)
-			print("Rainbow!")
+			sprite.texture = load("res://textures/Food/miniJam_egg.png")
 
 func _on_body_entered(body: Node3D) -> void:
 	if body is CharacterBody3D:
 		pickup()
-		self.queue_free()
+		self.set_collision_mask_value(2, false)
+		sprite.visible = false
+
+func start_timer() -> void:
+	var timer := Timer.new()
+	add_child(timer)
+	timer.one_shot = true
+	timer.wait_time = COOLDOWN
+	timer.connect("timeout", _on_timer_timeout)
+	timer.start()
+
+func pickup() -> void:
+	GAMEMANAGER.changeFood(FOOD_INCREASE)
+	match buffType:
+		Buff.RADIUS:
+			GAMEMANAGER.changeRadius(RADIUS_INCREASE)
+			print("radius increased!!")
+		Buff.AGILITY:
+			GAMEMANAGER.changePlayerJump(JUMP_INCREASE)
+			GAMEMANAGER.changePlayerSpeed(SPEED_INCREASE)
+			print("agility increased!!")
+		Buff.RAINBOW:
+			GAMEMANAGER.toggleRainbows(true)
+			print("rainbow!!!")
+
+	start_timer()
+
+func _on_timer_timeout():
+	match buffType:
+		Buff.RADIUS:
+			GAMEMANAGER.changeRadius(-RADIUS_INCREASE)
+			print("radius normal")
+		Buff.AGILITY:
+			GAMEMANAGER.changePlayerJump(-JUMP_INCREASE)
+			GAMEMANAGER.changePlayerSpeed(-SPEED_INCREASE)
+			print("agility normal")
+		Buff.RAINBOW:
+			GAMEMANAGER.toggleRainbows(false)
+			print("no more rainbow")
+	
+	self.set_collision_mask_value(2, true)
+	sprite.visible = true

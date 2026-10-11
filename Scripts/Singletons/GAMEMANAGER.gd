@@ -18,8 +18,12 @@ var active_brush_image: Image
 var brush_w: int = 0
 var brush_h: int = 0
 
-var brush_img =  "res://textures/splat.png"
+var brush_img = "res://textures/splat.png"
 var vomit_img = "res://textures/splat.png"
+
+var speed: float = 5.0 # default speed
+var jump: float = 6.0 # default jump
+
 
 func _ready() -> void:
 	brush_texture = load(brush_img)
@@ -55,11 +59,20 @@ func resetOverlayColors():
 		if child is PaintableObject:
 			child.reset_overlay_color()
 
-static func increaseRadius(size : int):
+func changeFood(amount: int = 10):
 	pass
 
-static func addFood(amount : int):
+func changeRadius(size: int = 5):
 	pass
 
-static func rainbowTime(time: float):
-	pass
+func changePlayerSpeed(new_speed: float) -> void:
+	speed += new_speed
+
+func changePlayerJump(new_jump: float) -> void:
+	jump += new_jump
+
+func getPlayerSpeed() -> float:
+	return speed
+
+func getPlayerJump() -> float:
+	return jump
