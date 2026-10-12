@@ -1,6 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://b6b1l44o0obru"]
+[gd_scene format=3 uid="uid://b6b1l44o0obru"]
 
-[ext_resource type="Script" path="res://Scripts/Environment/map_generator.gd" id="1_803pc"]
+[ext_resource type="Script" uid="uid://cxoyec6whxxow" path="res://Scripts/Environment/map_generator.gd" id="1_803pc"]
 [ext_resource type="MeshLibrary" uid="uid://byc21xt2cui2x" path="res://MeshLibraryNew.tres" id="2_3or5r"]
 [ext_resource type="AudioStream" uid="uid://cwwigs6i2d1gj" path="res://Sounds/Puke Party bg music v0.mp3" id="3_3or5r"]
 
@@ -15,22 +15,23 @@ sky_material = SubResource("ProceduralSkyMaterial_3or5r")
 background_mode = 2
 sky = SubResource("Sky_rcqok")
 
-[node name="MapGenerator" type="Node3D"]
+[node name="MapGenerator" type="Node3D" unique_id=659684053]
 script = ExtResource("1_803pc")
 
-[node name="GridMap" type="GridMap" parent="."]
+[node name="GridMap" type="GridMap" parent="." unique_id=2002625934]
 mesh_library = ExtResource("2_3or5r")
 metadata/_editor_floor_ = Vector3(0, 0, 0)
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=27007241]
 transform = Transform3D(-0.5, -0.866026, 0, 0.433013, -0.25, 0.866026, -0.75, 0.433013, 0.5, 0, 0, 0)
 shadow_enabled = true
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1986924883]
 environment = SubResource("Environment_n4pg7")
 
-[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="." unique_id=222376198]
 stream = ExtResource("3_3or5r")
+volume_db = -80.0
 autoplay = true
 
-[node name="Rooms" type="Node3D" parent="."]
+[node name="Rooms" type="Node3D" parent="." unique_id=1090811843]

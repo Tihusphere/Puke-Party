@@ -129,7 +129,7 @@ func generate_map() -> void:
 
 # Spawn player in a random room
 func spawn_player() -> void:
-	var spawn_room: Vector3i = Vector3i(15, 2, 15)
+	var spawn_room: Vector3i = Vector3i(12, 2, 16)
 	var player = player_scene.instantiate()
 	add_child(player)
 	player.position = spawn_room

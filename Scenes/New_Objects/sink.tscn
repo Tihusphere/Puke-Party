@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://jkkwlji4ruma"]
+[gd_scene format=3 uid="uid://jkkwlji4ruma"]
 
 [ext_resource type="Script" path="res://Scripts/Environment/roomItem.gd" id="1_3ma2f"]
 [ext_resource type="Texture2D" uid="uid://b4y0u7d4pba63" path="res://textures/Furniture/Sink.png" id="2_kj13t"]
