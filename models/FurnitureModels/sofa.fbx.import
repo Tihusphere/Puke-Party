@@ -4,11 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://d313vlrucgnn3"
-valid=false
+path="res://.godot/imported/sofa.fbx-5b0b430c1c577d225a5d7db4dcd47580.scn"
 
 [deps]
 
 source_file="res://models/FurnitureModels/sofa.fbx"
+dest_files=["res://.godot/imported/sofa.fbx-5b0b430c1c577d225a5d7db4dcd47580.scn"]
 
 [params]
 
