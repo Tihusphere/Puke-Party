@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://e2mjybu8fc5i"]
+
+[ext_resource type="Texture2D" uid="uid://d4if1a3x0cpik" path="res://textures/Screens/MiniJam_Logo.png" id="1_yq0q2"]
+[ext_resource type="Script" path="res://Scripts/Screens/playButton.gd" id="2_k61fy"]
+
+[node name="Title" type="Node2D"]
+
+[node name="MiniJamLogo" type="Sprite2D" parent="."]
+position = Vector2(960, 444)
+scale = Vector2(0.808557, 0.808557)
+texture = ExtResource("1_yq0q2")
+
+[node name="Button" type="Button" parent="."]
+offset_left = 739.0
+offset_top = 880.0
+offset_right = 1181.0
+offset_bottom = 1034.0
+theme_override_font_sizes/font_size = 106
+text = " PLAY "
+script = ExtResource("2_k61fy")
+
+[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]

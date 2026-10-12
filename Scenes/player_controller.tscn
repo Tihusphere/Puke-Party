@@ -1,7 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://bomgv2ww5a3nx"]
+[gd_scene format=3 uid="uid://bomgv2ww5a3nx"]
 
-[ext_resource type="Script" path="res://Scripts/Player/player_controller.gd" id="1_5ur5x"]
-[ext_resource type="Script" path="res://Scripts/Player/camera_controller.gd" id="2_dl1v4"]
+[ext_resource type="Script" uid="uid://bbsnmhvcs31ke" path="res://Scripts/Player/player_controller.gd" id="1_5ur5x"]
+[ext_resource type="Script" uid="uid://bd4gn51py8f2a" path="res://Scripts/Player/camera_controller.gd" id="2_dl1v4"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5ur5x"]
 
@@ -10,31 +10,84 @@ height = 1.25
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_g4v7s"]
 
-[node name="Player" type="CharacterBody3D"]
+[sub_resource type="Animation" id="Animation_bnokr"]
+resource_name = "CrawlingToStanding"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CameraController:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector3(0, 0.1, 0), Vector3(0, 0.5, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_5ur5x"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CameraController:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.5, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_dl1v4"]
+resource_name = "StandingToCrawling"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CameraController:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector3(0, 0.5, 0), Vector3(0, 0.1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bnokr"]
+_data = {
+&"CrawlingToStanding": SubResource("Animation_bnokr"),
+&"RESET": SubResource("Animation_5ur5x"),
+&"StandingToCrawling": SubResource("Animation_dl1v4")
+}
+
+[node name="Player" type="CharacterBody3D" unique_id=64311187]
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_5ur5x")
 
-[node name="RayCast3D" type="RayCast3D" parent="."]
+[node name="RayCast3D" type="RayCast3D" parent="." unique_id=845300974]
 target_position = Vector3(0, 1.5, 0)
 
-[node name="StandingCollision" type="CollisionShape3D" parent="."]
+[node name="StandingCollision" type="CollisionShape3D" parent="." unique_id=1684892868]
 shape = SubResource("CapsuleShape3D_5ur5x")
 
-[node name="CrawlingCollision" type="CollisionShape3D" parent="."]
+[node name="CrawlingCollision" type="CollisionShape3D" parent="." unique_id=1490795388]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.375, 0)
 shape = SubResource("CapsuleShape3D_dl1v4")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2011258850]
 mesh = SubResource("CapsuleMesh_g4v7s")
 
-[node name="CameraController" type="Node3D" parent="." node_paths=PackedStringArray("camera")]
+[node name="CameraController" type="Node3D" parent="." unique_id=1912424181 node_paths=PackedStringArray("camera")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 script = ExtResource("2_dl1v4")
 camera = NodePath("Camera3D")
 
-[node name="Camera3D" type="Camera3D" parent="CameraController"]
+[node name="Camera3D" type="Camera3D" parent="CameraController" unique_id=717096555]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-
-[node name="PlayerController" type="Node3D" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1403234588]
+libraries/ = SubResource("AnimationLibrary_bnokr")

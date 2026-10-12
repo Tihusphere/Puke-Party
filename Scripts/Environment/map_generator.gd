@@ -1,3 +1,4 @@
+class_name MapGenerator
 extends Node3D
 
 @onready var grid_map: GridMap = $GridMap
@@ -7,6 +8,7 @@ var map_size: Vector2i = Vector2i(3, 3)
 var map: Array
 
 var player_scene = preload("res://Scenes/player_controller.tscn")
+var pickup_scene = preload("res://Scenes/Resources/pick_up.tscn")
 
 # Stores room scene data
 var Rooms: Dictionary = {
@@ -74,7 +76,7 @@ func randomize_map() -> void:
 			
 			# Choose random room to fill from RoomTypes
 			map[x][y] = room_type[randi_range(0, room_type.size() - 1)]
-			print(Rooms.find_key(map[x][y]) + " x: " + str(x) + " y: " + str(y))
+			# print(Rooms.find_key(map[x][y]) + " x: " + str(x) + " y: " + str(y))
 			
 
 # Place randomized rooms and rotate based on gridmap cell location
