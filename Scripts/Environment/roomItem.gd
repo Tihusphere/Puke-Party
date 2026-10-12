@@ -90,7 +90,7 @@ func _physics_process(_delta: float) -> void:
 	
 	var result = space_state.intersect_ray(query)
 	
-	if result and result.collider == self:
+	if not GAMEMANAGER.isPlayerDisabled() and result and result.collider == self:
 		var face_idx: int = result.get("face_index", -1)
 		if face_idx == -1:
 			return

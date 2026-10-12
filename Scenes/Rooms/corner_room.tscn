@@ -122,10 +122,10 @@ transform = Transform3D(0.8333334, -3.642616e-08, 3.5527137e-15, -3.5527137e-15,
 [node name="Painting2" parent="Objects" unique_id=4974734 instance=ExtResource("8_16ihw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, -4.2351647e-22, 1, 0, 0, 0)
 
-[node name="PickUp" parent="Objects" unique_id=1000235748 instance=ExtResource("9_85scl")]
-transform = Transform3D(-4.8568214e-08, -4.8568214e-08, 1.1111112, -1.1111112, 2.1229841e-15, -4.8568214e-08, 1.4523886e-22, -1.1111112, -4.8568214e-08, -11.944445, 8.833334, -2.4444447)
+[node name="Plant" parent="Objects" unique_id=860890185 instance=ExtResource("7_13d4e")]
+transform = Transform3D(-1.073251, -4.8568214e-08, 0.28757665, -0.28757665, 2.1229841e-15, -1.073251, 4.6913293e-08, -1.1111112, -1.2570378e-08, -10.166668, 1.2777777, 5.0764885)
 
-[node name="Plant" parent="." unique_id=860890185 instance=ExtResource("7_13d4e")]
-transform = Transform3D(0.258819, 0, 0.9659258, 0, 1, 0, -0.9659258, 0, 0.258819, 5.9000006, 0.031160418, -4.4000006)
+[node name="PickUp" parent="Objects" unique_id=1000235748 instance=ExtResource("9_85scl")]
+transform = Transform3D(-4.8568214e-08, -4.8568214e-08, 1.1111112, -1.1111112, 2.1229841e-15, -4.8568214e-08, 2.9047772e-22, -1.1111112, -4.8568214e-08, -11.944445, 8.833334, -2.4444447)
 
 [connection signal="input_event" from="StaticBody3D" to="StaticBody3D" method="_on_input_event"]

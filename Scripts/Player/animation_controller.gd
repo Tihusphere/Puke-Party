@@ -5,13 +5,13 @@ extends Node3D
 const START_Y: float = -0.25
 const ANIM_Y: float = -0.75
 
-var full: bool = true # temporary variable for ammon
+var full: bool = true # temporary variable for ammo
 
 func _ready() -> void:
-	anim.set_animation("default	")
+	anim.set_animation("default")
 
 func _input(_event: InputEvent) -> void:
-	if full:
+	if not GAMEMANAGER.isPlayerDisabled() and full:
 		if Input.is_action_just_pressed("shoot"):
 			anim.play("starting")
 			position.y = START_Y

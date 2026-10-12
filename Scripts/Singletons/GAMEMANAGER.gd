@@ -23,6 +23,7 @@ var vomit_img = "res://textures/splat.png"
 var speed: float = 5.0 # default speed
 var jump: float = 6.0 # default jump
 
+var player_input: bool = true
 var rainbow: bool = false
 
 func _ready() -> void:
@@ -68,17 +69,23 @@ func changeRadius(size: int = 5):
 func changePlayerSpeed(new_speed: float) -> void:
 	speed += new_speed
 
-func changePlayerJump(new_jump: float) -> void:
-	jump += new_jump
-
-func setRainbow(is_rainbow: bool = !rainbow) -> void: # toggles by default
-	rainbow = is_rainbow
-
 func getPlayerSpeed() -> float:
 	return speed
+
+func changePlayerJump(new_jump: float) -> void:
+	jump += new_jump
 
 func getPlayerJump() -> float:
 	return jump
 
+func setRainbow(is_rainbow: bool = !rainbow) -> void: # toggles by default
+	rainbow = is_rainbow
+
 func getRainbow() -> bool:
 	return rainbow
+
+func disablePlayer(disabled: bool) -> void:
+	player_input = disabled
+
+func isPlayerDisabled() -> bool:
+	return player_input
