@@ -84,7 +84,7 @@ shape = SubResource("ConcavePolygonShape3D_a5jwr")
 [node name="Objects" type="Node3D" parent="." unique_id=528267329]
 
 [node name="Bed" parent="Objects" unique_id=1546392016 instance=ExtResource("3_j1jh8")]
-transform = Transform3D(-3.059797e-08, 0, -0.7, 0, 0.7, 0, 0.7, 0, -3.059797e-08, 0, 0.9427704, -4)
+transform = Transform3D(-3.059797e-08, 0, -0.7, 0, 0.7, 0, 0.7, 0, -3.059797e-08, 0, 0.6427704, -4)
 
 [node name="Nightstand" parent="Objects" unique_id=1911059717 instance=ExtResource("4_up6oc")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -4.5, 1.64946, -5.7)

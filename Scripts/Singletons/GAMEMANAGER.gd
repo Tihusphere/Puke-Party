@@ -26,13 +26,19 @@ var jump: float = 6.0 # default jump
 var player_input: bool = true
 var rainbow: bool = false
 
-var score:int = 0
+var score: int = 0
+var countdown_timer: Timer = Timer.new()
+var game_timer: Timer = Timer.new()
+
 
 func _ready() -> void:
 	brush_texture = load(brush_img)
 	overlay_texture = load(vomit_img)
 	update_brush_size()
 	toggleRainbows(true)
+
+	add_child(countdown_timer)
+	add_child(game_timer)
 
 func update_brush_size() -> void:
 	if brush_texture:
@@ -88,6 +94,32 @@ func getRainbow() -> bool:
 
 func disablePlayer(disabled: bool) -> void:
 	player_input = disabled
+	print("Player disabled is ", disabled)
 
 func isPlayerDisabled() -> bool:
 	return player_input
+
+func start_game() -> void:
+	print("countdown...")
+	disablePlayer(true)
+
+	countdown_timer.wait_time = 3
+	countdown_timer.one_shot = true
+	countdown_timer.start()
+	countdown_timer.connect("timeout", _on_countdown_timer_timeout)
+
+func _on_countdown_timer_timeout() -> void:
+	countdown_timer.queue_free()
+	print("game start!")
+	disablePlayer(false)
+
+	game_timer.wait_time = 60
+	game_timer.one_shot = true
+	game_timer.start()
+	print('game timer started??')
+	game_timer.connect("timeout", _on_game_timer_timeout)
+
+func _on_game_timer_timeout() -> void:
+	game_timer.queue_free()
+
+	get_tree().change_scene_to_file("res://Scenes/Screens/end.tscn")

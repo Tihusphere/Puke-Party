@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cxoyec6whxxow" path="res://Scripts/Environment/map_generator.gd" id="1_803pc"]
 [ext_resource type="MeshLibrary" uid="uid://byc21xt2cui2x" path="res://MeshLibraryNew.tres" id="2_3or5r"]
 [ext_resource type="AudioStream" uid="uid://cwwigs6i2d1gj" path="res://Sounds/Puke Party bg music v0.mp3" id="3_3or5r"]
+[ext_resource type="PackedScene" uid="uid://cdi3q0ekbrptk" path="res://Scenes/Screens/gui.tscn" id="4_rcqok"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_3or5r"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -17,6 +18,11 @@ sky = SubResource("Sky_rcqok")
 
 [node name="MapGenerator" type="Node3D" unique_id=659684053]
 script = ExtResource("1_803pc")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=136778992]
+
+[node name="GUI" parent="CanvasLayer" unique_id=874591130 instance=ExtResource("4_rcqok")]
+mouse_filter = 2
 
 [node name="GridMap" type="GridMap" parent="." unique_id=2002625934]
 mesh_library = ExtResource("2_3or5r")

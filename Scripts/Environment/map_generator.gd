@@ -134,39 +134,10 @@ func spawn_player() -> void:
 	add_child(player)
 	player.position = spawn_room
 
-	player.set_physics_process(false)
-	GAMEMANAGER.disablePlayer(true)
-
-	
-func start_game() -> void:
-	var countdown = Timer.new()
-	countdown.autostart = true
-	countdown.wait_time = 3
-	countdown.one_shot = true
-	add_child(countdown)
-	countdown.connect("timeout", _on_countdown_timeout)
-
-func _on_countdown_timeout() -> void:
-	get_node("Player").set_physics_process(true)
-	GAMEMANAGER.disablePlayer(false)
-	print("go!")
-
-	var game = Timer.new()
-	game.autostart = true
-	game.wait_time = 60
-	game.one_shot = true
-	add_child(game)
-	game.connect("timeout", _on_game_timeout)
-
-func _on_game_timeout() -> void:
-	get_node("Player").set_physics_process(false)
-	GAMEMANAGER.disablePlayer(true)
-	print("game over!")
-	# get_tree().change_scene_to_file("res://Scenes/Screens/end.tscn")
-
 func _ready() -> void:
 	initialize_map()
 	randomize_map()
 	generate_map()
 	spawn_player()
-	start_game()
+
+	GAMEMANAGER.start_game()
