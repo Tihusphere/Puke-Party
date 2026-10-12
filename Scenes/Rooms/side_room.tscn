@@ -71,9 +71,6 @@ mesh = ExtResource("3_i5rts")
 transform = Transform3D(200, 0, 0, 0, -8.74228e-06, 200, 0, -200, -8.74228e-06, 0, 7.23116, 0)
 shape = SubResource("ConcavePolygonShape3D_885i0")
 
-[node name="PickUp" parent="StaticBody3D" unique_id=1000235748 instance=ExtResource("3_kb42w")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.599999, 0)
-
 [node name="Objects" type="Node3D" parent="." unique_id=1538105632]
 
 [node name="Table" parent="Objects" unique_id=1006557224 instance=ExtResource("3_bm72u")]
@@ -102,5 +99,8 @@ transform = Transform3D(-1, -1.7484555e-07, -1.509958e-07, -1.7484555e-07, 1, -1
 
 [node name="Painting2" parent="Objects" unique_id=1866446004 instance=ExtResource("5_cjpyk")]
 transform = Transform3D(-1, 1.8032225e-14, 8.742278e-08, 8.742278e-08, 4.371139e-08, 1, 0, 1, -4.371139e-08, -0.10000014, 6.2000003, -6.9000006)
+
+[node name="PickUp" parent="." unique_id=1000235748 instance=ExtResource("3_kb42w")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.099999905, 0.6311604, 3.1)
 
 [connection signal="input_event" from="StaticBody3D" to="StaticBody3D" method="_on_input_event"]
