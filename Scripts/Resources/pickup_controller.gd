@@ -38,25 +38,28 @@ func _on_body_entered(body: Node3D) -> void:
 
 func start_timer() -> void:
 	var timer := Timer.new()
-	add_child(timer)
-	timer.one_shot = true
+	timer.autostart = true
 	timer.wait_time = COOLDOWN
+	timer.one_shot = true
 	timer.connect("timeout", _on_timer_timeout)
-	timer.start()
+	add_child(timer)
 
 func pickup() -> void:
 	GAMEMANAGER.changeFood(FOOD_INCREASE)
 	match buffType:
 		Buff.RADIUS:
 			GAMEMANAGER.changeRadius(RADIUS_INCREASE)
+			GAMEMANAGER.score += 10
 			print("radius increased!!")
 		Buff.AGILITY:
 			GAMEMANAGER.changePlayerJump(JUMP_INCREASE)
 			GAMEMANAGER.changePlayerSpeed(SPEED_INCREASE)
 			print("agility increased!!")
+			GAMEMANAGER.score += 20
 		Buff.RAINBOW:
-			GAMEMANAGER.toggleRainbows(true)
+			GAMEMANAGER.setRainbow(true)
 			print("rainbow!!!")
+			GAMEMANAGER.score += 50
 
 	start_timer()
 
@@ -70,7 +73,7 @@ func _on_timer_timeout():
 			GAMEMANAGER.changePlayerSpeed(-SPEED_INCREASE)
 			print("agility normal")
 		Buff.RAINBOW:
-			GAMEMANAGER.toggleRainbows(false)
+			GAMEMANAGER.setRainbow(false)
 			print("no more rainbow")
 	
 	self.set_collision_mask_value(2, true)

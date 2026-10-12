@@ -4,12 +4,11 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://m4tq8lk82rhi"
-path="res://.godot/imported/chair.fbx-c7a5d2fecfc6d10b30a6e7be8a39dda4.scn"
+valid=false
 
 [deps]
 
 source_file="res://models/FurnitureModels/chair.fbx"
-dest_files=["res://.godot/imported/chair.fbx-c7a5d2fecfc6d10b30a6e7be8a39dda4.scn"]
 
 [params]
 

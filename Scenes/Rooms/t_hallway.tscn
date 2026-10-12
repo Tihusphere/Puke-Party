@@ -1,7 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://cc5aopk1qipps"]
+[gd_scene format=3 uid="uid://cc5aopk1qipps"]
 
-[ext_resource type="Script" path="res://Scripts/Environment/roomItem.gd" id="2_bbw11"]
+[ext_resource type="Script" uid="uid://dx2g6ag5rlboj" path="res://Scripts/Environment/roomItem.gd" id="2_bbw11"]
 [ext_resource type="ArrayMesh" uid="uid://cj2drqn3qipxf" path="res://models/RoomMeshes/t_hallway.res" id="3_r8cyp"]
+[ext_resource type="PackedScene" uid="uid://cj7auuvptqro8" path="res://Scenes/New_Objects/table.tscn" id="3_vko4r"]
+[ext_resource type="PackedScene" uid="uid://bka36hl7en08l" path="res://Scenes/New_Objects/chair.tscn" id="4_p634m"]
+[ext_resource type="PackedScene" uid="uid://dg4n41pdjrfmm" path="res://Scenes/New_Objects/plant.tscn" id="5_p634m"]
 
 [sub_resource type="Gradient" id="Gradient_haqr8"]
 
@@ -11,84 +14,101 @@ gradient = SubResource("Gradient_haqr8")
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_dl6x8"]
 data = PackedVector3Array(-0.04, 0.04, 0.04, -0.04, -0.01, -0.0016, -0.04, 0.01, -0.0016, -0.04, 0.04, 0.04, -0.04, -0.04, 0.04, -0.04, -0.01, -0.0016, -0.04, 0.04, -0.04, -0.04, 0.04, 0.04, -0.04, 0.01, -0.0016, -0.04, -0.04, 0.04, -0.04, -0.04, -0.04, -0.04, -0.01, -0.0016, -0.04, 0.04, -0.04, -0.04, 0.01, -0.0016, -0.04, 0.01, -0.0356, -0.04, -0.04, -0.04, -0.04, -0.01, -0.0356, -0.04, -0.01, -0.0016, -0.04, 0.04, -0.04, -0.04, 0.01, -0.0356, -0.04, -0.01, -0.0356, -0.04, -0.01, -0.0356, -0.04, -0.04, -0.04, -0.04, 0.04, -0.04, 0.04, 0.04, 0.04, -0.04, 0.04, 0.04, -0.04, 0.04, -0.04, -0.04, 0.04, -0.04, 0.04, 0.04, -0.04, 0.04, 0.04, 0.04, 0.04, -0.04, 0.04, 0.04, 0.01, -0.0016, 0.04, -0.01, -0.0016, 0.04, -0.04, 0.04, 0.04, 0.04, 0.04, 0.04, 0.01, -0.0016, 0.04, -0.04, -0.04, 0.04, -0.04, 0.04, 0.04, -0.01, -0.0016, 0.04, 0.04, 0.04, 0.04, 0.04, -0.04, 0.04, 0.01, -0.0016, 0.04, -0.04, -0.04, 0.04, -0.01, -0.0016, 0.04, -0.01, -0.0356, 0.04, 0.04, -0.04, 0.04, -0.04, -0.04, 0.04, -0.01, -0.0356, 0.04, -0.01, -0.0356, 0.04, 0.01, -0.0356, 0.04, 0.04, -0.04, 0.04, 0.04, -0.04, 0.04, 0.01, -0.0356, 0.04, 0.01, -0.0016, 0.01, -0.04, -0.0016, 0.04, -0.04, -0.04, 0.01, -0.04, -0.0356, -0.01, -0.04, -0.0356, 0.01, -0.04, -0.0356, 0.04, -0.04, -0.04, 0.01, -0.04, -0.0016, 0.04, -0.04, 0.04, 0.04, -0.04, -0.04, 0.04, -0.04, -0.04, -0.04, -0.04, -0.04, -0.01, -0.04, -0.0356, 0.01, -0.04, -0.0016, -0.01, -0.04, -0.0016, 0.04, -0.04, 0.04, -0.01, -0.04, -0.0356, -0.04, -0.04, -0.04, -0.04, -0.04, 0.04, -0.01, -0.04, -0.0016, -0.04, -0.04, 0.04, 0.04, -0.04, 0.04, -0.01, -0.04, -0.0016, -0.01, -0.04, -0.0356, -0.04, -0.04, 0.04, 0.04, -0.04, -0.04, 0.04, 0.04, -0.04, -0.04, 0.04, -0.04, -0.04, 0.04, -0.04, -0.04, -0.04, -0.04, 0.04, -0.04, -0.04, 0.04, -0.04, 0.04, -0.04, -0.04, 0.04, -0.04, 0.04, 0.04, -0.04, 0.04, 0.04, 0.04, 0.04, 0.04, 0.04, -0.04, 0.04, 0.04, 0.01, -0.0016, 0.04, 0.01, -0.0356, 0.036, 0.01, -0.0356, 0.036, 0.01, -0.0356, 0.036, 0.01, -0.0016, 0.04, 0.01, -0.0016, -0.036, 0.01, -0.0356, -0.04, 0.01, -0.0356, -0.04, 0.01, -0.0016, -0.04, 0.01, -0.0016, -0.036, 0.01, -0.0016, -0.036, 0.01, -0.0356, -0.036, -0.01, -0.0016, -0.04, -0.01, -0.0016, -0.04, -0.01, -0.0356, -0.04, -0.01, -0.0356, -0.036, -0.01, -0.0356, -0.036, -0.01, -0.0016, 0.036, -0.01, -0.0356, 0.04, -0.01, -0.0356, 0.04, -0.01, -0.0016, 0.04, -0.01, -0.0016, 0.036, -0.01, -0.0016, 0.036, -0.01, -0.0356, 0.036, 0.01, -0.0356, 0.04, 0.01, -0.0356, 0.04, -0.01, -0.0356, 0.04, -0.01, -0.0356, 0.036, -0.01, -0.0356, 0.036, 0.01, -0.0356, -0.036, -0.01, -0.0356, -0.04, -0.01, -0.0356, -0.04, 0.01, -0.0356, -0.04, 0.01, -0.0356, -0.036, 0.01, -0.0356, -0.036, -0.01, -0.0356, -0.036, 0.01, -0.0016, -0.04, 0.01, -0.0016, -0.04, -0.01, -0.0016, -0.04, -0.01, -0.0016, -0.036, -0.01, -0.0016, -0.036, 0.01, -0.0016, 0.04, -0.01, -0.0016, 0.04, 0.01, -0.0016, 0.036, 0.01, -0.0016, 0.036, 0.01, -0.0016, 0.036, -0.01, -0.0016, 0.04, -0.01, -0.0016, -0.036, 0.0159, -0.036, -0.036, -0.0361, -0.036, -0.036, -0.01, -0.0356, -0.036, -0.0361, -0.036, -0.036, -0.01, -0.0016, -0.036, -0.01, -0.0356, -0.036, -0.01, -0.0356, -0.036, 0.01, -0.0356, -0.036, 0.0159, -0.036, -0.036, -0.0361, -0.036, -0.036, -0.0361, 0.036, -0.036, -0.01, -0.0016, -0.036, 0.0159, -0.036, -0.036, 0.01, -0.0356, -0.036, 0.01, -0.0016, -0.036, -0.0361, 0.036, -0.036, 0.01, -0.0016, -0.036, -0.01, -0.0016, -0.036, 0.0159, 0.036, -0.036, 0.0159, -0.036, -0.036, 0.01, -0.0016, -0.036, -0.0361, 0.036, -0.036, 0.0159, 0.036, -0.036, 0.01, -0.0016, 0.036, 0.0159, 0.036, 0.036, 0.0159, -0.036, -0.036, 0.0159, -0.036, -0.036, 0.0159, -0.036, -0.036, 0.0159, 0.036, 0.036, 0.0159, 0.036, 0.036, -0.01, -0.0016, 0.036, -0.0361, -0.036, 0.036, -0.01, -0.0356, 0.036, -0.01, -0.0356, 0.036, -0.0361, -0.036, 0.036, 0.0159, -0.036, 0.036, 0.0159, -0.036, 0.036, 0.01, -0.0356, 0.036, -0.01, -0.0356, 0.036, -0.01, -0.0016, 0.036, 0.0159, 0.036, 0.036, -0.0361, -0.036, 0.036, 0.01, -0.0356, 0.036, 0.0159, -0.036, 0.036, 0.0159, 0.036, 0.036, 0.0159, 0.036, 0.036, -0.0361, 0.036, 0.036, -0.0361, -0.036, 0.036, -0.01, -0.0016, 0.036, 0.01, -0.0016, 0.036, 0.0159, 0.036, 0.036, 0.01, -0.0016, 0.036, 0.01, -0.0356, 0.036, 0.0159, 0.036, -0.036, -0.0361, 0.036, -0.01, -0.0361, -0.0356, -0.01, -0.0361, -0.0016, -0.036, -0.0361, 0.036, -0.036, -0.0361, -0.036, -0.01, -0.0361, -0.0356, 0.036, -0.0361, 0.036, -0.036, -0.0361, 0.036, -0.01, -0.0361, -0.0016, 0.036, -0.0361, 0.036, -0.01, -0.0361, -0.0016, 0.01, -0.0361, -0.0016, 0.036, -0.0361, -0.036, 0.036, -0.0361, 0.036, 0.01, -0.0361, -0.0016, 0.036, -0.0361, -0.036, 0.01, -0.0361, -0.0016, 0.01, -0.0361, -0.0356, -0.036, -0.0361, -0.036, 0.036, -0.0361, -0.036, 0.01, -0.0361, -0.0356, 0.01, -0.0361, -0.0356, -0.01, -0.0361, -0.0356, -0.036, -0.0361, -0.036, 0.036, -0.0361, -0.036, -0.036, -0.0361, -0.036, -0.036, 0.0159, -0.036, -0.036, 0.0159, -0.036, 0.036, 0.0159, -0.036, 0.036, -0.0361, -0.036, 0.036, -0.0361, 0.036, 0.036, 0.0159, 0.036, -0.036, 0.0159, 0.036, -0.036, 0.0159, 0.036, -0.036, -0.0361, 0.036, 0.036, -0.0361, 0.036, -0.01, -0.0361, -0.0356, -0.01, -0.04, -0.0356, -0.01, -0.04, -0.0016, -0.01, -0.04, -0.0016, -0.01, -0.0361, -0.0016, -0.01, -0.0361, -0.0356, 0.01, -0.04, -0.0016, 0.01, -0.04, -0.0356, 0.01, -0.0361, -0.0356, 0.01, -0.0361, -0.0356, 0.01, -0.0361, -0.0016, 0.01, -0.04, -0.0016, 0.01, -0.04, -0.0356, -0.01, -0.04, -0.0356, -0.01, -0.0361, -0.0356, -0.01, -0.0361, -0.0356, 0.01, -0.0361, -0.0356, 0.01, -0.04, -0.0356, -0.01, -0.0361, -0.0016, -0.01, -0.04, -0.0016, 0.01, -0.04, -0.0016, 0.01, -0.04, -0.0016, 0.01, -0.0361, -0.0016, -0.01, -0.0361, -0.0016)
 
-[node name="THallway" type="Node3D"]
+[node name="THallway" type="Node3D" unique_id=367417409]
 
-[node name="CSGToMesh" type="CSGCombiner3D" parent="."]
+[node name="CSGToMesh" type="CSGCombiner3D" parent="." unique_id=108560588]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 visible = false
 
-[node name="Floor" type="CSGBox3D" parent="CSGToMesh"]
+[node name="Floor" type="CSGBox3D" parent="CSGToMesh" unique_id=120144959]
 use_collision = true
 collision_mask = 15
 size = Vector3(16, 1, 16)
 
-[node name="Wall1" type="CSGBox3D" parent="CSGToMesh"]
+[node name="Wall1" type="CSGBox3D" parent="CSGToMesh" unique_id=1671157813]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 4.5, 0)
 size = Vector3(1, 8, 14)
 
-[node name="Wall2" type="CSGBox3D" parent="CSGToMesh"]
+[node name="Wall2" type="CSGBox3D" parent="CSGToMesh" unique_id=191307655]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 3.5, 4.5, -5)
 size = Vector3(1, 8, 4)
 
-[node name="Wall3" type="CSGBox3D" parent="CSGToMesh"]
+[node name="Wall3" type="CSGBox3D" parent="CSGToMesh" unique_id=912827234]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.5, 4.5, -3.5)
 size = Vector3(1, 8, 3)
 
-[node name="Wall4" type="CSGBox3D" parent="CSGToMesh"]
+[node name="Wall4" type="CSGBox3D" parent="CSGToMesh" unique_id=2020164524]
 transform = Transform3D(1, 0, -7.10543e-15, 0, 1, 0, 7.10543e-15, 0, 1, 3.5, 4.5, 5)
 size = Vector3(1, 8, 4)
 
-[node name="Wall5" type="CSGBox3D" parent="CSGToMesh"]
+[node name="Wall5" type="CSGBox3D" parent="CSGToMesh" unique_id=645973847]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.5, 4.5, 3.5)
 size = Vector3(1, 8, 3)
 
-[node name="LeftWall" type="CSGBox3D" parent="CSGToMesh"]
+[node name="LeftWall" type="CSGBox3D" parent="CSGToMesh" unique_id=1254403372]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2, 4.5, 7.5)
 size = Vector3(1, 8, 2)
 
-[node name="RightWall" type="CSGBox3D" parent="CSGToMesh"]
+[node name="RightWall" type="CSGBox3D" parent="CSGToMesh" unique_id=461255757]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2, 4.5, 7.5)
 size = Vector3(1, 8, 2)
 
-[node name="Overhead" type="CSGBox3D" parent="CSGToMesh"]
+[node name="Overhead" type="CSGBox3D" parent="CSGToMesh" unique_id=564096318]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 7, 7.5)
 size = Vector3(1, 3, 2)
 
-[node name="LeftWall2" type="CSGBox3D" parent="CSGToMesh"]
+[node name="LeftWall2" type="CSGBox3D" parent="CSGToMesh" unique_id=849348336]
 transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -2, 4.5, -7.5)
 size = Vector3(1, 8, 2)
 
-[node name="RightWall2" type="CSGBox3D" parent="CSGToMesh"]
+[node name="RightWall2" type="CSGBox3D" parent="CSGToMesh" unique_id=1150287514]
 transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 2, 4.5, -7.5)
 size = Vector3(1, 8, 2)
 
-[node name="Overhead2" type="CSGBox3D" parent="CSGToMesh"]
+[node name="Overhead2" type="CSGBox3D" parent="CSGToMesh" unique_id=1675150533]
 transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 0, 7, -7.5)
 size = Vector3(1, 3, 2)
 
-[node name="LeftWall3" type="CSGBox3D" parent="CSGToMesh"]
+[node name="LeftWall3" type="CSGBox3D" parent="CSGToMesh" unique_id=1438359558]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 7.5, 4.5, -2)
 size = Vector3(1, 8, 2)
 
-[node name="RightWall3" type="CSGBox3D" parent="CSGToMesh"]
+[node name="RightWall3" type="CSGBox3D" parent="CSGToMesh" unique_id=514445659]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 7.5, 4.5, 2)
 size = Vector3(1, 8, 2)
 
-[node name="Overhead3" type="CSGBox3D" parent="CSGToMesh"]
+[node name="Overhead3" type="CSGBox3D" parent="CSGToMesh" unique_id=1450685411]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 7.5, 7, 0)
 size = Vector3(1, 3, 2)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="." node_paths=PackedStringArray("mesh_instance")]
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1652697851 node_paths=PackedStringArray("mesh_instance")]
 script = ExtResource("2_bbw11")
 mesh_instance = NodePath("MeshInstance3D")
 base_texture = SubResource("GradientTexture1D_dihw4")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=345220087]
 transform = Transform3D(200, 0, 0, 0, -8.74228e-06, 200, 0, -200, -8.74228e-06, 0, 7.23116, 0)
 shape = SubResource("ConcavePolygonShape3D_dl6x8")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=1026947488]
 transform = Transform3D(200, 0, 0, 0, -8.74228e-06, 200, 0, -200, -8.74228e-06, 0, 7.23116, 0)
 mesh = ExtResource("3_r8cyp")
+
+[node name="Objects" type="Node3D" parent="." unique_id=145661247]
+
+[node name="Table2" parent="Objects" unique_id=843842500 instance=ExtResource("3_vko4r")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 1.9625604, -1.3333336)
+
+[node name="Chair4" parent="Objects" unique_id=238254725 instance=ExtResource("4_p634m")]
+transform = Transform3D(9.059749e-08, 0, 1, 0, 1, 0, -1.2, 0, 7.54979e-08, -2.8, 1.4472438, -1.3833334)
+
+[node name="Chair5" parent="Objects" unique_id=2061517569 instance=ExtResource("4_p634m")]
+transform = Transform3D(-1.9550482e-07, 0, -1, 0, 1, 0, 1.2, 0, -1.6292068e-07, 2.9000003, 1.4472438, -1.3833334)
+
+[node name="Plant" parent="." unique_id=1228416356 instance=ExtResource("5_p634m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.1999998, 0.031160895, 5.7999997)
+
+[node name="Plant2" parent="." unique_id=1333014361 instance=ExtResource("5_p634m")]
+transform = Transform3D(0.25881907, 0, 0.9659258, 0, 1, 0, -0.9659258, 0, 0.25881907, 3.3000002, 0.031160895, 5.7999997)
 
 [connection signal="input_event" from="StaticBody3D" to="StaticBody3D" method="_on_input_event"]

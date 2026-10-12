@@ -1,7 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://7u2koin6i58b"]
+[gd_scene format=3 uid="uid://7u2koin6i58b"]
 
-[ext_resource type="Script" path="res://Scripts/Environment/roomItem.gd" id="2_hl8fp"]
+[ext_resource type="Script" uid="uid://dx2g6ag5rlboj" path="res://Scripts/Environment/roomItem.gd" id="2_hl8fp"]
 [ext_resource type="ArrayMesh" uid="uid://mddvct7uvorg" path="res://models/RoomMeshes/t_room.res" id="3_bd4gc"]
+[ext_resource type="PackedScene" uid="uid://d3y6ljcqbf6ul" path="res://Scenes/New_Objects/sofa.tscn" id="3_ihrov"]
+[ext_resource type="PackedScene" uid="uid://dg4n41pdjrfmm" path="res://Scenes/New_Objects/plant.tscn" id="5_y43ku"]
+[ext_resource type="PackedScene" uid="uid://dqc43bu1kdi26" path="res://Scenes/New_Objects/painting1.tscn" id="6_43p0x"]
+[ext_resource type="PackedScene" uid="uid://485b3t7280oc" path="res://Scenes/New_Objects/painting2.tscn" id="7_up6oc"]
+[ext_resource type="PackedScene" uid="uid://182qfpn2hjge" path="res://Scenes/Resources/pick_up.tscn" id="7_y43ku"]
 
 [sub_resource type="Gradient" id="Gradient_ilcmo"]
 
@@ -11,68 +16,91 @@ gradient = SubResource("Gradient_ilcmo")
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_a5jwr"]
 data = PackedVector3Array(-0.04, 0.04, 0.04, -0.04, -0.01, -0.0016, -0.04, 0.01, -0.0016, -0.04, 0.04, 0.04, -0.04, -0.04, 0.04, -0.04, -0.01, -0.0016, -0.04, 0.04, -0.04, -0.04, 0.04, 0.04, -0.04, 0.01, -0.0016, -0.04, -0.04, 0.04, -0.04, -0.04, -0.04, -0.04, -0.01, -0.0016, -0.04, 0.04, -0.04, -0.04, 0.01, -0.0016, -0.04, 0.01, -0.0356, -0.04, -0.04, -0.04, -0.04, -0.01, -0.0356, -0.04, -0.01, -0.0016, -0.04, 0.04, -0.04, -0.04, 0.01, -0.0356, -0.04, -0.01, -0.0356, -0.04, -0.01, -0.0356, -0.04, -0.04, -0.04, -0.04, 0.04, -0.04, 0.04, 0.04, 0.04, -0.04, 0.04, 0.04, -0.04, 0.04, -0.04, -0.04, 0.04, -0.04, 0.04, 0.04, -0.04, 0.04, 0.04, 0.04, 0.04, -0.04, 0.04, 0.04, 0.01, -0.0016, 0.04, -0.01, -0.0016, 0.04, -0.04, 0.04, 0.04, 0.04, 0.04, 0.04, 0.01, -0.0016, 0.04, -0.04, -0.04, 0.04, -0.04, 0.04, 0.04, -0.01, -0.0016, 0.04, 0.04, 0.04, 0.04, 0.04, -0.04, 0.04, 0.01, -0.0016, 0.04, -0.04, -0.04, 0.04, -0.01, -0.0016, 0.04, -0.01, -0.0356, 0.04, 0.04, -0.04, 0.04, -0.04, -0.04, 0.04, -0.01, -0.0356, 0.04, -0.01, -0.0356, 0.04, 0.01, -0.0356, 0.04, 0.04, -0.04, 0.04, 0.04, -0.04, 0.04, 0.01, -0.0356, 0.04, 0.01, -0.0016, 0.01, -0.04, -0.0016, 0.04, -0.04, -0.04, 0.01, -0.04, -0.0356, -0.01, -0.04, -0.0356, 0.01, -0.04, -0.0356, 0.04, -0.04, -0.04, 0.01, -0.04, -0.0016, 0.04, -0.04, 0.04, 0.04, -0.04, -0.04, 0.04, -0.04, -0.04, -0.04, -0.04, -0.04, -0.01, -0.04, -0.0356, 0.01, -0.04, -0.0016, -0.01, -0.04, -0.0016, 0.04, -0.04, 0.04, -0.01, -0.04, -0.0356, -0.04, -0.04, -0.04, -0.04, -0.04, 0.04, -0.01, -0.04, -0.0016, -0.04, -0.04, 0.04, 0.04, -0.04, 0.04, -0.01, -0.04, -0.0016, -0.01, -0.04, -0.0356, -0.04, -0.04, 0.04, 0.04, -0.04, -0.04, 0.04, 0.04, -0.04, -0.04, 0.04, -0.04, -0.04, 0.04, -0.04, -0.04, -0.04, -0.04, 0.04, -0.04, -0.04, -0.04, -0.04, 0.04, -0.04, 0.04, 0.04, 0.04, 0.04, 0.04, 0.04, 0.04, 0.04, 0.04, -0.04, 0.04, -0.04, -0.04, 0.04, 0.04, 0.01, -0.0016, 0.04, 0.01, -0.0356, 0.036, 0.01, -0.0356, 0.036, 0.01, -0.0356, 0.036, 0.01, -0.0016, 0.04, 0.01, -0.0016, -0.036, 0.01, -0.0356, -0.04, 0.01, -0.0356, -0.04, 0.01, -0.0016, -0.04, 0.01, -0.0016, -0.036, 0.01, -0.0016, -0.036, 0.01, -0.0356, -0.036, -0.01, -0.0016, -0.04, -0.01, -0.0016, -0.04, -0.01, -0.0356, -0.04, -0.01, -0.0356, -0.036, -0.01, -0.0356, -0.036, -0.01, -0.0016, 0.036, -0.01, -0.0356, 0.04, -0.01, -0.0356, 0.04, -0.01, -0.0016, 0.04, -0.01, -0.0016, 0.036, -0.01, -0.0016, 0.036, -0.01, -0.0356, 0.036, 0.01, -0.0356, 0.04, 0.01, -0.0356, 0.04, -0.01, -0.0356, 0.04, -0.01, -0.0356, 0.036, -0.01, -0.0356, 0.036, 0.01, -0.0356, -0.036, -0.01, -0.0356, -0.04, -0.01, -0.0356, -0.04, 0.01, -0.0356, -0.04, 0.01, -0.0356, -0.036, 0.01, -0.0356, -0.036, -0.01, -0.0356, -0.036, 0.01, -0.0016, -0.04, 0.01, -0.0016, -0.04, -0.01, -0.0016, -0.04, -0.01, -0.0016, -0.036, -0.01, -0.0016, -0.036, 0.01, -0.0016, 0.04, -0.01, -0.0016, 0.04, 0.01, -0.0016, 0.036, 0.01, -0.0016, 0.036, 0.01, -0.0016, 0.036, -0.01, -0.0016, 0.04, -0.01, -0.0016, -0.036, 0.0359, -0.036, -0.036, -0.0361, -0.036, -0.036, -0.01, -0.0356, -0.036, -0.0361, -0.036, -0.036, -0.01, -0.0016, -0.036, -0.01, -0.0356, -0.036, -0.01, -0.0356, -0.036, 0.01, -0.0356, -0.036, 0.0359, -0.036, -0.036, -0.0361, -0.036, -0.036, -0.0361, 0.036, -0.036, -0.01, -0.0016, -0.036, 0.0359, -0.036, -0.036, 0.01, -0.0356, -0.036, 0.01, -0.0016, -0.036, -0.0361, 0.036, -0.036, 0.01, -0.0016, -0.036, -0.01, -0.0016, -0.036, 0.0359, 0.036, -0.036, 0.0359, -0.036, -0.036, 0.01, -0.0016, -0.036, -0.0361, 0.036, -0.036, 0.0359, 0.036, -0.036, 0.01, -0.0016, 0.036, 0.0359, 0.036, 0.036, 0.0359, -0.036, -0.036, 0.0359, -0.036, -0.036, 0.0359, -0.036, -0.036, 0.0359, 0.036, 0.036, 0.0359, 0.036, 0.036, -0.0361, 0.036, 0.036, -0.01, -0.0356, 0.036, -0.01, -0.0016, 0.036, -0.0361, 0.036, 0.036, -0.0361, -0.036, 0.036, -0.01, -0.0356, 0.036, 0.0359, 0.036, 0.036, -0.0361, 0.036, 0.036, -0.01, -0.0016, 0.036, 0.0359, 0.036, 0.036, -0.01, -0.0016, 0.036, 0.01, -0.0016, 0.036, 0.0359, -0.036, 0.036, 0.0359, 0.036, 0.036, 0.01, -0.0016, 0.036, 0.0359, -0.036, 0.036, 0.01, -0.0016, 0.036, 0.01, -0.0356, 0.036, -0.01, -0.0356, 0.036, -0.0361, -0.036, 0.036, 0.0359, -0.036, 0.036, 0.0359, -0.036, 0.036, 0.01, -0.0356, 0.036, -0.01, -0.0356, -0.036, -0.0361, 0.036, -0.01, -0.0361, -0.0356, -0.01, -0.0361, -0.0016, -0.036, -0.0361, 0.036, -0.036, -0.0361, -0.036, -0.01, -0.0361, -0.0356, 0.036, -0.0361, 0.036, -0.036, -0.0361, 0.036, -0.01, -0.0361, -0.0016, 0.036, -0.0361, 0.036, -0.01, -0.0361, -0.0016, 0.01, -0.0361, -0.0016, 0.036, -0.0361, -0.036, 0.036, -0.0361, 0.036, 0.01, -0.0361, -0.0016, 0.036, -0.0361, -0.036, 0.01, -0.0361, -0.0016, 0.01, -0.0361, -0.0356, -0.036, -0.0361, -0.036, 0.036, -0.0361, -0.036, 0.01, -0.0361, -0.0356, 0.01, -0.0361, -0.0356, -0.01, -0.0361, -0.0356, -0.036, -0.0361, -0.036, 0.036, -0.0361, -0.036, -0.036, -0.0361, -0.036, -0.036, 0.0359, -0.036, -0.036, 0.0359, -0.036, 0.036, 0.0359, -0.036, 0.036, -0.0361, -0.036, -0.036, -0.0361, 0.036, 0.036, -0.0361, 0.036, 0.036, 0.0359, 0.036, 0.036, 0.0359, 0.036, -0.036, 0.0359, 0.036, -0.036, -0.0361, 0.036, -0.01, -0.0361, -0.0356, -0.01, -0.04, -0.0356, -0.01, -0.04, -0.0016, -0.01, -0.04, -0.0016, -0.01, -0.0361, -0.0016, -0.01, -0.0361, -0.0356, 0.01, -0.04, -0.0016, 0.01, -0.04, -0.0356, 0.01, -0.0361, -0.0356, 0.01, -0.0361, -0.0356, 0.01, -0.0361, -0.0016, 0.01, -0.04, -0.0016, 0.01, -0.04, -0.0356, -0.01, -0.04, -0.0356, -0.01, -0.0361, -0.0356, -0.01, -0.0361, -0.0356, 0.01, -0.0361, -0.0356, 0.01, -0.04, -0.0356, -0.01, -0.0361, -0.0016, -0.01, -0.04, -0.0016, 0.01, -0.04, -0.0016, 0.01, -0.04, -0.0016, 0.01, -0.0361, -0.0016, -0.01, -0.0361, -0.0016)
 
-[node name="TRoom" type="Node3D"]
+[node name="TRoom" type="Node3D" unique_id=902525133]
 
-[node name="CSGToMesh" type="CSGCombiner3D" parent="."]
+[node name="CSGToMesh" type="CSGCombiner3D" parent="." unique_id=1684487023]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 visible = false
 
-[node name="Floor" type="CSGBox3D" parent="CSGToMesh"]
+[node name="Floor" type="CSGBox3D" parent="CSGToMesh" unique_id=291323520]
 use_collision = true
 collision_mask = 15
 size = Vector3(16, 1, 16)
 
-[node name="Wall1" type="CSGBox3D" parent="CSGToMesh"]
+[node name="Wall1" type="CSGBox3D" parent="CSGToMesh" unique_id=1710693781]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 4.5, 0)
 size = Vector3(1, 8, 14)
 
-[node name="LeftWall" type="CSGBox3D" parent="CSGToMesh"]
+[node name="LeftWall" type="CSGBox3D" parent="CSGToMesh" unique_id=1669112970]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4, 4.5, 7.5)
 size = Vector3(1, 8, 6)
 
-[node name="RightWall" type="CSGBox3D" parent="CSGToMesh"]
+[node name="RightWall" type="CSGBox3D" parent="CSGToMesh" unique_id=2100427420]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4, 4.5, 7.5)
 size = Vector3(1, 8, 6)
 
-[node name="Overhead" type="CSGBox3D" parent="CSGToMesh"]
+[node name="Overhead" type="CSGBox3D" parent="CSGToMesh" unique_id=2000610969]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 7, 7.5)
 size = Vector3(1, 3, 2)
 
-[node name="LeftWall2" type="CSGBox3D" parent="CSGToMesh"]
+[node name="LeftWall2" type="CSGBox3D" parent="CSGToMesh" unique_id=1755471483]
 transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -4, 4.5, -7.5)
 size = Vector3(1, 8, 6)
 
-[node name="RightWall2" type="CSGBox3D" parent="CSGToMesh"]
+[node name="RightWall2" type="CSGBox3D" parent="CSGToMesh" unique_id=2114217213]
 transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 4, 4.5, -7.5)
 size = Vector3(1, 8, 6)
 
-[node name="Overhead2" type="CSGBox3D" parent="CSGToMesh"]
+[node name="Overhead2" type="CSGBox3D" parent="CSGToMesh" unique_id=2094352695]
 transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 0, 7, -7.5)
 size = Vector3(1, 3, 2)
 
-[node name="LeftWall3" type="CSGBox3D" parent="CSGToMesh"]
+[node name="LeftWall3" type="CSGBox3D" parent="CSGToMesh" unique_id=238267150]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 7.5, 4.5, -4)
 size = Vector3(1, 8, 6)
 
-[node name="RightWall3" type="CSGBox3D" parent="CSGToMesh"]
+[node name="RightWall3" type="CSGBox3D" parent="CSGToMesh" unique_id=503618937]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 7.5, 4.5, 4)
 size = Vector3(1, 8, 6)
 
-[node name="Overhead3" type="CSGBox3D" parent="CSGToMesh"]
+[node name="Overhead3" type="CSGBox3D" parent="CSGToMesh" unique_id=1280468519]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 7.5, 7, 0)
 size = Vector3(1, 3, 2)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="." node_paths=PackedStringArray("mesh_instance")]
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1089785426 node_paths=PackedStringArray("mesh_instance")]
 script = ExtResource("2_hl8fp")
 mesh_instance = NodePath("MeshInstance3D")
 base_texture = SubResource("GradientTexture1D_6sg1h")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=243177011]
 transform = Transform3D(200, 0, 0, 0, -8.74228e-06, 200, 0, -200, -8.74228e-06, 0, 7.23116, 0)
 mesh = ExtResource("3_bd4gc")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1963934143]
 transform = Transform3D(200, 0, 0, 0, -8.74228e-06, 200, 0, -200, -8.74228e-06, 0, 7.23116, 0)
 shape = SubResource("ConcavePolygonShape3D_a5jwr")
+
+[node name="Objects" type="Node3D" parent="." unique_id=528267329]
+
+[node name="Chair" parent="Objects" unique_id=966164631 instance=ExtResource("3_ihrov")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 1, 1.1261604, -1.5)
+
+[node name="Chair2" parent="Objects" unique_id=1872831885 instance=ExtResource("3_ihrov")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1.1261599, -5.5)
+
+[node name="Plant" parent="Objects" unique_id=63419410 instance=ExtResource("5_y43ku")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, -4.3999996)
+
+[node name="Plant2" parent="Objects" unique_id=699902103 instance=ExtResource("5_y43ku")]
+transform = Transform3D(0.49999997, 0, 0.86602545, 0, 1, 0, -0.86602545, 0, 0.49999997, -5.8, 0, 3.8000002)
+
+[node name="Painting1" parent="Objects" unique_id=1785917048 instance=ExtResource("6_43p0x")]
+transform = Transform3D(-1, 3.821371e-15, -8.742278e-08, 8.742278e-08, 4.371139e-08, -1, 0, -1, -4.371139e-08, -4.7000003, 4.7000003, 7.2)
+
+[node name="Painting2" parent="Objects" unique_id=1204337029 instance=ExtResource("7_up6oc")]
+transform = Transform3D(-1, -3.821371e-15, -8.742278e-08, -8.742278e-08, 4.371139e-08, 1, 0, 1, -4.371139e-08, 5.0000005, 4.7, -7.1)
+
+[node name="PickUp" parent="." unique_id=1000235748 instance=ExtResource("7_y43ku")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3, 1, -5.8)
 
 [connection signal="input_event" from="StaticBody3D" to="StaticBody3D" method="_on_input_event"]

@@ -3,6 +3,7 @@ extends Node3D
 
 @onready var grid_map: GridMap = $GridMap
 @onready var rooms: Node3D = $Rooms
+@onready var bg_music: AudioStreamPlayer = $BackgroundMusic
 
 var map_size: Vector2i = Vector2i(3, 3)
 var map: Array
@@ -77,8 +78,7 @@ func randomize_map() -> void:
 			# Choose random room to fill from RoomTypes
 			map[x][y] = room_type[randi_range(0, room_type.size() - 1)]
 			# print(Rooms.find_key(map[x][y]) + " x: " + str(x) + " y: " + str(y))
-			
-
+	
 # Place randomized rooms and rotate based on gridmap cell location
 func generate_map() -> void:
 	var cell_position: Vector3 = Vector3i.ZERO
@@ -134,8 +134,39 @@ func spawn_player() -> void:
 	add_child(player)
 	player.position = spawn_room
 
+	player.set_physics_process(false)
+	GAMEMANAGER.disablePlayer(true)
+
+	
+func start_game() -> void:
+	var countdown = Timer.new()
+	countdown.autostart = true
+	countdown.wait_time = 3
+	countdown.one_shot = true
+	add_child(countdown)
+	countdown.connect("timeout", _on_countdown_timeout)
+
+func _on_countdown_timeout() -> void:
+	get_node("Player").set_physics_process(true)
+	GAMEMANAGER.disablePlayer(false)
+	print("go!")
+
+	var game = Timer.new()
+	game.autostart = true
+	game.wait_time = 60
+	game.one_shot = true
+	add_child(game)
+	game.connect("timeout", _on_game_timeout)
+
+func _on_game_timeout() -> void:
+	get_node("Player").set_physics_process(false)
+	GAMEMANAGER.disablePlayer(true)
+	print("game over!")
+	# get_tree().change_scene_to_file("res://Scenes/Screens/end.tscn")
+
 func _ready() -> void:
 	initialize_map()
 	randomize_map()
 	generate_map()
 	spawn_player()
+	start_game()

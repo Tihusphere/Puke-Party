@@ -4,12 +4,11 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://br161m511hfv5"
-path="res://.godot/imported/stove.fbx-934e77600632177f12813027a463238a.scn"
+valid=false
 
 [deps]
 
 source_file="res://models/FurnitureModels/stove.fbx"
-dest_files=["res://.godot/imported/stove.fbx-934e77600632177f12813027a463238a.scn"]
 
 [params]
 

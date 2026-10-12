@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://b6b1l44o0obru"]
+[gd_scene load_steps=7 format=3 uid="uid://b6b1l44o0obru"]
 
 [ext_resource type="Script" path="res://Scripts/Environment/map_generator.gd" id="1_803pc"]
 [ext_resource type="MeshLibrary" uid="uid://byc21xt2cui2x" path="res://MeshLibraryNew.tres" id="2_3or5r"]
+[ext_resource type="AudioStream" uid="uid://cwwigs6i2d1gj" path="res://Sounds/Puke Party bg music v0.mp3" id="3_3or5r"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_3or5r"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -27,5 +28,9 @@ shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_n4pg7")
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_3or5r")
+autoplay = true
 
 [node name="Rooms" type="Node3D" parent="."]

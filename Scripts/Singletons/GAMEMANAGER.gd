@@ -1,29 +1,32 @@
 class_name GameManagerClass
 extends Node
 
+## BRUSH ##
+
 var brush_texture: Texture2D:
 	set(value):
 		brush_texture = value
 		update_brush_size()
-
-## Texture to blend onto paintable objects via shader mask
-var overlay_texture: Texture2D
 
 var brush_size: Vector2i = Vector2i(64, 64):
 	set(value):
 		brush_size = value
 		update_brush_size()
 
+var overlay_texture: Texture2D # Texture to blend onto paintable objects via shader mask
 var active_brush_image: Image
 var brush_w: int = 0
 var brush_h: int = 0
-
 var brush_img = "res://textures/splat.png"
 var vomit_img = "res://textures/splat.png"
 
 var speed: float = 5.0 # default speed
 var jump: float = 6.0 # default jump
 
+var player_input: bool = true
+var rainbow: bool = false
+
+var score:int = 0
 
 func _ready() -> void:
 	brush_texture = load(brush_img)
@@ -68,11 +71,23 @@ func changeRadius(size: int = 5):
 func changePlayerSpeed(new_speed: float) -> void:
 	speed += new_speed
 
-func changePlayerJump(new_jump: float) -> void:
-	jump += new_jump
-
 func getPlayerSpeed() -> float:
 	return speed
 
+func changePlayerJump(new_jump: float) -> void:
+	jump += new_jump
+
 func getPlayerJump() -> float:
 	return jump
+
+func setRainbow(is_rainbow: bool = !rainbow) -> void: # toggles by default
+	rainbow = is_rainbow
+
+func getRainbow() -> bool:
+	return rainbow
+
+func disablePlayer(disabled: bool) -> void:
+	player_input = disabled
+
+func isPlayerDisabled() -> bool:
+	return player_input

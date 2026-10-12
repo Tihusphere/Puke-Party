@@ -2,6 +2,10 @@
 
 [ext_resource type="Script" uid="uid://bbsnmhvcs31ke" path="res://Scripts/Player/player_controller.gd" id="1_5ur5x"]
 [ext_resource type="Script" uid="uid://bd4gn51py8f2a" path="res://Scripts/Player/camera_controller.gd" id="2_dl1v4"]
+[ext_resource type="Texture2D" uid="uid://dnwnilmjgw06v" path="res://textures/Vomit/Minijam_VomitPOV_Startup.png" id="3_1esxm"]
+[ext_resource type="Script" uid="uid://b63a8c3fnx0o7" path="res://Scripts/Player/animation_controller.gd" id="3_3b8x7"]
+[ext_resource type="Texture2D" uid="uid://2fhidg13nhpi" path="res://textures/Vomit/Minijam_VomitPOV_Stopping.png" id="4_3b8x7"]
+[ext_resource type="Texture2D" uid="uid://5hlj14g30iwu" path="res://textures/Vomit/Minijam_VomitPOV_Vomiting.png" id="5_53kst"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5ur5x"]
 
@@ -9,6 +13,92 @@
 height = 1.25
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_g4v7s"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iy555"]
+atlas = ExtResource("3_1esxm")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1cmmd"]
+atlas = ExtResource("3_1esxm")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4jfj4"]
+atlas = ExtResource("3_1esxm")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uv5gm"]
+atlas = ExtResource("4_3b8x7")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ighb3"]
+atlas = ExtResource("4_3b8x7")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aejhh"]
+atlas = ExtResource("4_3b8x7")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_37oox"]
+atlas = ExtResource("5_53kst")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_raf36"]
+atlas = ExtResource("5_53kst")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e7xru"]
+atlas = ExtResource("5_53kst")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g4v7s"]
+animations = [{
+"frames": [],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_iy555")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_1cmmd")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_4jfj4")
+}],
+"loop": 0,
+"name": &"starting",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_uv5gm")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_ighb3")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_aejhh")
+}],
+"loop": 0,
+"name": &"stopping",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_37oox")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_raf36")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_e7xru")
+}],
+"loop": 1,
+"name": &"vomiting",
+"speed": 5.0
+}]
 
 [sub_resource type="Animation" id="Animation_bnokr"]
 resource_name = "CrawlingToStanding"
@@ -86,6 +176,13 @@ mesh = SubResource("CapsuleMesh_g4v7s")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 script = ExtResource("2_dl1v4")
 camera = NodePath("Camera3D")
+
+[node name="AnimationController" type="Node3D" parent="CameraController" unique_id=26042175]
+script = ExtResource("3_3b8x7")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="CameraController/AnimationController" unique_id=1396992628]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, -0.60090387)
+sprite_frames = SubResource("SpriteFrames_g4v7s")
 
 [node name="Camera3D" type="Camera3D" parent="CameraController" unique_id=717096555]
 
