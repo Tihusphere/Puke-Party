@@ -15,7 +15,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="PukeParty"
-run/main_scene="res://Scenes/Screens/title.tscn"
+run/main_scene="uid://e2mjybu8fc5i"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 

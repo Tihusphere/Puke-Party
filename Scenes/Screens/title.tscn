@@ -1,16 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://e2mjybu8fc5i"]
+[gd_scene format=3 uid="uid://e2mjybu8fc5i"]
 
 [ext_resource type="Texture2D" uid="uid://d4if1a3x0cpik" path="res://textures/Screens/MiniJam_Logo.png" id="1_yq0q2"]
-[ext_resource type="Script" path="res://Scripts/Screens/playButton.gd" id="2_k61fy"]
+[ext_resource type="Script" uid="uid://bhudwnlyam7lw" path="res://Scripts/Screens/playButton.gd" id="2_k61fy"]
 
-[node name="Title" type="Node2D"]
+[node name="Title" type="Node2D" unique_id=536152662]
 
-[node name="MiniJamLogo" type="Sprite2D" parent="."]
+[node name="MiniJamLogo" type="Sprite2D" parent="." unique_id=23434760]
 position = Vector2(960, 444)
 scale = Vector2(0.808557, 0.808557)
 texture = ExtResource("1_yq0q2")
 
-[node name="Button" type="Button" parent="."]
+[node name="Button" type="Button" parent="." unique_id=1904706535]
 offset_left = 739.0
 offset_top = 880.0
 offset_right = 1181.0

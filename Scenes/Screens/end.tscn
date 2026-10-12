@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://bpj2m4nplbn0p"]
+[gd_scene format=3 uid="uid://bpj2m4nplbn0p"]
 
 [ext_resource type="Texture2D" uid="uid://d4if1a3x0cpik" path="res://textures/Screens/MiniJam_Logo.png" id="1_8vl3y"]
 [ext_resource type="Script" path="res://Scripts/Screens/playButton.gd" id="2_f3kyp"]
