@@ -55,7 +55,7 @@ func pickup() -> void:
 			GAMEMANAGER.changePlayerSpeed(SPEED_INCREASE)
 			print("agility increased!!")
 		Buff.RAINBOW:
-			GAMEMANAGER.toggleRainbows(true)
+			GAMEMANAGER.setRainbow(true)
 			print("rainbow!!!")
 
 	start_timer()
@@ -70,7 +70,7 @@ func _on_timer_timeout():
 			GAMEMANAGER.changePlayerSpeed(-SPEED_INCREASE)
 			print("agility normal")
 		Buff.RAINBOW:
-			GAMEMANAGER.toggleRainbows(false)
+			GAMEMANAGER.setRainbow(false)
 			print("no more rainbow")
 	
 	self.set_collision_mask_value(2, true)

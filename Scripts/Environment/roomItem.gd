@@ -92,7 +92,7 @@ func _physics_process(_delta: float) -> void:
 	
 	if result and result.collider == self:
 		var face_idx: int = result.get("face_index", -1)
-		if face_idx == -1: 
+		if face_idx == -1:
 			return
 			
 		var v0_idx = mesh_data_tool.get_face_vertex(face_idx, 0)
@@ -145,6 +145,9 @@ func _physics_process(_delta: float) -> void:
 			mask_image.set_pixel(pixel_x, pixel_y, Color.WHITE)
 						
 		mask_texture.update(mask_image)
+
+		var rainbow = true if GAMEMANAGER.getRainbow() else false
+		toggle_rainbow(rainbow)
 
 # Helper function 1: Toggle rainbow cycling on/off
 func toggle_rainbow(enabled: bool, speed: float = 1.0) -> void:

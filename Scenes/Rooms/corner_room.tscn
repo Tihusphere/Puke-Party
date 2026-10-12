@@ -92,27 +92,6 @@ transform = Transform3D(-4.8568214e-08, -4.8568214e-08, 1.1111112, -1.1111112, 2
 [node name="Counter15" parent="Objects" unique_id=929544369 instance=ExtResource("4_85scl")]
 transform = Transform3D(-4.8568214e-08, -4.8568214e-08, 1.1111112, -1.1111112, 2.1229841e-15, -4.8568214e-08, 8.714332e-22, -1.1111112, -4.8568214e-08, -6.5000005, 8.611113, 3.9653769)
 
-[node name="Counter7" parent="Objects" unique_id=459997786 instance=ExtResource("4_85scl")]
-transform = Transform3D(-4.8568214e-08, 4.8568214e-08, 1.1111112, -1.1111112, -2.1229841e-15, -4.8568214e-08, 1.4523886e-22, 1.1111112, -4.8568214e-08, -1.9444442, 14.500001, -2.7012897)
-
-[node name="Counter12" parent="Objects" unique_id=1299868157 instance=ExtResource("4_85scl")]
-transform = Transform3D(-4.8568214e-08, 4.8568214e-08, 1.1111112, -1.1111112, -2.1229841e-15, -4.8568214e-08, 1.4523886e-22, 1.1111112, -4.8568214e-08, -4.1666665, 14.500001, -2.7012897)
-
-[node name="Counter13" parent="Objects" unique_id=1814377817 instance=ExtResource("4_85scl")]
-transform = Transform3D(-4.8568214e-08, 4.8568214e-08, 1.1111112, -1.1111112, -2.1229841e-15, -4.8568214e-08, 1.4523886e-22, 1.1111112, -4.8568214e-08, -5.8333335, 14.500001, -2.7012897)
-
-[node name="Counter8" parent="Objects" unique_id=940915181 instance=ExtResource("4_85scl")]
-transform = Transform3D(-4.8568214e-08, 4.8568214e-08, 1.1111112, -1.1111112, -2.1229841e-15, -4.8568214e-08, 1.4523886e-22, 1.1111112, -4.8568214e-08, -8.055555, 14.500001, -2.7012897)
-
-[node name="Counter9" parent="Objects" unique_id=771210162 instance=ExtResource("4_85scl")]
-transform = Transform3D(-4.8568214e-08, 4.8568214e-08, 1.1111112, -1.1111112, -2.1229841e-15, -4.8568214e-08, 1.4523886e-22, 1.1111112, -4.8568214e-08, -10.277778, 14.500001, -2.7012897)
-
-[node name="Counter10" parent="Objects" unique_id=157838884 instance=ExtResource("4_85scl")]
-transform = Transform3D(-4.8568214e-08, 4.8568214e-08, 1.1111112, -1.1111112, -2.1229841e-15, -4.8568214e-08, 1.4523886e-22, 1.1111112, -4.8568214e-08, -11.944445, 14.500002, -2.7012892)
-
-[node name="Counter11" parent="Objects" unique_id=369667767 instance=ExtResource("4_85scl")]
-transform = Transform3D(1.1111112, 4.8568214e-08, 3.5527137e-15, -3.5527137e-15, -2.1229841e-15, 1.1111112, -4.8568214e-08, 1.1111112, 2.122984e-15, -11.944445, 12.277779, -2.7012892)
-
 [node name="Counter2" parent="Objects" unique_id=168855165 instance=ExtResource("4_85scl")]
 transform = Transform3D(-4.8568214e-08, -4.8568214e-08, 1.1111112, -1.1111112, 2.1229841e-15, -4.8568214e-08, 1.4523886e-22, -1.1111112, -4.8568214e-08, -8.055555, 14.500001, 3.9653773)
 
