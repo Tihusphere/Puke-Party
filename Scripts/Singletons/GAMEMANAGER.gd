@@ -26,6 +26,8 @@ var jump: float = 6.0 # default jump
 var player_input: bool = true
 var rainbow: bool = false
 
+var score:int = 0
+
 func _ready() -> void:
 	brush_texture = load(brush_img)
 	overlay_texture = load(vomit_img)

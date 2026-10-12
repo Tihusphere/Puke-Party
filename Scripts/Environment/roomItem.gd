@@ -119,6 +119,7 @@ func _physics_process(_delta: float) -> void:
 		
 		# Apply mask stamp based on active brush
 		if paint_manager and paint_manager.active_brush_image:
+			GAMEMANAGER.score += 1
 			var brush_img = paint_manager.active_brush_image
 			var bw = paint_manager.brush_w
 			var bh = paint_manager.brush_h

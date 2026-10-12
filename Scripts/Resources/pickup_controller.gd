@@ -49,14 +49,17 @@ func pickup() -> void:
 	match buffType:
 		Buff.RADIUS:
 			GAMEMANAGER.changeRadius(RADIUS_INCREASE)
+			GAMEMANAGER.score += 10
 			print("radius increased!!")
 		Buff.AGILITY:
 			GAMEMANAGER.changePlayerJump(JUMP_INCREASE)
 			GAMEMANAGER.changePlayerSpeed(SPEED_INCREASE)
 			print("agility increased!!")
+			GAMEMANAGER.score += 20
 		Buff.RAINBOW:
 			GAMEMANAGER.setRainbow(true)
 			print("rainbow!!!")
+			GAMEMANAGER.score += 50
 
 	start_timer()
 
