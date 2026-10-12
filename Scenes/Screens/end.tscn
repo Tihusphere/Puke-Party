@@ -1,16 +1,11 @@
-[gd_scene format=3 uid="uid://bpj2m4nplbn0p"]
+[gd_scene load_steps=3 format=3 uid="uid://bpj2m4nplbn0p"]
 
-[ext_resource type="Texture2D" uid="uid://d4if1a3x0cpik" path="res://textures/Screens/MiniJam_Logo.png" id="1_8vl3y"]
-[ext_resource type="Script" uid="uid://bhudwnlyam7lw" path="res://Scripts/Screens/playButton.gd" id="2_f3kyp"]
+[ext_resource type="Script" path="res://Scripts/Screens/playButton.gd" id="2_f3kyp"]
+[ext_resource type="Script" path="res://Scripts/Screens/scoreDisplay.gd" id="2_pfcxf"]
 
-[node name="End" type="Node2D" unique_id=1497736830]
+[node name="End" type="Node2D"]
 
-[node name="MiniJamLogo" type="Sprite2D" parent="." unique_id=1065561084]
-position = Vector2(960, 444)
-scale = Vector2(0.808557, 0.808557)
-texture = ExtResource("1_8vl3y")
-
-[node name="Button" type="Button" parent="." unique_id=592602901]
+[node name="Button" type="Button" parent="."]
 offset_left = 739.0
 offset_top = 880.0
 offset_right = 1181.0
@@ -18,5 +13,23 @@ offset_bottom = 1034.0
 theme_override_font_sizes/font_size = 81
 text = " PLAY AGAIN "
 script = ExtResource("2_f3kyp")
+
+[node name="ScoreLabel" type="Label" parent="."]
+offset_left = 723.0
+offset_top = 212.0
+offset_right = 1252.0
+offset_bottom = 323.0
+theme_override_font_sizes/font_size = 81
+text = "FINAL SCORE:"
+
+[node name="Score" type="Label" parent="."]
+offset_left = 723.0
+offset_top = 324.0
+offset_right = 1252.0
+offset_bottom = 435.0
+theme_override_font_sizes/font_size = 81
+text = "0"
+horizontal_alignment = 1
+script = ExtResource("2_pfcxf")
 
 [connection signal="pressed" from="Button" to="Button" method="_on_pressed"]

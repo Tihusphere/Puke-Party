@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://d3y6ljcqbf6ul"]
+[gd_scene load_steps=5 format=3 uid="uid://d3y6ljcqbf6ul"]
 
 [ext_resource type="Script" path="res://Scripts/Environment/roomItem.gd" id="1_dsh3d"]
 [ext_resource type="Texture2D" uid="uid://b2skd85rfkpkv" path="res://textures/Furniture/Sofa.png" id="2_5bj8b"]
