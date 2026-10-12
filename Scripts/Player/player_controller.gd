@@ -15,21 +15,17 @@ enum PlayerState {
 
 var player_state: PlayerState = PlayerState.WALKING
 
-## Physics Variables ##
-
-const WALK_SPEED := 5.0
-const CRAWL_SPEED := 3.0
-const FLY_SPEED := 10.0
-const JUMP_VELOCITY := 5.5
-
-var speed: float = WALK_SPEED
-
 ## Player Nodes ##
 
 @onready var walking_collision: CollisionShape3D = $StandingCollision
 @onready var crawling_collision: CollisionShape3D = $CrawlingCollision
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var ray_cast: RayCast3D = $RayCast3D
+
+const CRAWL_BUFFER := 2.0
+
+func _ready() -> void:
+	pass
 
 func detect_overhead_collision() -> void:
 	if not ray_cast.is_colliding():
@@ -42,19 +38,19 @@ func change_player_state(state: PlayerState) -> void:
 				animation_player.play("CrawlingToStanding")
 			walking_collision.set_disabled(false)
 			crawling_collision.set_disabled(true)
-			speed = WALK_SPEED
+			GAMEMANAGER.changePlayerSpeed(CRAWL_BUFFER) # increases by 2
 		PlayerState.CRAWLING:
 			if (player_state == PlayerState.WALKING):
 				animation_player.play("StandingToCrawling")
 			walking_collision.set_disabled(true)
 			crawling_collision.set_disabled(false)
-			speed = CRAWL_SPEED
+			GAMEMANAGER.changePlayerSpeed(-CRAWL_BUFFER) # lowers by 2
 	player_state = state
 
 func _input(_event: InputEvent) -> void:
 	# Normal movement
 	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
+		velocity.y = GAMEMANAGER.getPlayerJump()
 	if Input.is_action_just_pressed("crawl") and is_on_floor():
 		change_player_state(PlayerState.CRAWLING)
 	if Input.is_action_just_released("crawl"):
@@ -72,11 +68,11 @@ func move_in_direction() -> void:
 	var input_direction := Input.get_vector("left", "right", "forward", "backward")
 	var direction := (transform.basis * Vector3(input_direction.x, 0.0, input_direction.y)).normalized()
 	if direction:
-		velocity.x = direction.x * speed
-		velocity.z = direction.z * speed
+		velocity.x = direction.x * GAMEMANAGER.getPlayerSpeed()
+		velocity.z = direction.z * GAMEMANAGER.getPlayerSpeed()
 	else:
-		velocity.x = move_toward(velocity.x, 0, speed)
-		velocity.z = move_toward(velocity.z, 0, speed)
+		velocity.x = move_toward(velocity.x, 0, GAMEMANAGER.getPlayerSpeed())
+		velocity.z = move_toward(velocity.z, 0, GAMEMANAGER.getPlayerSpeed())
 
 func _physics_process(delta: float) -> void:
 	if player_state != PlayerState.FLYING and not is_on_floor():
