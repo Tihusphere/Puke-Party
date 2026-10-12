@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://bpj2m4nplbn0p"]
+
+[ext_resource type="Texture2D" uid="uid://d4if1a3x0cpik" path="res://textures/Screens/MiniJam_Logo.png" id="1_8vl3y"]
+[ext_resource type="Script" path="res://Scripts/Screens/playButton.gd" id="2_f3kyp"]
+
+[node name="End" type="Node2D"]
+
+[node name="MiniJamLogo" type="Sprite2D" parent="."]
+position = Vector2(960, 444)
+scale = Vector2(0.808557, 0.808557)
+texture = ExtResource("1_8vl3y")
+
+[node name="Button" type="Button" parent="."]
+offset_left = 739.0
+offset_top = 880.0
+offset_right = 1181.0
+offset_bottom = 1034.0
+theme_override_font_sizes/font_size = 81
+text = " PLAY AGAIN "
+script = ExtResource("2_f3kyp")
+
+[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]
