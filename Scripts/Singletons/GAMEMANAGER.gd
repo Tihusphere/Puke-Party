@@ -30,6 +30,9 @@ var score: int = 0
 var countdown_timer: Timer = Timer.new()
 var game_timer: Timer = Timer.new()
 
+const MAX_HUNGER: int = 1000
+var current_hunger: int = MAX_HUNGER
+
 
 func _ready() -> void:
 	brush_texture = load(brush_img)
@@ -68,8 +71,8 @@ func resetOverlayColors():
 		if child is PaintableObject:
 			child.reset_overlay_color()
 
-func changeFood(amount: int = 10):
-	pass
+func refillHunger():
+	current_hunger = MAX_HUNGER
 
 func changeRadius(size: int = 5):
 	pass

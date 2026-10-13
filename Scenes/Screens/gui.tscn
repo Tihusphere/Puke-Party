@@ -5,6 +5,9 @@
 [sub_resource type="LabelSettings" id="LabelSettings_xhbuj"]
 font_size = 100
 
+[sub_resource type="LabelSettings" id="LabelSettings_bugxs"]
+font_size = 50
+
 [node name="GUI" type="Control" unique_id=874591130]
 layout_mode = 3
 anchors_preset = 15
@@ -25,3 +28,21 @@ offset_bottom = 23.0
 grow_horizontal = 2
 text = "0"
 label_settings = SubResource("LabelSettings_xhbuj")
+
+[node name="HungerLabel" type="Label" parent="." unique_id=1346987477]
+layout_mode = 1
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 255.0
+offset_bottom = 89.0
+text = "Hunger: 0"
+label_settings = SubResource("LabelSettings_bugxs")
+
+[node name="ScoreLabel" type="Label" parent="." unique_id=1902278283]
+layout_mode = 1
+offset_left = 20.0
+offset_top = 100.0
+offset_right = 255.0
+offset_bottom = 169.0
+text = "Score: 0"
+label_settings = SubResource("LabelSettings_bugxs")

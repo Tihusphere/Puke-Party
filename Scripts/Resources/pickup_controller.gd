@@ -45,7 +45,7 @@ func start_timer() -> void:
 	add_child(timer)
 
 func pickup() -> void:
-	GAMEMANAGER.changeFood(FOOD_INCREASE)
+	GAMEMANAGER.refillHunger()
 	match buffType:
 		Buff.RADIUS:
 			GAMEMANAGER.changeRadius(RADIUS_INCREASE)
