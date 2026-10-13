@@ -260,6 +260,7 @@ libraries/ = SubResource("AnimationLibrary_t6w0q")
 
 [connection signal="mouse_entered" from="MenuPanel/MarginContainer/VBoxContainer/ButtonPlay" to="MenuPanel/MarginContainer/VBoxContainer/ButtonPlay/RichTextLabel/AnimationPlayer" method="play" binds= ["hover"]]
 [connection signal="mouse_exited" from="MenuPanel/MarginContainer/VBoxContainer/ButtonPlay" to="MenuPanel/MarginContainer/VBoxContainer/ButtonPlay/RichTextLabel/AnimationPlayer" method="play" binds= ["RESET"]]
+[connection signal="pressed" from="MenuPanel/MarginContainer/VBoxContainer/ButtonPlay" to="." method="_on_button_play_pressed"]
 [connection signal="mouse_entered" from="MenuPanel/MarginContainer/VBoxContainer/ButtonExit" to="MenuPanel/MarginContainer/VBoxContainer/ButtonExit/RichTextLabel/AnimationPlayer" method="play" binds= ["hover_exit"]]
 [connection signal="mouse_exited" from="MenuPanel/MarginContainer/VBoxContainer/ButtonExit" to="MenuPanel/MarginContainer/VBoxContainer/ButtonExit/RichTextLabel/AnimationPlayer" method="play" binds= ["reset_exit"]]
 [connection signal="ready" from="MenuPanel/MarginContainer/VBoxContainer/ButtonExit" to="MenuPanel/MarginContainer/VBoxContainer/ButtonExit/RichTextLabel/AnimationPlayer" method="play" binds= ["reset_exit"]]
