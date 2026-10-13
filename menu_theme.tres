@@ -1,0 +1,27 @@
+[gd_resource type="Theme" format=3 uid="uid://m4gedkkvuhe8"]
+
+[ext_resource type="FontFile" uid="uid://dkw3cunwcv4a8" path="res://textures/ThaleahFat.ttf" id="1_1n8dl"]
+[ext_resource type="Texture2D" uid="uid://bsg4ynxtaxea3" path="res://textures/test.png" id="2_wrbx1"]
+[ext_resource type="Texture2D" uid="uid://c3j4sh5u3v8tf" path="res://textures/testbite.png" id="3_2hq35"]
+[ext_resource type="Texture2D" uid="uid://c1fnqaywuyq0u" path="res://textures/test2.png" id="4_tg1vm"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_t6w0q"]
+texture = ExtResource("2_wrbx1")
+modulate_color = Color(0.9162297, 0.62370247, 0.6666543, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gt5lq"]
+texture = ExtResource("2_wrbx1")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_k8um8"]
+texture = ExtResource("3_2hq35")
+modulate_color = Color(0.8933175, 0.5481719, 0.6032777, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_72sra"]
+texture = ExtResource("4_tg1vm")
+
+[resource]
+Button/fonts/font = ExtResource("1_1n8dl")
+Button/styles/hover = SubResource("StyleBoxTexture_t6w0q")
+Button/styles/normal = SubResource("StyleBoxTexture_gt5lq")
+Button/styles/pressed = SubResource("StyleBoxTexture_k8um8")
+Panel/styles/panel = SubResource("StyleBoxTexture_72sra")
