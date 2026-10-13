@@ -1,0 +1,98 @@
+[gd_scene format=3 uid="uid://bdaum6ndq030b"]
+
+[ext_resource type="Theme" uid="uid://m4gedkkvuhe8" path="res://menu_theme.tres" id="1_760b5"]
+[ext_resource type="FontFile" uid="uid://dkw3cunwcv4a8" path="res://textures/ThaleahFat.ttf" id="1_rtysa"]
+
+[sub_resource type="Animation" id="Animation_k8um8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RichTextLabel:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["PLAY"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(316, 102)]
+}
+
+[sub_resource type="Animation" id="Animation_jex3y"]
+resource_name = "hover"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RichTextLabel:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0156),
+"transitions": PackedFloat32Array(1, 5.5008088e-05),
+"update": 1,
+"values": ["PLAY", "[shake rate=40.0 level=10 connected=1]PLAY[/shake]"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(316, 102), Vector2(323, 110)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_744d7"]
+_data = {
+&"RESET": SubResource("Animation_k8um8"),
+&"hover": SubResource("Animation_jex3y")
+}
+
+[node name="Button" type="Button" unique_id=294739587]
+offset_right = 316.0
+offset_bottom = 102.0
+mouse_behavior_recursive = 2
+mouse_force_pass_scroll_events = false
+theme = ExtResource("1_760b5")
+theme_override_font_sizes/font_size = 110
+text = "
+"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1931855976]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme_override_fonts/normal_font = ExtResource("1_rtysa")
+theme_override_font_sizes/normal_font_size = 133
+bbcode_enabled = true
+text = "PLAY"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="RichTextLabel" unique_id=19515392]
+root_node = NodePath("../..")
+libraries/ = SubResource("AnimationLibrary_744d7")
+
+[connection signal="mouse_entered" from="." to="RichTextLabel/AnimationPlayer" method="play" binds= ["hover"]]
+[connection signal="mouse_exited" from="." to="RichTextLabel/AnimationPlayer" method="play" binds= ["RESET"]]
