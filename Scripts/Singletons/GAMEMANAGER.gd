@@ -120,7 +120,7 @@ func start_game() -> void:
 	countdown_timer.connect("timeout", _on_countdown_timer_timeout)
 
 func _on_countdown_timer_timeout() -> void:
-	countdown_timer.queue_free()
+	# countdown_timer.queue_free()
 	print("game start!")
 	disablePlayer(false)
 
@@ -130,7 +130,7 @@ func _on_countdown_timer_timeout() -> void:
 	game_timer.connect("timeout", _on_game_timer_timeout)
 
 func _on_game_timer_timeout() -> void:
-	game_timer.queue_free()
+	# game_timer.queue_free()
 	playing = false
 
 	get_tree().change_scene_to_file("res://Scenes/Screens/end.tscn")
