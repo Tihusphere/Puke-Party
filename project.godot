@@ -17,6 +17,8 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 config/name="PukeParty"
 run/main_scene="uid://cwmi00q101cxo"
 config/features=PackedStringArray("4.7", "GL Compatibility")
+boot_splash/bg_color=Color(0.7871916, 0.5111349, 0.66261524, 1)
+boot_splash/image="uid://d4if1a3x0cpik"
 config/icon="res://icon.svg"
 
 [autoload]
