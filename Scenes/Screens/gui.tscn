@@ -11,6 +11,11 @@ font_size = 100
 [sub_resource type="LabelSettings" id="LabelSettings_bugxs"]
 font_size = 50
 
+[sub_resource type="LabelSettings" id="LabelSettings_atqha"]
+font_size = 35
+
+[sub_resource type="LabelSettings" id="LabelSettings_p7283"]
+
 [node name="GUI" type="Control" unique_id=874591130]
 layout_mode = 3
 anchors_preset = 15
@@ -19,6 +24,48 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_xhbuj")
+
+[node name="Notifications" type="Control" parent="." unique_id=1936083734]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 47.0
+offset_top = -479.0
+offset_right = 388.0
+offset_bottom = -265.0
+grow_vertical = 0
+
+[node name="SpeedLabel" type="RichTextLabel" parent="Notifications" unique_id=1756754787]
+layout_mode = 1
+offset_right = 427.0
+offset_bottom = 65.0
+bbcode_enabled = true
+text = "[img]res://textures/Food/miniJam_applejuice.png[/img][font_size=35]  Speed Active!"
+
+[node name="JumpLabel" type="RichTextLabel" parent="Notifications" unique_id=990722376]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -24.5
+offset_right = 399.0
+offset_bottom = 43.0
+grow_vertical = 2
+bbcode_enabled = true
+text = "[img]res://textures/Food/miniJam_cookie.png[/img][font_size=35]  Jump Active!"
+
+[node name="RainbowLabel" type="RichTextLabel" parent="Notifications" unique_id=778144904]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -49.0
+offset_right = 417.0
+offset_bottom = 30.0
+grow_vertical = 0
+bbcode_enabled = true
+text = "[img]res://textures/Food/miniJam_egg.png[/img][font_size=35]  Rainbow Active!"
 
 [node name="GameTimerLabel" type="Label" parent="." unique_id=288927234]
 layout_mode = 1
@@ -41,6 +88,23 @@ offset_right = 255.0
 offset_bottom = 169.0
 text = "Score: 0"
 label_settings = SubResource("LabelSettings_bugxs")
+
+[node name="ControlsLabel" type="Label" parent="." unique_id=1681888170]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -569.0
+offset_top = -69.0
+offset_right = 569.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "W/A/S/D: Move    Ctrl: Crouch    Left-Click: Shoot"
+label_settings = SubResource("LabelSettings_atqha")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="HungerBar" type="TextureProgressBar" parent="." unique_id=746886181]
 layout_mode = 1
@@ -75,3 +139,4 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "100 / 100"
+label_settings = SubResource("LabelSettings_p7283")

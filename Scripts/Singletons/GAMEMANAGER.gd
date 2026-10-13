@@ -29,6 +29,8 @@ var jump: float = 6.0 # default jump
 
 # Pickups
 
+var active_pickup
+
 var player_input: bool = true
 var rainbow: bool = false
 
@@ -89,7 +91,7 @@ func getPlayerSpeed() -> float:
 	return clampf(speed, 1.0, 10.0)
 
 func setPlayerJump(new_jump: float) -> void:
-	jump = new_jump
+	jump += new_jump
 
 func getPlayerJump() -> float:
 	return jump
@@ -132,3 +134,9 @@ func _on_game_timer_timeout() -> void:
 	playing = false
 
 	get_tree().change_scene_to_file("res://Scenes/Screens/end.tscn")
+
+func set_active_pickup(pickup = null) -> void:
+	active_pickup = pickup
+
+func get_active_pickup():
+	return active_pickup

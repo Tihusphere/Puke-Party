@@ -27,6 +27,8 @@ func _ready() -> void:
 			sprite.texture = load("res://textures/Food/miniJam_cookie.png")
 		Buff.RAINBOW:
 			sprite.texture = load("res://textures/Food/miniJam_egg.png")
+	
+	GAMEMANAGER.set_active_pickup(null)
 
 func _on_body_entered(body: Node3D) -> void:
 	if body is CharacterBody3D:
@@ -58,7 +60,7 @@ func pickup() -> void:
 			GAMEMANAGER.setRainbow(true)
 			print("rainbow!!!")
 			GAMEMANAGER.score += 50
-
+	GAMEMANAGER.set_active_pickup(buffType)
 	start_timer()
 
 func _on_timer_timeout():
@@ -73,5 +75,6 @@ func _on_timer_timeout():
 			GAMEMANAGER.setRainbow(false)
 			print("no more rainbow")
 	
+	GAMEMANAGER.set_active_pickup(null)
 	self.set_collision_mask_value(2, true)
 	sprite.visible = true
