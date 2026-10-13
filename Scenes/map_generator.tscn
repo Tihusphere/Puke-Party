@@ -2,7 +2,9 @@
 
 [ext_resource type="Script" uid="uid://cxoyec6whxxow" path="res://Scripts/Environment/map_generator.gd" id="1_803pc"]
 [ext_resource type="MeshLibrary" uid="uid://byc21xt2cui2x" path="res://MeshLibraryNew.tres" id="2_3or5r"]
+[ext_resource type="AudioStream" uid="uid://dlc7w8me5y3yp" path="res://Sounds/game.mp3" id="3_3or5r"]
 [ext_resource type="PackedScene" uid="uid://cdi3q0ekbrptk" path="res://Scenes/Screens/gui.tscn" id="4_rcqok"]
+[ext_resource type="AudioStream" uid="uid://c0m1p1rjq1c66" path="res://Sounds/rainbow.mp3" id="5_n4pg7"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_3or5r"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -35,3 +37,11 @@ shadow_enabled = true
 environment = SubResource("Environment_n4pg7")
 
 [node name="Rooms" type="Node3D" parent="." unique_id=1090811843]
+
+[node name="Music" type="Node" parent="." unique_id=1599728577]
+
+[node name="Game" type="AudioStreamPlayer" parent="Music" unique_id=849765986]
+stream = ExtResource("3_3or5r")
+
+[node name="Rainbow" type="AudioStreamPlayer" parent="Music" unique_id=1033470079]
+stream = ExtResource("5_n4pg7")

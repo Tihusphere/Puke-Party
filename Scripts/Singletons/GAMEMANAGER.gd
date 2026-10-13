@@ -20,19 +20,27 @@ var brush_h: int = 0
 var brush_img = "res://textures/splat.png"
 var vomit_img = "res://textures/splat.png"
 
+## PLAYER ## 
+
+# Physics
+
 var speed: float = 5.0 # default speed
 var jump: float = 6.0 # default jump
+
+# Pickups
 
 var player_input: bool = true
 var rainbow: bool = false
 
-var score: int = 0
-var countdown_timer: Timer = Timer.new()
-var game_timer: Timer = Timer.new()
-
 const MAX_HUNGER: int = 1000
 var current_hunger: int = MAX_HUNGER
 
+## GAME ##
+
+var score: int = 0
+var countdown_timer: Timer = Timer.new()
+var game_timer: Timer = Timer.new()
+var playing: bool = false
 
 func _ready() -> void:
 	brush_texture = load(brush_img)
@@ -105,6 +113,7 @@ func isPlayerDisabled() -> bool:
 func start_game() -> void:
 	print("countdown...")
 	disablePlayer(true)
+	playing = true
 
 	countdown_timer.wait_time = 3
 	countdown_timer.one_shot = true
@@ -119,10 +128,10 @@ func _on_countdown_timer_timeout() -> void:
 	game_timer.wait_time = 60
 	game_timer.one_shot = true
 	game_timer.start()
-	print('game timer started??')
 	game_timer.connect("timeout", _on_game_timer_timeout)
 
 func _on_game_timer_timeout() -> void:
 	game_timer.queue_free()
+	playing = false
 
 	get_tree().change_scene_to_file("res://Scenes/Screens/end.tscn")

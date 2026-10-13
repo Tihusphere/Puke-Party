@@ -195,7 +195,6 @@ libraries/ = SubResource("AnimationLibrary_bnokr")
 
 [node name="Walk" type="AudioStreamPlayer" parent="SFX" unique_id=2145088350]
 stream = ExtResource("7_iy555")
-volume_db = -2.0
 
 [node name="Jump" type="AudioStreamPlayer" parent="SFX" unique_id=1261377404]
 stream = ExtResource("8_1cmmd")
