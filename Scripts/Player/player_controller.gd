@@ -87,7 +87,6 @@ func move_in_direction() -> void:
 
 func _process(_delta: float) -> void:
 	set_physics_process(not GAMEMANAGER.isPlayerDisabled())
-	print(GAMEMANAGER.getPlayerSpeed())
 
 func _physics_process(delta: float) -> void:
 	if player_state != PlayerState.FLYING and not is_on_floor():
