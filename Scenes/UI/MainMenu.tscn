@@ -78,8 +78,8 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.0156),
 "transitions": PackedFloat32Array(1, 5.5008088e-05),
 "update": 1,
-"values": ["EXIT
-", "[shake rate=40.0 level=10 connected=1]EXIT[/shake]"]
+"values": ["Tutorial
+", "[shake rate=40.0 level=10 connected=1]Tutorial[/shake]"]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -108,7 +108,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": ["EXIT"]
+"values": ["Tutorial"]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -246,7 +246,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 theme_override_fonts/normal_font = ExtResource("1_mjmdf")
-theme_override_font_sizes/normal_font_size = 133
+theme_override_font_sizes/normal_font_size = 86
 bbcode_enabled = true
 text = "PLAY"
 fit_content = true
