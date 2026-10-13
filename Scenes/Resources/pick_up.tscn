@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c6b41g4n77foi" path="res://Scripts/Resources/pickup_controller.gd" id="1_urqlx"]
 [ext_resource type="Texture2D" uid="uid://drbsngn1mmbph" path="res://textures/Food/miniJam_cookie.png" id="2_sky8j"]
+[ext_resource type="AudioStream" uid="uid://b12gyjhk52yqa" path="res://Sounds/eat.mp3" id="3_urqlx"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_mugqv"]
 radius = 1.0
@@ -19,5 +20,8 @@ transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
 billboard = 1
 texture_filter = 0
 texture = ExtResource("2_sky8j")
+
+[node name="Eat" type="AudioStreamPlayer" parent="." unique_id=56289662]
+stream = ExtResource("3_urqlx")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

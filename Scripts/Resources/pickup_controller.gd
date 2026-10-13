@@ -17,6 +17,7 @@ const COOLDOWN: int = 10
 
 @onready var sprite := $Sprite3D
 @onready var collision := $CollisionShape3D
+@onready var eat_sfx := $Eat
 
 func _ready() -> void:
 	var randomBuff: int = randi_range(0, Buff.size() - 1)
@@ -45,6 +46,7 @@ func start_timer() -> void:
 	add_child(timer)
 
 func pickup() -> void:
+	eat_sfx.play()
 	GAMEMANAGER.refillHunger()
 	match buffType:
 		Buff.RADIUS:
@@ -69,8 +71,8 @@ func _on_timer_timeout():
 			GAMEMANAGER.changeRadius(-RADIUS_INCREASE)
 			print("radius normal")
 		Buff.AGILITY:
-			GAMEMANAGER.changePlayerJump(-JUMP_INCREASE)
-			GAMEMANAGER.changePlayerSpeed(-SPEED_INCREASE)
+			GAMEMANAGER.setPlayerJump(-JUMP_INCREASE)
+			GAMEMANAGER.setPlayerSpeed(-SPEED_INCREASE)
 			print("agility normal")
 		Buff.RAINBOW:
 			GAMEMANAGER.setRainbow(false)
