@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dx2g6ag5rlboj" path="res://Scripts/Environment/roomItem.gd" id="2_bbw11"]
 [ext_resource type="ArrayMesh" uid="uid://cj2drqn3qipxf" path="res://models/RoomMeshes/t_hallway.res" id="3_r8cyp"]
 [ext_resource type="PackedScene" uid="uid://cj7auuvptqro8" path="res://Scenes/New_Objects/table.tscn" id="3_vko4r"]
-[ext_resource type="PackedScene" uid="uid://bka36hl7en08l" path="res://Scenes/New_Objects/chair.tscn" id="4_p634m"]
+[ext_resource type="PackedScene" uid="uid://j4uvdos2m2l7" path="res://Scenes/New_Objects/chair.tscn" id="4_p634m"]
 [ext_resource type="PackedScene" uid="uid://dg4n41pdjrfmm" path="res://Scenes/New_Objects/plant.tscn" id="5_p634m"]
 
 [sub_resource type="Gradient" id="Gradient_haqr8"]
@@ -96,6 +96,12 @@ mesh = ExtResource("3_r8cyp")
 
 [node name="Objects" type="Node3D" parent="." unique_id=145661247]
 
+[node name="Plant" parent="Objects" unique_id=1228416356 instance=ExtResource("5_p634m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.1999998, 0.031160895, 5.7999997)
+
+[node name="Plant2" parent="Objects" unique_id=1333014361 instance=ExtResource("5_p634m")]
+transform = Transform3D(0.25881907, 0, 0.9659258, 0, 1, 0, -0.9659258, 0, 0.25881907, 3.3000002, 0.031160895, 5.7999997)
+
 [node name="Table2" parent="Objects" unique_id=843842500 instance=ExtResource("3_vko4r")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 1.9625604, -1.3333336)
 
@@ -104,11 +110,5 @@ transform = Transform3D(9.059749e-08, 0, 1, 0, 1, 0, -1.2, 0, 7.54979e-08, -2.8,
 
 [node name="Chair5" parent="Objects" unique_id=2061517569 instance=ExtResource("4_p634m")]
 transform = Transform3D(-1.9550482e-07, 0, -1, 0, 1, 0, 1.2, 0, -1.6292068e-07, 2.9000003, 1.4472438, -1.3833334)
-
-[node name="Plant" parent="." unique_id=1228416356 instance=ExtResource("5_p634m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.1999998, 0.031160895, 5.7999997)
-
-[node name="Plant2" parent="." unique_id=1333014361 instance=ExtResource("5_p634m")]
-transform = Transform3D(0.25881907, 0, 0.9659258, 0, 1, 0, -0.9659258, 0, 0.25881907, 3.3000002, 0.031160895, 5.7999997)
 
 [connection signal="input_event" from="StaticBody3D" to="StaticBody3D" method="_on_input_event"]

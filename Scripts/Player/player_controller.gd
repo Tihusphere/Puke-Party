@@ -24,9 +24,6 @@ var player_state: PlayerState = PlayerState.WALKING
 
 const CRAWL_BUFFER := 2.0
 
-func _ready() -> void:
-	pass
-
 func detect_overhead_collision() -> void:
 	if not ray_cast.is_colliding():
 		can_stand.emit()
@@ -73,6 +70,9 @@ func move_in_direction() -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, GAMEMANAGER.getPlayerSpeed())
 		velocity.z = move_toward(velocity.z, 0, GAMEMANAGER.getPlayerSpeed())
+
+func _process(_delta: float) -> void:
+	set_physics_process(not GAMEMANAGER.isPlayerDisabled())
 
 func _physics_process(delta: float) -> void:
 	if player_state != PlayerState.FLYING and not is_on_floor():

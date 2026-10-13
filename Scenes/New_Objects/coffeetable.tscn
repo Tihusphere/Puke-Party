@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://p8n601h0frr4"]
+[gd_scene format=3 uid="uid://p8n601h0frr4"]
 
 [ext_resource type="Script" path="res://Scripts/Environment/roomItem.gd" id="1_5upyo"]
 [ext_resource type="Texture2D" uid="uid://nudcayhccj7b" path="res://textures/Furniture/Coffeetable.png" id="2_uebuu"]

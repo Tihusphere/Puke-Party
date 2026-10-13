@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cj7auuvptqro8" path="res://Scenes/New_Objects/table.tscn" id="3_bm72u"]
 [ext_resource type="ArrayMesh" uid="uid://ctc5djk2272u0" path="res://models/RoomMeshes/side_room.res" id="3_i5rts"]
 [ext_resource type="PackedScene" uid="uid://182qfpn2hjge" path="res://Scenes/Resources/pick_up.tscn" id="3_kb42w"]
-[ext_resource type="PackedScene" uid="uid://bka36hl7en08l" path="res://Scenes/New_Objects/chair.tscn" id="4_cjpyk"]
+[ext_resource type="PackedScene" uid="uid://j4uvdos2m2l7" path="res://Scenes/New_Objects/chair.tscn" id="4_cjpyk"]
 [ext_resource type="PackedScene" uid="uid://485b3t7280oc" path="res://Scenes/New_Objects/painting2.tscn" id="5_cjpyk"]
 
 [sub_resource type="Gradient" id="Gradient_fjsox"]

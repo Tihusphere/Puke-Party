@@ -2,10 +2,11 @@
 
 [ext_resource type="Script" uid="uid://dx2g6ag5rlboj" path="res://Scripts/Environment/roomItem.gd" id="2_hl8fp"]
 [ext_resource type="ArrayMesh" uid="uid://mddvct7uvorg" path="res://models/RoomMeshes/t_room.res" id="3_bd4gc"]
-[ext_resource type="PackedScene" uid="uid://d3y6ljcqbf6ul" path="res://Scenes/New_Objects/sofa.tscn" id="3_ihrov"]
+[ext_resource type="PackedScene" uid="uid://df62ndvurmbfp" path="res://Scenes/New_Objects/bed.tscn" id="3_j1jh8"]
+[ext_resource type="PackedScene" uid="uid://tdsj3u62p5xu" path="res://Scenes/New_Objects/nightstand.tscn" id="4_up6oc"]
+[ext_resource type="PackedScene" uid="uid://cj7auuvptqro8" path="res://Scenes/New_Objects/table.tscn" id="5_43p0x"]
 [ext_resource type="PackedScene" uid="uid://dg4n41pdjrfmm" path="res://Scenes/New_Objects/plant.tscn" id="5_y43ku"]
-[ext_resource type="PackedScene" uid="uid://dqc43bu1kdi26" path="res://Scenes/New_Objects/painting1.tscn" id="6_43p0x"]
-[ext_resource type="PackedScene" uid="uid://485b3t7280oc" path="res://Scenes/New_Objects/painting2.tscn" id="7_up6oc"]
+[ext_resource type="PackedScene" uid="uid://j4uvdos2m2l7" path="res://Scenes/New_Objects/chair.tscn" id="6_d38o1"]
 [ext_resource type="PackedScene" uid="uid://182qfpn2hjge" path="res://Scenes/Resources/pick_up.tscn" id="7_y43ku"]
 
 [sub_resource type="Gradient" id="Gradient_ilcmo"]
@@ -82,25 +83,28 @@ shape = SubResource("ConcavePolygonShape3D_a5jwr")
 
 [node name="Objects" type="Node3D" parent="." unique_id=528267329]
 
-[node name="Chair" parent="Objects" unique_id=966164631 instance=ExtResource("3_ihrov")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 1, 1.1261604, -1.5)
+[node name="Bed" parent="Objects" unique_id=1546392016 instance=ExtResource("3_j1jh8")]
+transform = Transform3D(-3.059797e-08, 0, -0.7, 0, 0.7, 0, 0.7, 0, -3.059797e-08, 0, 0.6427704, -4)
 
-[node name="Chair2" parent="Objects" unique_id=1872831885 instance=ExtResource("3_ihrov")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1.1261599, -5.5)
+[node name="Nightstand" parent="Objects" unique_id=1911059717 instance=ExtResource("4_up6oc")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -4.5, 1.64946, -5.7)
 
-[node name="Plant" parent="Objects" unique_id=63419410 instance=ExtResource("5_y43ku")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, -4.3999996)
+[node name="Nightstand2" parent="Objects" unique_id=1626778175 instance=ExtResource("4_up6oc")]
+transform = Transform3D(-0.25881907, 0, -0.9659258, 0, 1, 0, 0.9659258, 0, -0.25881907, 4.8, 1.64946, -3.7999997)
 
-[node name="Plant2" parent="Objects" unique_id=699902103 instance=ExtResource("5_y43ku")]
-transform = Transform3D(0.49999997, 0, 0.86602545, 0, 1, 0, -0.86602545, 0, 0.49999997, -5.8, 0, 3.8000002)
+[node name="Table" parent="Objects" unique_id=724872708 instance=ExtResource("5_43p0x")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -5.266667, 1.9625604, 5.3666673)
 
-[node name="Painting1" parent="Objects" unique_id=1785917048 instance=ExtResource("6_43p0x")]
-transform = Transform3D(-1, 3.821371e-15, -8.742278e-08, 8.742278e-08, 4.371139e-08, -1, 0, -1, -4.371139e-08, -4.7000003, 4.7000003, 7.2)
+[node name="Chair" parent="Objects" unique_id=994788580 instance=ExtResource("6_d38o1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.3666663, 1.9000001, 2.366667)
 
-[node name="Painting2" parent="Objects" unique_id=1204337029 instance=ExtResource("7_up6oc")]
-transform = Transform3D(-1, -3.821371e-15, -8.742278e-08, -8.742278e-08, 4.371139e-08, 1, 0, 1, -4.371139e-08, 5.0000005, 4.7, -7.1)
+[node name="Chair2" parent="Objects" unique_id=152974596 instance=ExtResource("6_d38o1")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -2.466667, 1.9000001, 5.1666675)
 
-[node name="PickUp" parent="." unique_id=1000235748 instance=ExtResource("7_y43ku")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3, 1, -5.8)
+[node name="Plant" parent="Objects" unique_id=1863093822 instance=ExtResource("5_y43ku")]
+transform = Transform3D(0.9659258, 0, 0.25881904, 0, 1, 0, -0.25881904, 0, 0.9659258, 4.5000005, 0.031160414, 6)
+
+[node name="PickUp" parent="Objects" unique_id=1000235748 instance=ExtResource("7_y43ku")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 5.7000003, 0.7711599, -6.1)
 
 [connection signal="input_event" from="StaticBody3D" to="StaticBody3D" method="_on_input_event"]

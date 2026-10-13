@@ -2,6 +2,12 @@
 
 [ext_resource type="Script" uid="uid://dx2g6ag5rlboj" path="res://Scripts/Environment/roomItem.gd" id="2_r2cwr"]
 [ext_resource type="ArrayMesh" uid="uid://bd7n6l4j4bfos" path="res://models/RoomMeshes/corner_hallway.res" id="3_h00n2"]
+[ext_resource type="PackedScene" uid="uid://dg4n41pdjrfmm" path="res://Scenes/New_Objects/plant.tscn" id="3_jq3cl"]
+[ext_resource type="PackedScene" uid="uid://da70nsyvbj3uw" path="res://Scenes/New_Objects/toilet.tscn" id="4_dvjni"]
+[ext_resource type="PackedScene" uid="uid://tdsj3u62p5xu" path="res://Scenes/New_Objects/nightstand.tscn" id="5_7ceiv"]
+[ext_resource type="PackedScene" uid="uid://jkkwlji4ruma" path="res://Scenes/New_Objects/sink.tscn" id="6_yg1w4"]
+[ext_resource type="PackedScene" uid="uid://dqc43bu1kdi26" path="res://Scenes/New_Objects/painting1.tscn" id="7_o00ry"]
+[ext_resource type="PackedScene" uid="uid://cmxn4ewn1l0a8" path="res://Scenes/New_Objects/counter.tscn" id="8_dvjni"]
 
 [sub_resource type="Gradient" id="Gradient_7iv54"]
 
@@ -73,5 +79,31 @@ mesh = ExtResource("3_h00n2")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1022843522]
 shape = SubResource("ConcavePolygonShape3D_78uln")
+
+[node name="Objects" type="Node3D" parent="." unique_id=2035086751]
+
+[node name="Plant" parent="Objects" unique_id=1792588459 instance=ExtResource("3_jq3cl")]
+transform = Transform3D(0.25881907, 0, 0.9659258, 0, 1, 0, -0.9659258, 0, 0.25881907, 4.3, 0.031160895, 5.7999997)
+
+[node name="Toilet" parent="Objects" unique_id=2132401603 instance=ExtResource("4_dvjni")]
+transform = Transform3D(1, 0, 5.9604645e-08, 0, 1, 0, -5.9604645e-08, 0, 1, -1.5, 1.5, -1.5)
+
+[node name="Nightstand" parent="Objects" unique_id=542507509 instance=ExtResource("5_7ceiv")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 2, 1.5, -1.5)
+
+[node name="Sink" parent="Objects" unique_id=1874182287 instance=ExtResource("6_yg1w4")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 2, 2.5, -1.5)
+
+[node name="Painting1" parent="." unique_id=1872851752 instance=ExtResource("7_o00ry")]
+transform = Transform3D(-4.371139e-08, 1, 0, 0, -8.881784e-16, -1.0000001, -1.0000001, -4.371139e-08, 0, -3, 4.5, 4.5)
+
+[node name="Counter9" parent="." unique_id=793136929 instance=ExtResource("8_dvjni")]
+transform = Transform3D(-1.1111112, -4.8568207e-08, -9.713642e-08, -4.856821e-08, 1.1111112, -4.8568214e-08, 9.713643e-08, -4.8568204e-08, -1.1111112, 5.9999986, 6.944446, 3.965376)
+
+[node name="Counter10" parent="." unique_id=478883560 instance=ExtResource("8_dvjni")]
+transform = Transform3D(-1.1111112, -4.8568207e-08, -9.713642e-08, -4.856821e-08, 1.1111112, -4.8568214e-08, 9.713643e-08, -4.8568204e-08, -1.1111112, 5.9999995, 6.9444456, 6.132044)
+
+[node name="Counter11" parent="." unique_id=443398240 instance=ExtResource("8_dvjni")]
+transform = Transform3D(-4.8568214e-08, -4.8568204e-08, 1.1111112, -4.856821e-08, 1.1111112, 4.8568207e-08, -1.1111112, -4.8568207e-08, -4.856821e-08, 3.7777762, 6.944445, 6.1320443)
 
 [connection signal="input_event" from="StaticBody3D" to="StaticBody3D" method="_on_input_event"]
