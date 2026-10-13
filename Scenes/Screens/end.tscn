@@ -1,11 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://bpj2m4nplbn0p"]
+[gd_scene format=3 uid="uid://bpj2m4nplbn0p"]
 
-[ext_resource type="Script" path="res://Scripts/Screens/playButton.gd" id="2_f3kyp"]
-[ext_resource type="Script" path="res://Scripts/Screens/scoreDisplay.gd" id="2_pfcxf"]
+[ext_resource type="Script" uid="uid://bhudwnlyam7lw" path="res://Scripts/Screens/playButton.gd" id="2_f3kyp"]
+[ext_resource type="Script" uid="uid://3ejsdbdqsq07" path="res://Scripts/Screens/scoreDisplay.gd" id="2_pfcxf"]
 
-[node name="End" type="Node2D"]
+[node name="End" type="Node2D" unique_id=476825029]
 
-[node name="Button" type="Button" parent="."]
+[node name="Button" type="Button" parent="." unique_id=772102156]
 offset_left = 739.0
 offset_top = 880.0
 offset_right = 1181.0
@@ -14,7 +14,7 @@ theme_override_font_sizes/font_size = 81
 text = " PLAY AGAIN "
 script = ExtResource("2_f3kyp")
 
-[node name="ScoreLabel" type="Label" parent="."]
+[node name="ScoreLabel" type="Label" parent="." unique_id=1133213517]
 offset_left = 723.0
 offset_top = 212.0
 offset_right = 1252.0
@@ -22,7 +22,7 @@ offset_bottom = 323.0
 theme_override_font_sizes/font_size = 81
 text = "FINAL SCORE:"
 
-[node name="Score" type="Label" parent="."]
+[node name="Score" type="Label" parent="." unique_id=1282245732]
 offset_left = 723.0
 offset_top = 324.0
 offset_right = 1252.0
