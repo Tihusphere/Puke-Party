@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cj7auuvptqro8" path="res://Scenes/New_Objects/table.tscn" id="3_vko4r"]
 [ext_resource type="PackedScene" uid="uid://j4uvdos2m2l7" path="res://Scenes/New_Objects/chair.tscn" id="4_p634m"]
 [ext_resource type="PackedScene" uid="uid://dg4n41pdjrfmm" path="res://Scenes/New_Objects/plant.tscn" id="5_p634m"]
+[ext_resource type="PackedScene" uid="uid://182qfpn2hjge" path="res://Scenes/Resources/pick_up.tscn" id="6_atqha"]
 
 [sub_resource type="Gradient" id="Gradient_haqr8"]
 
@@ -110,5 +111,8 @@ transform = Transform3D(9.059749e-08, 0, 1, 0, 1, 0, -1.2, 0, 7.54979e-08, -2.8,
 
 [node name="Chair5" parent="Objects" unique_id=2061517569 instance=ExtResource("4_p634m")]
 transform = Transform3D(-1.9550482e-07, 0, -1, 0, 1, 0, 1.2, 0, -1.6292068e-07, 2.9000003, 1.4472438, -1.3833334)
+
+[node name="PickUp" parent="Objects" unique_id=1000235748 instance=ExtResource("6_atqha")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.6999998, -1.1)
 
 [connection signal="input_event" from="StaticBody3D" to="StaticBody3D" method="_on_input_event"]
