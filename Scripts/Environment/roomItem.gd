@@ -118,7 +118,7 @@ func _physics_process(_delta: float) -> void:
 		var pixel_y: int = int(exact_uv.y * (canvas_size.y - 1))
 		
 		# Apply mask stamp based on active brush
-		if paint_manager and paint_manager.active_brush_image:
+		if GAMEMANAGER.current_hunger > 0 and paint_manager and paint_manager.active_brush_image:
 			GAMEMANAGER.score += 1
 			var brush_img = paint_manager.active_brush_image
 			var bw = paint_manager.brush_w
@@ -149,6 +149,10 @@ func _physics_process(_delta: float) -> void:
 
 		var rainbow = true if GAMEMANAGER.getRainbow() else false
 		toggle_rainbow(rainbow)
+
+		if not rainbow:
+			GAMEMANAGER.current_hunger -= 1
+			GAMEMANAGER.current_hunger = clampi(GAMEMANAGER.current_hunger, 0, GAMEMANAGER.MAX_HUNGER)
 
 # Helper function 1: Toggle rainbow cycling on/off
 func toggle_rainbow(enabled: bool, speed: float = 1.0) -> void:

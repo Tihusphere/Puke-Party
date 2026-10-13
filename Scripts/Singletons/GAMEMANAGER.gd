@@ -20,16 +20,29 @@ var brush_h: int = 0
 var brush_img = "res://textures/splat.png"
 var vomit_img = "res://textures/splat.png"
 
+## PLAYER ## 
+
+# Physics
+
 var speed: float = 5.0 # default speed
 var jump: float = 6.0 # default jump
+
+# Pickups
+
+var active_pickup
 
 var player_input: bool = true
 var rainbow: bool = false
 
+const MAX_HUNGER: int = 1000
+var current_hunger: int = MAX_HUNGER
+
+## GAME ##
+
 var score: int = 0
 var countdown_timer: Timer = Timer.new()
 var game_timer: Timer = Timer.new()
-
+var playing: bool = false
 
 func _ready() -> void:
 	brush_texture = load(brush_img)
@@ -68,19 +81,16 @@ func resetOverlayColors():
 		if child is PaintableObject:
 			child.reset_overlay_color()
 
-func changeFood(amount: int = 10):
-	pass
+func refillHunger():
+	current_hunger = MAX_HUNGER
 
-func changeRadius(size: int = 5):
-	pass
-
-func changePlayerSpeed(new_speed: float) -> void:
+func setPlayerSpeed(new_speed: float) -> void:
 	speed += new_speed
 
 func getPlayerSpeed() -> float:
-	return speed
+	return clampf(speed, 1.0, 10.0)
 
-func changePlayerJump(new_jump: float) -> void:
+func setPlayerJump(new_jump: float) -> void:
 	jump += new_jump
 
 func getPlayerJump() -> float:
@@ -102,6 +112,7 @@ func isPlayerDisabled() -> bool:
 func start_game() -> void:
 	print("countdown...")
 	disablePlayer(true)
+	playing = true
 
 	countdown_timer.wait_time = 3
 	countdown_timer.one_shot = true
@@ -116,10 +127,16 @@ func _on_countdown_timer_timeout() -> void:
 	game_timer.wait_time = 60
 	game_timer.one_shot = true
 	game_timer.start()
-	print('game timer started??')
 	game_timer.connect("timeout", _on_game_timer_timeout)
 
 func _on_game_timer_timeout() -> void:
 	game_timer.queue_free()
+	playing = false
 
 	get_tree().change_scene_to_file("res://Scenes/Screens/end.tscn")
+
+func set_active_pickup(pickup = null) -> void:
+	active_pickup = pickup
+
+func get_active_pickup():
+	return active_pickup

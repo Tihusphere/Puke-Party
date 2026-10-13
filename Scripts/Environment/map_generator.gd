@@ -3,7 +3,7 @@ extends Node3D
 
 @onready var grid_map: GridMap = $GridMap
 @onready var rooms: Node3D = $Rooms
-@onready var bg_music: AudioStreamPlayer = $BackgroundMusic
+@onready var game_music := $Music/Game
 
 var map_size: Vector2i = Vector2i(3, 3)
 var map: Array
@@ -134,10 +134,11 @@ func spawn_player() -> void:
 	add_child(player)
 	player.position = spawn_room
 
+
 func _ready() -> void:
 	initialize_map()
 	randomize_map()
 	generate_map()
 	spawn_player()
-
+	game_music.play()
 	GAMEMANAGER.start_game()
