@@ -27,8 +27,7 @@ var player_state: PlayerState = PlayerState.WALKING
 @onready var walk_sfx: AudioStreamPlayer = $SFX/Walk
 @onready var jump_sfx: AudioStreamPlayer = $SFX/Jump
 
-const WALK_SPEED := 5.0
-const CRAWL_SPEED := 3.0
+var speed_mod := 2.0
 
 func detect_overhead_collision() -> void:
 	if not ray_cast.is_colliding():
@@ -41,13 +40,13 @@ func change_player_state(state: PlayerState) -> void:
 				animation_player.play("CrawlingToStanding")
 			walking_collision.set_disabled(false)
 			crawling_collision.set_disabled(true)
-			GAMEMANAGER.setPlayerSpeed(WALK_SPEED)
+			GAMEMANAGER.setPlayerSpeed(speed_mod) # speed up by 2
 		PlayerState.CRAWLING:
 			if (player_state == PlayerState.WALKING):
 				animation_player.play("StandingToCrawling")
 			walking_collision.set_disabled(true)
 			crawling_collision.set_disabled(false)
-			GAMEMANAGER.setPlayerSpeed(CRAWL_SPEED)
+			GAMEMANAGER.setPlayerSpeed(-speed_mod) # slow down by 2
 	player_state = state
 
 func _input(_event: InputEvent) -> void:
@@ -88,6 +87,7 @@ func move_in_direction() -> void:
 
 func _process(_delta: float) -> void:
 	set_physics_process(not GAMEMANAGER.isPlayerDisabled())
+	print(GAMEMANAGER.getPlayerSpeed())
 
 func _physics_process(delta: float) -> void:
 	if player_state != PlayerState.FLYING and not is_on_floor():

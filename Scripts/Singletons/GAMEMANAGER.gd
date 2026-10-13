@@ -82,14 +82,11 @@ func resetOverlayColors():
 func refillHunger():
 	current_hunger = MAX_HUNGER
 
-func changeRadius(size: int = 5):
-	pass
-
 func setPlayerSpeed(new_speed: float) -> void:
-	speed = new_speed
+	speed += new_speed
 
 func getPlayerSpeed() -> float:
-	return speed
+	return clampf(speed, 1.0, 10.0)
 
 func setPlayerJump(new_jump: float) -> void:
 	jump = new_jump

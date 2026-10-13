@@ -3,13 +3,11 @@ extends Area3D
 
 # BUFFS #
 
-enum Buff {RADIUS, AGILITY, RAINBOW}
-var buffType: Buff = Buff.AGILITY
+enum Buff {SPEED, JUMP, RAINBOW}
+var buffType: Buff = Buff.SPEED
 
-const FOOD_INCREASE: int = 10
-const RADIUS_INCREASE: int = 5
-const SPEED_INCREASE: float = 7.0
-const JUMP_INCREASE: float = 8.0
+const SPEED_INCREASE: float = 5.0
+const JUMP_INCREASE: float = 5.0
 
 const COOLDOWN: int = 10
 
@@ -22,11 +20,10 @@ const COOLDOWN: int = 10
 func _ready() -> void:
 	var randomBuff: int = randi_range(0, Buff.size() - 1)
 	buffType = Buff.values()[randomBuff]
-	print(Buff.keys()[randomBuff])
 	match buffType:
-		Buff.RADIUS:
+		Buff.SPEED:
 			sprite.texture = load("res://textures/Food/miniJam_applejuice.png")
-		Buff.AGILITY:
+		Buff.JUMP:
 			sprite.texture = load("res://textures/Food/miniJam_cookie.png")
 		Buff.RAINBOW:
 			sprite.texture = load("res://textures/Food/miniJam_egg.png")
@@ -49,14 +46,13 @@ func pickup() -> void:
 	eat_sfx.play()
 	GAMEMANAGER.refillHunger()
 	match buffType:
-		Buff.RADIUS:
-			GAMEMANAGER.changeRadius(RADIUS_INCREASE)
-			GAMEMANAGER.score += 10
-			print("radius increased!!")
-		Buff.AGILITY:
-			GAMEMANAGER.setPlayerJump(JUMP_INCREASE)
+		Buff.SPEED:
 			GAMEMANAGER.setPlayerSpeed(SPEED_INCREASE)
-			print("agility increased!!")
+			GAMEMANAGER.score += 10
+			print("speed increased!!")
+		Buff.JUMP:
+			GAMEMANAGER.setPlayerJump(JUMP_INCREASE)
+			print("jump increased!!")
 			GAMEMANAGER.score += 20
 		Buff.RAINBOW:
 			GAMEMANAGER.setRainbow(true)
@@ -67,12 +63,11 @@ func pickup() -> void:
 
 func _on_timer_timeout():
 	match buffType:
-		Buff.RADIUS:
-			GAMEMANAGER.changeRadius(-RADIUS_INCREASE)
-			print("radius normal")
-		Buff.AGILITY:
-			GAMEMANAGER.setPlayerJump(-JUMP_INCREASE)
+		Buff.SPEED:
 			GAMEMANAGER.setPlayerSpeed(-SPEED_INCREASE)
+			print("radius normal")
+		Buff.JUMP:
+			GAMEMANAGER.setPlayerJump(-JUMP_INCREASE)
 			print("agility normal")
 		Buff.RAINBOW:
 			GAMEMANAGER.setRainbow(false)
