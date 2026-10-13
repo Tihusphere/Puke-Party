@@ -20,6 +20,7 @@ var is_painting: bool = false
 var current_camera: Camera3D
 var mesh_data_tool: MeshDataTool
 
+
 func _ready() -> void:
 	paint_manager = GAMEMANAGER
 	
@@ -68,6 +69,7 @@ func _ready() -> void:
 	mesh_instance.material_override = shader_material
 	input_ray_pickable = true
 
+
 func _input_event(camera: Node, event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
 	if camera is Camera3D:
 		current_camera = camera
@@ -75,6 +77,7 @@ func _input_event(camera: Node, event: InputEvent, _event_position: Vector3, _no
 		is_painting = event.pressed
 		if not is_painting:
 			current_camera = null
+			
 
 func _physics_process(_delta: float) -> void:
 	if not is_painting or not current_camera:
@@ -119,6 +122,7 @@ func _physics_process(_delta: float) -> void:
 		
 		# Apply mask stamp based on active brush
 		if GAMEMANAGER.current_hunger > 0 and paint_manager and paint_manager.active_brush_image:
+
 			GAMEMANAGER.score += 1
 			var brush_img = paint_manager.active_brush_image
 			var bw = paint_manager.brush_w
