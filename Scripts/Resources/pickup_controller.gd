@@ -8,8 +8,8 @@ var buffType: Buff = Buff.AGILITY
 
 const FOOD_INCREASE: int = 10
 const RADIUS_INCREASE: int = 5
-const JUMP_INCREASE: float = 2.0
-const SPEED_INCREASE: float = 2.0
+const SPEED_INCREASE: float = 7.0
+const JUMP_INCREASE: float = 8.0
 
 const COOLDOWN: int = 10
 
@@ -52,8 +52,8 @@ func pickup() -> void:
 			GAMEMANAGER.score += 10
 			print("radius increased!!")
 		Buff.AGILITY:
-			GAMEMANAGER.changePlayerJump(JUMP_INCREASE)
-			GAMEMANAGER.changePlayerSpeed(SPEED_INCREASE)
+			GAMEMANAGER.setPlayerJump(JUMP_INCREASE)
+			GAMEMANAGER.setPlayerSpeed(SPEED_INCREASE)
 			print("agility increased!!")
 			GAMEMANAGER.score += 20
 		Buff.RAINBOW:

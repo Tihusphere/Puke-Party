@@ -77,14 +77,14 @@ func refillHunger():
 func changeRadius(size: int = 5):
 	pass
 
-func changePlayerSpeed(new_speed: float) -> void:
-	speed += new_speed
+func setPlayerSpeed(new_speed: float) -> void:
+	speed = new_speed
 
 func getPlayerSpeed() -> float:
 	return speed
 
-func changePlayerJump(new_jump: float) -> void:
-	jump += new_jump
+func setPlayerJump(new_jump: float) -> void:
+	jump = new_jump
 
 func getPlayerJump() -> float:
 	return jump

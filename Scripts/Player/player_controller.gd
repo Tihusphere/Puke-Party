@@ -22,7 +22,8 @@ var player_state: PlayerState = PlayerState.WALKING
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var ray_cast: RayCast3D = $RayCast3D
 
-const CRAWL_BUFFER := 2.0
+const WALK_SPEED := 5.0
+const CRAWL_SPEED := 3.0
 
 func detect_overhead_collision() -> void:
 	if not ray_cast.is_colliding():
@@ -35,13 +36,13 @@ func change_player_state(state: PlayerState) -> void:
 				animation_player.play("CrawlingToStanding")
 			walking_collision.set_disabled(false)
 			crawling_collision.set_disabled(true)
-			GAMEMANAGER.changePlayerSpeed(CRAWL_BUFFER) # increases by 2
+			GAMEMANAGER.setPlayerSpeed(WALK_SPEED)
 		PlayerState.CRAWLING:
 			if (player_state == PlayerState.WALKING):
 				animation_player.play("StandingToCrawling")
 			walking_collision.set_disabled(true)
 			crawling_collision.set_disabled(false)
-			GAMEMANAGER.changePlayerSpeed(-CRAWL_BUFFER) # lowers by 2
+			GAMEMANAGER.setPlayerSpeed(CRAWL_SPEED)
 	player_state = state
 
 func _input(_event: InputEvent) -> void:
