@@ -22,6 +22,11 @@ var player_state: PlayerState = PlayerState.WALKING
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var ray_cast: RayCast3D = $RayCast3D
 
+## Audio Nodes ## 
+
+@onready var walk_sfx: AudioStreamPlayer = $SFX/Walk
+@onready var jump_sfx: AudioStreamPlayer = $SFX/Jump
+
 const WALK_SPEED := 5.0
 const CRAWL_SPEED := 3.0
 
@@ -47,8 +52,9 @@ func change_player_state(state: PlayerState) -> void:
 
 func _input(_event: InputEvent) -> void:
 	# Normal movement
-	if Input.is_action_just_pressed("jump") and is_on_floor():
+	if Input.is_action_just_pressed("jump") and is_on_floor() and not GAMEMANAGER.isPlayerDisabled():
 		velocity.y = GAMEMANAGER.getPlayerJump()
+		jump_sfx.play()
 	if Input.is_action_just_pressed("crawl") and is_on_floor():
 		change_player_state(PlayerState.CRAWLING)
 	if Input.is_action_just_released("crawl"):
@@ -68,9 +74,17 @@ func move_in_direction() -> void:
 	if direction:
 		velocity.x = direction.x * GAMEMANAGER.getPlayerSpeed()
 		velocity.z = direction.z * GAMEMANAGER.getPlayerSpeed()
+		if (player_state == PlayerState.WALKING
+			and not walk_sfx.playing
+			and not GAMEMANAGER.isPlayerDisabled()
+			and is_on_floor()):
+			walk_sfx.play()
+		if not is_on_floor():
+			walk_sfx.stop()
 	else:
 		velocity.x = move_toward(velocity.x, 0, GAMEMANAGER.getPlayerSpeed())
 		velocity.z = move_toward(velocity.z, 0, GAMEMANAGER.getPlayerSpeed())
+		walk_sfx.stop()
 
 func _process(_delta: float) -> void:
 	set_physics_process(not GAMEMANAGER.isPlayerDisabled())

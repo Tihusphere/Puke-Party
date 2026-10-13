@@ -3,7 +3,6 @@ extends Node3D
 
 @onready var grid_map: GridMap = $GridMap
 @onready var rooms: Node3D = $Rooms
-@onready var bg_music: AudioStreamPlayer = $BackgroundMusic
 
 var map_size: Vector2i = Vector2i(3, 3)
 var map: Array

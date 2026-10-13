@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://cxoyec6whxxow" path="res://Scripts/Environment/map_generator.gd" id="1_803pc"]
 [ext_resource type="MeshLibrary" uid="uid://byc21xt2cui2x" path="res://MeshLibraryNew.tres" id="2_3or5r"]
-[ext_resource type="AudioStream" uid="uid://cwwigs6i2d1gj" path="res://Sounds/Puke Party bg music v0.mp3" id="3_3or5r"]
 [ext_resource type="PackedScene" uid="uid://cdi3q0ekbrptk" path="res://Scenes/Screens/gui.tscn" id="4_rcqok"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_3or5r"]
@@ -34,10 +33,5 @@ shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1986924883]
 environment = SubResource("Environment_n4pg7")
-
-[node name="BackgroundMusic" type="AudioStreamPlayer" parent="." unique_id=222376198]
-stream = ExtResource("3_3or5r")
-volume_db = -80.0
-autoplay = true
 
 [node name="Rooms" type="Node3D" parent="." unique_id=1090811843]

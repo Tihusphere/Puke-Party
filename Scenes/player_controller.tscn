@@ -6,6 +6,8 @@
 [ext_resource type="Script" uid="uid://b63a8c3fnx0o7" path="res://Scripts/Player/animation_controller.gd" id="3_3b8x7"]
 [ext_resource type="Texture2D" uid="uid://2fhidg13nhpi" path="res://textures/Vomit/Minijam_VomitPOV_Stopping.png" id="4_3b8x7"]
 [ext_resource type="Texture2D" uid="uid://5hlj14g30iwu" path="res://textures/Vomit/Minijam_VomitPOV_Vomiting.png" id="5_53kst"]
+[ext_resource type="AudioStream" uid="uid://r50436cuk1eb" path="res://Sounds/walk.mp3" id="7_iy555"]
+[ext_resource type="AudioStream" uid="uid://6vg2n786h5ln" path="res://Sounds/jump.mp3" id="8_1cmmd"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5ur5x"]
 
@@ -188,3 +190,11 @@ sprite_frames = SubResource("SpriteFrames_g4v7s")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1403234588]
 libraries/ = SubResource("AnimationLibrary_bnokr")
+
+[node name="SFX" type="Node" parent="." unique_id=536419756]
+
+[node name="Walk" type="AudioStreamPlayer" parent="SFX" unique_id=2145088350]
+stream = ExtResource("7_iy555")
+
+[node name="Jump" type="AudioStreamPlayer" parent="SFX" unique_id=1261377404]
+stream = ExtResource("8_1cmmd")
