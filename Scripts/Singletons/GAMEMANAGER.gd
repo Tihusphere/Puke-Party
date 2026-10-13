@@ -18,7 +18,7 @@ var active_brush_image: Image
 var brush_w: int = 0
 var brush_h: int = 0
 var brush_img = "res://textures/splat.png"
-var vomit_img = "res://textures/splat.png"
+var vomit_img = "res://textures/Vomit/vomit.png"
 
 ## PLAYER ## 
 
@@ -52,6 +52,8 @@ func _ready() -> void:
 
 	add_child(countdown_timer)
 	add_child(game_timer)
+	
+	setStaticHues(0.5)
 
 func update_brush_size() -> void:
 	if brush_texture:

@@ -2,17 +2,22 @@ shader_type spatial;
 render_mode cull_back, depth_draw_opaque;
 
 uniform sampler2D base_texture : source_color, filter_linear_mipmap;
-uniform sampler2D overlay_texture : source_color, filter_linear_mipmap;
+uniform sampler2D overlay_texture : source_color, repeat_enable, filter_linear_mipmap;
 uniform sampler2D mask_texture : hint_default_black, filter_linear_mipmap;
 
-// --- Rainbow and Hue Control Uniforms ---
-uniform bool enable_rainbow_cycle = false;       // Toggle for running rainbow cycle
+// Overlay tiling: number of texture repeats per unit of object-space distance.
+// Smaller values = larger tiles. Larger values = smaller tiles.
+uniform float overlay_tiles_per_unit : hint_range(0.01, 10.0) = 1.0;
+
+// Rainbow and hue controls
+uniform bool enable_rainbow_cycle = false;
 uniform float cycle_speed : hint_range(0.0, 5.0) = 1.0;
 
-uniform bool enable_static_hue_shift = false;    // Toggle for fixed hue shift
-uniform float static_hue_value : hint_range(0.0, 1.0) = 0.0; // The fixed hue color (0.0 to 1.0)
+uniform bool enable_static_hue_shift = false;
+uniform float static_hue_value : hint_range(0.0, 1.0) = 0.0;
 
-// Helper function to convert RGB to HSV
+varying vec3 object_position;
+
 vec3 rgb2hsv(vec3 c) {
     vec4 K = vec4(0.0, -1.0 / 3.0, 2.0 / 3.0, -1.0);
     vec4 p = mix(vec4(c.bg, K.wz), vec4(c.gb, K.xy), step(c.b, c.g));
@@ -20,40 +25,63 @@ vec3 rgb2hsv(vec3 c) {
 
     float d = q.x - min(q.w, q.y);
     float e = 1.0e-10;
-    return vec3(abs(q.z + (q.w - q.y) / (6.0 * d + e)), d / (q.x + e), q.x);
+
+    return vec3(
+        abs(q.z + (q.w - q.y) / (6.0 * d + e)),
+        d / (q.x + e),
+        q.x
+    );
 }
 
-// Helper function to convert HSV back to RGB
 vec3 hsv2rgb(vec3 c) {
     vec4 K = vec4(1.0, 2.0 / 3.0, 1.0 / 3.0, 3.0);
     vec3 p = abs(fract(c.xxx + K.xyz) * 6.0 - K.www);
     return c.z * mix(K.xxx, clamp(p - K.xxx, 0.0, 1.0), c.y);
 }
 
+void vertex() {
+    // Vertex position in the mesh's local coordinate space.
+    object_position = VERTEX;
+}
+
 void fragment() {
     vec4 base_color = texture(base_texture, UV);
-    vec4 overlay_color = texture(overlay_texture, UV);
-    float mask = texture(mask_texture, UV).r;
 
-    // Modify only the overlay texture color
-    vec3 final_overlay_rgb = overlay_color.rgb;
+    // Triplanar-style projection using object-space position.
+    // Each face uses the two coordinates that span its plane.
+    vec3 p = object_position * overlay_tiles_per_unit;
 
+    vec3 n = abs(normalize(NORMAL));
+    n /= max(n.x + n.y + n.z, 0.0001);
+
+    vec2 uv_x = p.zy;
+    vec2 uv_y = p.xz;
+    vec2 uv_z = p.xy;
+
+    vec3 overlay_x = texture(overlay_texture, uv_x).rgb;
+    vec3 overlay_y = texture(overlay_texture, uv_y).rgb;
+    vec3 overlay_z = texture(overlay_texture, uv_z).rgb;
+
+    vec3 final_overlay_rgb =
+        overlay_x * n.x +
+        overlay_y * n.y +
+        overlay_z * n.z;
+
+    // Preserve the original hue effects.
     if (enable_rainbow_cycle || enable_static_hue_shift) {
-        // Convert to HSV to manipulate the color hue safely
         vec3 hsv = rgb2hsv(final_overlay_rgb);
 
         if (enable_rainbow_cycle) {
-            // Cycle continuously over time
-            hsv.x = fract(hsv.x + (TIME * cycle_speed));
+            hsv.x = fract(hsv.x + TIME * cycle_speed);
         } else if (enable_static_hue_shift) {
-            // Apply fixed hue target offset
             hsv.x = fract(hsv.x + static_hue_value);
         }
 
-        // Convert back to RGB
         final_overlay_rgb = hsv2rgb(hsv);
     }
 
-    // Interpolate between the base texture and the potentially modified overlay texture
+    // Keep the original mask and base-texture UVs.
+    float mask = texture(mask_texture, UV).r;
+
     ALBEDO = mix(base_color.rgb, final_overlay_rgb, mask);
 }
