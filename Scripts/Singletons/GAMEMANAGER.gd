@@ -121,6 +121,8 @@ func start_game() -> void:
 	countdown_timer.start()
 	countdown_timer.connect("timeout", _on_countdown_timer_timeout)
 
+	current_hunger = MAX_HUNGER
+
 func _on_countdown_timer_timeout() -> void:
 	# countdown_timer.queue_free()
 	print("game start!")
